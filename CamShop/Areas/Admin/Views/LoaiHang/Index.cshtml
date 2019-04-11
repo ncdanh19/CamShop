@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Models.EF.LoaiHang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>Loại hàng</h2>
+    <p>        
+       @Html.ActionLink("Create New", "Create","",new { @class="hvr-fade" })
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tenLoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetaTitle)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MetaTitle)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.loaiHangID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.loaiHangID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.loaiHangID })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
