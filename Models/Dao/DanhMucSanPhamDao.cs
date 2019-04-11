@@ -21,5 +21,10 @@ namespace Models.Dao
             return db.LoaiHangs.Find(loaihangID);
         }
 
+        public List<LoaiHang> listCategories()
+        {
+            return db.LoaiHangs.ToList();
+        }
+
     }
 }

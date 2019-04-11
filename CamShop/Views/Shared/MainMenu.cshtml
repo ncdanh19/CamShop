@@ -5,16 +5,10 @@
     </label>
     <input id="mobile_menu" type="checkbox">
     <ul class="nav">
-        @*<li class="dropdown1">
-            <a href="bicycles.html">DROPDOWN 1</a>
-            <ul class="dropdown2">
-                <li><a href="bicycles.html">Sản phẩm tiêu biểu(Trang bicycles)</a></li>
-            </ul>
-        </li>*@
         @foreach(var item in Model)
         {
             <li>
-            <a href="@item.URL/@item.danhMucID" target="@item.Target"><img src="@item.image" alt="" />@item.tenDanhMuc</a>
+            <a href="@item.URL-@item.danhMucID" target="@item.Target"><img src="@item.image" alt="" />@item.tenDanhMuc</a>
             </li>
         }      
     </ul>

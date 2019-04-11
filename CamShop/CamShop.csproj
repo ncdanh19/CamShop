@@ -294,6 +294,7 @@
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\SanPham\Detail.cshtml" />
     <Content Include="Views\SanPham\Category.cshtml" />
+    <Content Include="Views\Shared\LeftMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -304,6 +305,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Code\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

@@ -23,6 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
     @* slider *@
     <link href="~/Assets/client/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     @* slider *@
@@ -65,6 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
+    @* Menu chính/menu top trên cùng. Từ MainMenu.cshtml *@
     <div class="banner-bg banner-bg1">
         <div class="container">
             <div class="header">
@@ -78,15 +80,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         @RenderSection("banner", required: false)
     </div>
     <!--/banner-->
-
-
+    @* Hiển thị Category ở trang chủ. Từ Index.cshtml *@
     @RenderSection("categories", required: false)
 
+
+    @* Hiển thị sản phẩm mới ở trang chủ. Từ Index.cshtml *@
     @RenderSection("bikes", required: false)
 
 
+    @RenderSection("sanphamhot", required: false)
+
+    @* Hiển thị liên hệ ở trang chủ. Từ Idexl.cshtml *@
     @RenderSection("contact", required: false)
-    
+
     @RenderBody()
 
     <!--footer-->

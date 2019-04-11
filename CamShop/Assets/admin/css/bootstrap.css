@@ -6191,8 +6191,8 @@ button.close {
   position: absolute;
   top: 50%;
   z-index: 5;
-  display: inline-block;}
-
+  display: inline-block;
+}
 .carousel-control .icon-prev,
 .carousel-control .glyphicon-chevron-left {
   left: 50%;

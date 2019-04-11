@@ -55,7 +55,6 @@ namespace CamShop
                 namespaces: new[] {"CamShop.Controllers"}
             );
 
-
         }
     }
 }

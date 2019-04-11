@@ -43,5 +43,11 @@ namespace Models.Dao
         {
             return db.SanPhams.Find(id);
         }
+
+        //Sản phẩm nổi bật
+        public List<SanPham> ListHotProduct(int hot)
+        {
+            return db.SanPhams.OrderByDescending(x => x.Hot).Take(hot).ToList();
+        }
     }
 }

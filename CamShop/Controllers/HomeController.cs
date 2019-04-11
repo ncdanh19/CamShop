@@ -15,6 +15,8 @@ namespace CamShop.Controllers
             ViewBag.slides = new SlideDao().ListAll();
             var sanphamDao = new SanPhamDao();
             ViewBag.sanPhamMoi = new SanPhamDao().ListNewProduct(4);
+            ViewBag.sanPhamHot = new SanPhamDao().ListHotProduct(3);
+            ViewBag.categories = new DanhMucSanPhamDao().listCategories();
             return View();
         }
 

@@ -25,11 +25,11 @@ namespace CamShop.Controllers
         }
 
         //Danh mục sản phẩm
-        public ActionResult Category(int danhMucID)
+        public ActionResult Category(int loaiHangID)
         {
-            var category = new MenuDao().ViewDetail(danhMucID);
+            var category = new DanhMucSanPhamDao().ViewDetail(loaiHangID);
             ViewBag.LoaiHang = category;
-            var model = new SanPhamDao().ListByCateID(danhMucID);
+            var model = new SanPhamDao().ListByCateID(loaiHangID);
             return View(model);
         }
 
@@ -40,6 +40,13 @@ namespace CamShop.Controllers
             ViewBag.LoaiHang = new MenuDao().ViewDetail(sanPham.loaiHang.Value);
             ViewBag.RelatedSanPham = new SanPhamDao().ListRelated(id);
             return View(sanPham);
+        }
+
+        [ChildActionOnly]
+        public ActionResult LeftMenu()
+        {
+            var leftmenu = new MenuDao().ListLeftMenu(1);
+            return PartialView(leftmenu);
         }
     }
 }
