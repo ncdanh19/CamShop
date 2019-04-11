@@ -1,0 +1,46 @@
+﻿@model List<Models.EF.SanPham>
+@{
+    var danhmuc = (Models.EF.LoaiHang)ViewBag.LoaiHang;
+    ViewBag.Title = danhmuc.tenLoai;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* Danh mục sản phẩm *@
+<div class="parts">
+    <div class="container">
+        <h2>@danhmuc.tenLoai</h2>
+        <div class="bike-parts-sec">
+            <div class="bike-parts">
+                <div class="top">
+                    <ul>
+                        <li><a href="/">home</a></li>
+                        <li><a href="#"> / </a></li>
+                        <li><a href="#">@danhmuc.tenLoai</a></li>
+                    </ul>
+                </div>
+                <div class="bike-apparels">
+                    @foreach (var item in Model)
+                    {
+                        var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
+                        <div class="col-md-3">
+                            <a href="@urlchitiet"></a><div class="part-sec">
+                                <a href="@urlchitiet">
+                                    <img src="@item.hinhAnh" alt="">
+                                </a><div class="part-info">
+                                    <a href="@urlchitiet">
+                                    </a><a href="#"><h5>@item.tenSanPham<span>$@item.donGia</span></h5></a>
+                                    <a class="add-cart" href="@urlchitiet">Quick View</a>
+                                    <a class="qck" href="@urlchitiet">BUY NOW</a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+            @{Html.RenderAction("LeftMenu", "SanPham"); }
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!---->

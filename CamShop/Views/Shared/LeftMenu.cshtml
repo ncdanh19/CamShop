@@ -1,0 +1,30 @@
+﻿@model List<Models.EF.DanhMuc>
+
+<div class="rsidebar span_1_of_left">
+    <section class="sky-form">
+        <div class="product_right">
+            <h3 class="m_2">Danh mục sản phẩm</h3>
+            <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro"}' onchange="location = this.value;">
+                @foreach (var item in Model)
+                {
+                    <option value="@item.URL/@item.danhMucID">@item.tenDanhMuc</option>
+                }
+            </select>
+        </div>
+    </section>
+
+    <section class="sky-form">
+        <h4>Price</h4>
+        <div class="row row1 scroll-pane">
+            <div class="col col-4">
+                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>$50.00 and Under (30)</label>
+            </div>
+            <div class="col col-4">
+                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$100.00 and Under (30)</label>
+                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$200.00 and Under (30)</label>
+                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$300.00 and Under (30)</label>
+                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>$400.00 and Under (30)</label>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,202 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
+    var slides = (List<Models.EF.Slide>)ViewBag.Slides;
+    var listSanPhamMoi = (List<Models.EF.SanPham>)ViewBag.sanPhamMoi;
+    var listSanPhamHot = (List<Models.EF.SanPham>)ViewBag.sanPhamHot;
+    var listCategories = (List<Models.EF.LoaiHang>)ViewBag.categories;
+}
+
+@section banner{
+
+    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+        <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- Wrapper for carousel items -->
+        <div class="carousel-inner">
+
+
+            @foreach (var obj in slides.Select((item, index) => new { item, index }))
+            {
+                <div class='@(obj.index==0?"item active":"item")' style="background-image: url(@obj.item.hinhAnh);">
+                    <div class="carousel-caption">
+                        <h3>First slide label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+}
+
+@* Categories *@
+@section categories{
+    <div id="cate" class="categories">
+        <div class="container">
+            <h3>Categories</h3>
+            <div class="categorie-grids">
+                @foreach (var item in listCategories)
+                {
+                    var url = item.MetaTitle + "-" + item.loaiHangID;
+                    var style = "col-md-4 cate-grid grid" + item.loaiHangID;
+                    <a href="@url?loaiHangID=@item.loaiHangID">
+                        <div class="@style">
+                            <h4>@item.tenLoai</h4>
+                            <p>Are you ready for the 27.5 Revloution ?</p>
+                            <a class="store" href="@url">@item.tenLoai</a>
+                        </div>
+                    </a>
+
+                }
+
+            </div>
+        </div>
+    </div>
+}
+
+@* Sản phẩm nổi bật *@
+@section sanphamhot{
+<div class="bikes">
+    <h3>Sản phẩm nổi bật</h3>
+    <div class="bikes-grids">
+        <ul id="flexiselDemo1">
+            @foreach (var item in listSanPhamHot)
+            {
+                var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
+                <li>
+                    <img src="@item.hinhAnh" alt="" />
+                    <div class="bike-info">
+                        <div class="model">
+                            <h4>@item.tenSanPham<span>@item.donGia VNĐ</span></h4>
+                        </div>
+                        <div class="model-info">
+                            <a href="@item.">BUY</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="viw">
+                        <a href="@urlchitiet">Quick View</a>
+                    </div>
+                </li>
+            }
+        </ul>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 3,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 2000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript" src="/Assets/client/js/jquery.flexisel.js"></script>
+    </div>
+
+</div>
+}
+
+<!--bikes-->
+@section bikes{
+    <div class="bikes">
+        <h3>Sản phẩm mới</h3>
+        <div class="bikes-grids">
+            <ul id="flexiselDemo2">
+                @foreach (var item in listSanPhamMoi)
+                {
+                    var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
+                    <li>
+                        <img src="@item.hinhAnh" alt="" />
+                        <div class="bike-info">
+                            <div class="model">
+                                <h4>@item.tenSanPham<span>@item.donGia VNĐ</span></h4>
+                            </div>
+                            <div class="model-info">
+                                <a href="@item.">BUY</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="viw">
+                            <a href="@urlchitiet">Quick View</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $("#flexiselDemo2").flexisel({
+                        visibleItems: 3,
+                        animationSpeed: 1000,
+                        autoPlay: true,
+                        autoPlaySpeed: 2000,
+                        pauseOnHover: true,
+                        enableResponsiveBreakpoints: true,
+                        responsiveBreakpoints: {
+                            portrait: {
+                                changePoint: 480,
+                                visibleItems: 1
+                            },
+                            landscape: {
+                                changePoint: 640,
+                                visibleItems: 2
+                            },
+                            tablet: {
+                                changePoint: 768,
+                                visibleItems: 3
+                            }
+                        }
+                    });
+                });
+            </script>
+            <script type="text/javascript" src="/Assets/client/js/jquery.flexisel.js"></script>
+        </div>
+
+    </div>
+}
+<!--/bikes-->
+<!---->
+<!--contact-->
+@section contact{
+    <div class="contact">
+        <div class="container">
+            <h3>CONTACT US</h3>
+            <p>Please contact us for all inquiries and purchase options.</p>
+            <form>
+                <input type="text" placeholder="NAME" required="">
+                <input type="text" placeholder="SURNAME" required="">
+                <input class="user" type="text" placeholder="USER@DOMAIN.COM" required=""><br>
+                <textarea placeholder="MESSAGE"></textarea>
+                <input type="submit" value="SEND">
+            </form>
+        </div>
+    </div>
+}
+<!--/contact-->
+<!---->

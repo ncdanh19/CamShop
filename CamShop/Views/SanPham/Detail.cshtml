@@ -1,0 +1,114 @@
+﻿@model Models.EF.SanPham
+@{
+    ViewBag.Title = Model.tenSanPham;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loaihang = (Models.EF.DanhMuc)ViewBag.LoaiHang;
+    var related = (List<Models.EF.SanPham>)ViewBag.RelatedSanPham;
+}
+@* Chi tiết sản phẩm.*@
+<div class="product">
+    <div class="container">
+        <div class="ctnt-bar cntnt">
+            <div class="content-bar">
+                <div class="single-page">
+                    <div class="product-head">
+                        <a href="/">Home</a> <span>/</span><a href="@loaihang.URL/@loaihang.danhMucID">@loaihang.tenDanhMuc</a><span>/</span><a href="#">@Model.tenSanPham</a>
+                    </div>
+                    <!--Include the Etalage files-->
+                    <link rel="stylesheet" href="~/Assets/client/css/etalage.css">
+                    <script src="~/Assets/client/js/jquery.etalage.min.js"></script>
+                    <script>
+			jQuery(document).ready(function($){
+
+				$('#etalage').etalage({
+					thumb_image_width: 400,
+					thumb_image_height: 400,
+					source_image_width: 800,
+					source_image_height: 1000,
+					show_hint: true,
+					click_callback: function(image_anchor, instance_id){
+						alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+					}
+				});
+
+			});
+                    </script>
+                    <!--//details-product-slider-->
+                    <div class="details-left-slider">
+                        <div class="grid images_3_of_2">
+                            <ul id="etalage">
+                                <li>
+                                    <a href="optionallink.html">
+                                        <img class="etalage_thumb_image" src="@Model.hinhAnh" class="img-responsive" />
+                                        <img class="etalage_source_image" src="@Model.hinhAnh" class="img-responsive" title="" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <img class="etalage_thumb_image" src="@Model.hinhAnh" class="img-responsive" />
+                                    <img class="etalage_source_image" src="@Model.hinhAnh" class="img-responsive" title="" />
+                                </li>
+                                <li>
+                                    <img class="etalage_thumb_image" src="@Model.hinhAnh" class="img-responsive" />
+                                    <img class="etalage_source_image" src="@Model.hinhAnh" class="img-responsive" />
+                                </li>
+                                <li>
+                                    <img class="etalage_thumb_image" src="@Model.hinhAnh" class="img-responsive" />
+                                    <img class="etalage_source_image" src="@Model.hinhAnh" class="img-responsive" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="details-left-info">
+                        <h3>@Model.tenSanPham</h3>
+                        <h4>@Model.thuongHieu</h4>
+                        <h4></h4>
+                        <p><label>$</label>@(Model.donGia.HasValue? Model.donGia.Value.ToString("N0"): "Liên hệ") <a href="#">Click for offer</a></p>
+                        <p class="size">SIZE ::</p>
+                        <a class="length" href="#">XS</a>
+                        <a class="length" href="#">M</a>
+                        <a class="length" href="#">S</a>
+                        <div class="btn_form">
+                            <a href="cart.html">buy now</a>
+                            <a href="cart.html">ADD TO CART</a>
+                        </div>
+                        <div class="bike-type">
+                            <p>TYPE  ::<a href="#">@Model.loaiHang</a></p>
+                            @*<p>BRAND  ::<a href="#">SPORTS SCOTTY</a></p>*@
+                        </div>
+                        <h5>Mô tả  ::</h5>
+                        <p class="desc">
+                           @Model.moTa
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="single-bottom2">
+            <h6>Related Products</h6>
+            @foreach (var item in related)
+            {
+                var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
+                <div class="product">
+                    <div class="product-desc">
+                        <div class="product-img product-img2">
+                            <img src="@item.hinhAnh" class="img-responsive " alt="" />
+                        </div>
+                        <div class="prod1-desc">
+                            <h5><a class="product_link" href="@urlchitiet">@item.tenSanPham</a></h5>
+                            <p class="product_descr">@item.moTa</p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="product_price">
+                        <span class="price-access">$@item.donGia</span>
+                        <a class="button1" href="cart.html"><span>Add to cart</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<!---->
