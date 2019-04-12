@@ -24,13 +24,18 @@ namespace Models.Dao
         {
             return db.Users.SingleOrDefault(x => x.userName == userName);
         }
-        public bool Login(string username,string password)
+        public int Login(string username,string password)
         {
-            var result = db.Users.Count(x => x.userName == username && x.passWord == password);
-            if (result > 0)
-                return true;
+            var result = db.Users.SingleOrDefault(x => x.userName == username);
+            if (result == null)
+                return 0; //Trường hợp tài khoản không tồn tại
             else
-                return false;
+            {
+                if (result.passWord == password)
+                    return 1;
+                else
+                    return -2;
+            }
         }
     }
 }

@@ -7,9 +7,9 @@
         $('.continue').off('click').on('click', function () {
             window.location.href = "/";
         });
-       
+
         //Update số lượng sản phẩm
-        $('#Quantity').on('change', function () {                  
+        $('#Quantity').on('change', function () {
             var listProduct = $('#Quantity');
             var cartList = [];
             $.each(listProduct, function (i, item) {
@@ -32,13 +32,12 @@
                     }
                 }
             })
-        });        
-
-        //Xóa sản phẩm (chưa xong 30:00)
-        $('.close1').on('change', function () {           
+        });
+        
+        $('.close1').off('click').on('click', function () {
             $.ajax({
-                url: 'cart-update',
-                data: { cartModel: JSON.stringify(cartList) },
+                data: { id: $(this).data('id') },
+                url: 'Cart/Delete',
                 dataType: 'json',
                 type: 'POST',
                 success: function (res) {
@@ -47,7 +46,7 @@
                     }
                 }
             })
-        });        
+        });
 
     }
 }

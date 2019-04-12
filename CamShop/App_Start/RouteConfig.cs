@@ -15,7 +15,7 @@ namespace CamShop
 
             routes.MapRoute(
                name: "Danh muc san pham",
-               url: "{MetaTitle}-{loaiHangID}",
+               url: "san-pham/{MetaTitle}-{loaiHangID}",
                defaults: new { controller = "SanPham", action = "Category", id = UrlParameter.Optional },
                namespaces: new[] { "CamShop.Controllers" }
            );
