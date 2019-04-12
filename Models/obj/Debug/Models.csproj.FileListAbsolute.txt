@@ -22,3 +22,15 @@ E:\VS Project\CamShop\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 E:\VS Project\CamShop\Models\obj\Debug\Models.csproj.CopyComplete
 E:\VS Project\CamShop\Models\obj\Debug\Models.dll
 E:\VS Project\CamShop\Models\obj\Debug\Models.pdb
+E:\GitKraken\CamShop\Models\bin\Debug\Models.dll.config
+E:\GitKraken\CamShop\Models\bin\Debug\Models.dll
+E:\GitKraken\CamShop\Models\bin\Debug\Models.pdb
+E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.dll
+E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.xml
+E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\GitKraken\CamShop\Models\obj\Debug\Models.csprojAssemblyReference.cache
+E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CopyComplete
+E:\GitKraken\CamShop\Models\obj\Debug\Models.dll
+E:\GitKraken\CamShop\Models\obj\Debug\Models.pdb
