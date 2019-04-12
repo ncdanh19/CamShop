@@ -7,7 +7,7 @@
             <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro"}' onchange="location = this.value;">
                 @foreach (var item in Model)
                 {
-                    <option value="@item.URL/@item.danhMucID">@item.tenDanhMuc</option>
+                    <option value="@item.URL-@item.danhMucID">@item.tenDanhMuc</option>
                 }
             </select>
         </div>
