@@ -302,3 +302,7 @@ E:\GitKraken\CamShop\CamShop\obj\Debug\CamShop.csproj.CoreCompileInputs.cache
 E:\GitKraken\CamShop\CamShop\obj\Debug\CamShop.csproj.CopyComplete
 E:\GitKraken\CamShop\CamShop\obj\Debug\CamShop.dll
 E:\GitKraken\CamShop\CamShop\obj\Debug\CamShop.pdb
+E:\CamShop\CamShop\CamShop\bin\PagedList.dll
+E:\CamShop\CamShop\CamShop\bin\PagedList.Mvc.dll
+E:\CamShop\CamShop\CamShop\bin\PagedList.xml
+E:\CamShop\CamShop\CamShop\bin\PagedList.Mvc.xml

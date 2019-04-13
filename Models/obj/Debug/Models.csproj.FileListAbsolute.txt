@@ -34,3 +34,7 @@ E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CopyComplete
 E:\GitKraken\CamShop\Models\obj\Debug\Models.dll
 E:\GitKraken\CamShop\Models\obj\Debug\Models.pdb
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.dll
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.Mvc.dll
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.xml
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.Mvc.xml

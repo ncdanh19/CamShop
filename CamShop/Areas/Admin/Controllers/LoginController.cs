@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace CamShop.Areas.Admin.Controllers
 {
@@ -39,7 +40,13 @@ namespace CamShop.Areas.Admin.Controllers
                     ModelState.AddModelError("", "Thông tin đăng nhập không chính xác");
             }
             return View("Index");
+        }
 
+        //Logout
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

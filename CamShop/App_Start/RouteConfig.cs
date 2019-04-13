@@ -49,10 +49,17 @@ namespace CamShop
              );
 
             routes.MapRoute(
+              name: "dang-ky",
+              url: "dang-ky",
+              defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
+              namespaces: new[] { "CamShop.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] {"CamShop.Controllers"}
+                namespaces: new[] { "CamShop.Controllers" }
             );
 
         }
