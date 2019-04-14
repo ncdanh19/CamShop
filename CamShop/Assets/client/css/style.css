@@ -99,7 +99,7 @@ a.shop{
 	text-align:center;
 }
 .header{
-	margin-top:2.3em;
+	margin-top:1.3em;
 }
 .logo{
 	float:left;
@@ -205,9 +205,9 @@ a.morebtn:hover{
 .categories{
 	background:url(../images/cate.jpg) no-repeat;
 	background-size:cover;
-	min-height:600px;
+	min-height:100px;
 	text-align:center;
-	padding:5em 0; 
+	padding:3em 0; 
 }
 .categories h3,.bikes h3{
 	 color:#000;
@@ -218,23 +218,26 @@ a.morebtn:hover{
 	text-align:center;
 }
 .categorie-grids {
-	 margin-top:4em;
+	 margin-top:3em;
 }
 .cate-grid{	
 	padding:10em 0 0 0; 
 	min-height:290px;
 	background-size: 100%;
-	/*margin:0 12px;*/
+	margin:0 12px;
 	width:31%;
 }
-.grid1{
-	background:url(../images/c1.jpg) no-repeat;
+.grid1 {
+    background: url(../images/Photography.jpg) no-repeat;
+    background-position: left;
 }
-.grid2{
-	background:url(../images/c2.jpg) no-repeat;
+.grid2 {
+    background: url(../images/Panasonic_Lens1.jpg) no-repeat;
+    background-position: center;
 }
-.grid3{
-	background:url(../images/c3.jpg) no-repeat;
+.grid3 {
+    background: url(../images/th.jpg) no-repeat;
+    background-position: center;
 }
 .cate-grid h4{
 	color:#fcff19;
@@ -267,14 +270,15 @@ a.store:hover{
 	padding:6em 0 2em 0;
 }
 .bikes-grids{
-	margin-top:8em;
+	margin-top:1em;
 }
 #flexiselDemo1, #flexiselDemo2, #flexiselDemo3 {
 	display: none;
 }
 .nbs-flexisel-container {
 	position: relative;
-	max-width: 100%;
+	max-width: 60%;
+    margin:auto
 }
 .nbs-flexisel-ul {
 	position: relative;
@@ -303,7 +307,7 @@ a.store:hover{
 }
 .bike-info{
 	padding:0 20px;
-	margin-top:4em;
+	margin-top:1em;
 }
 .model{
 	float:left;
@@ -1469,7 +1473,7 @@ select {
   margin: 0 0 0 14px;
 }
 .bikes {
-  padding: 3em 0 2em 0; 
+  padding: 4em 0 2em 0; 
 }
 .bike-mdl {
   width: 61%;

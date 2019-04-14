@@ -45,7 +45,7 @@ namespace CamShop.Controllers
         [ChildActionOnly]
         public ActionResult LeftMenu()
         {
-            var leftmenu = new MenuDao().ListLeftMenu(1);
+            var leftmenu = new DanhMucSanPhamDao().listCategories();
             return PartialView(leftmenu);
         }
     }

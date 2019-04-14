@@ -48,7 +48,7 @@
             <div class="categorie-grids">
                 @foreach (var item in listCategories)
                 {
-                    var url = item.MetaTitle + "-" + item.loaiHangID;
+                    var url = "/" + "san-pham" + "/" + item.MetaTitle + "-" + item.loaiHangID;
                     var style = "col-md-4 cate-grid grid" + item.loaiHangID;
                     <a href="@url?loaiHangID=@item.loaiHangID">
                         <div class="@style">
@@ -59,7 +59,7 @@
                     </a>
 
                 }
-
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
