@@ -1,4 +1,4 @@
-﻿@model List<Models.EF.DanhMuc>
+﻿@model List<Models.EF.LoaiHang>
 
 <div class="rsidebar span_1_of_left">
     <section class="sky-form">
@@ -7,7 +7,8 @@
             <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro"}' onchange="location = this.value;">
                 @foreach (var item in Model)
                 {
-                    <option value="@item.URL-@item.danhMucID">@item.tenDanhMuc</option>
+                    var url = "/san-pham/" + @item.MetaTitle + "-" + @item.loaiHangID;
+                    <option value= @url>@item.tenLoai</option>
                 }
             </select>
         </div>
