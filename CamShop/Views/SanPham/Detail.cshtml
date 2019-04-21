@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var loaihang = (Models.EF.DanhMuc)ViewBag.LoaiHang;
     var related = (List<Models.EF.SanPham>)ViewBag.RelatedSanPham;
+    var url = "/san-pham/";
 }
 @* Chi tiết sản phẩm.*@
 <div class="product">
@@ -12,7 +13,7 @@
             <div class="content-bar">
                 <div class="single-page">
                     <div class="product-head">
-                        <a href="/">Home</a> <span>/</span><a href="@loaihang.URL-@loaihang.danhMucID">@loaihang.tenDanhMuc</a><span>/</span><a href="#">@Model.tenSanPham</a>
+                        <a href="/">Home</a> <span>/</span><a href="@url@loaihang.URL-@loaihang.danhMucID">@loaihang.tenDanhMuc</a><span>/</span><a href="#">@Model.tenSanPham</a>
                     </div>
                     <!--Include the Etalage files-->
                     <link rel="stylesheet" href="~/Assets/client/css/etalage.css">

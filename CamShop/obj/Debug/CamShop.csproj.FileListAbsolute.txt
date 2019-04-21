@@ -306,3 +306,7 @@ E:\CamShop\CamShop\CamShop\bin\PagedList.dll
 E:\CamShop\CamShop\CamShop\bin\PagedList.Mvc.dll
 E:\CamShop\CamShop\CamShop\bin\PagedList.xml
 E:\CamShop\CamShop\CamShop\bin\PagedList.Mvc.xml
+E:\GitKraken\CamShop\CamShop\bin\PagedList.dll
+E:\GitKraken\CamShop\CamShop\bin\PagedList.Mvc.dll
+E:\GitKraken\CamShop\CamShop\bin\PagedList.xml
+E:\GitKraken\CamShop\CamShop\bin\PagedList.Mvc.xml
