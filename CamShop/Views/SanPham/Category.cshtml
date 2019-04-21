@@ -1,4 +1,5 @@
-﻿@model List<Models.EF.SanPham>
+﻿@model PagedList.IPagedList<Models.EF.SanPham>
+@using PagedList.Mvc;
 @{
     var danhmuc = (Models.EF.LoaiHang)ViewBag.LoaiHang;
     ViewBag.Title = danhmuc.tenLoai;
@@ -28,7 +29,7 @@
                                     <img src="@item.hinhAnh" alt="">
                                 </a><div class="part-info">
                                     <a href="@urlchitiet">
-                                    </a><a href="#"><h5>@item.tenSanPham<span>$@item.donGia</span></h5></a>
+                                    </a><a href="@urlchitiet"><h5>@item.tenSanPham<span>$@item.donGia</span></h5></a>
                                     <a class="add-cart" href="@urlchitiet">Quick View</a>
                                     <a class="qck" href="@urlchitiet">BUY NOW</a>
                                 </div>
@@ -40,6 +41,10 @@
             </div>
             @{Html.RenderAction("LeftMenu", "SanPham"); }
             <div class="clearfix"></div>
+        </div>
+        <!--Phân Trang-->
+        <div class="float-sm-right">
+            @Html.PagedListPager(Model, page => Url.Action("Category", new { loaihangID = Request.Params["loaihangID"], page }))
         </div>
     </div>
 </div>

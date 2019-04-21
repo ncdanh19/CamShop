@@ -1,9 +1,7 @@
 ﻿using Models.EF;
-using System;
+using PagedList;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Models.Dao
 {
@@ -21,12 +19,26 @@ namespace Models.Dao
         }
 
         //List sản phẩm theo danh mục
-        public List<SanPham> ListByCateID(int danhmucID)
+
+        //public List<SanPham> ListByCateID(int danhmucID, ref int totalRecord, int page = 1, int pageSize = 5)
+        //{
+        //    totalRecord = db.SanPhams.Where(x => x.loaiHang == danhmucID).Count();
+        //    var model = db.SanPhams.Where(x => x.loaiHang == danhmucID).OrderByDescending(x => x.NgayTao).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+        //    return model;
+        //}
+
+        public IPagedList<SanPham> ListByCateID(int danhmucID, int? page, int pageSize)
         {
-            return db.SanPhams.Where(x => x.loaiHang == danhmucID).ToList();
+            if (page == null)
+            {
+                page = 1;
+            }
+            int pageNumber = (page ?? 1);
+
+            return db.SanPhams.Where(x => x.loaiHang == danhmucID).OrderBy(x => x.sanPhamID).ToPagedList(pageNumber,pageSize);
         }
         //List sản phẩm mới
-        public  List<SanPham> ListNewProduct(int top)
+        public List<SanPham> ListNewProduct(int top)
         {
             return db.SanPhams.OrderByDescending(x => x.NgayTao).Take(top).ToList();
         }

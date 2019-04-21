@@ -24,15 +24,20 @@ namespace CamShop.Controllers
             return PartialView(model);
         }
 
-        //Danh mục sản phẩm
-        public ActionResult Category(int loaiHangID)
+
+        public ActionResult Category(int loaihangID, int? page, int pageSize =5 )
         {
-            var category = new DanhMucSanPhamDao().ViewDetail(loaiHangID);
+            var category = new DanhMucSanPhamDao().ViewDetail(loaihangID);
             ViewBag.LoaiHang = category;
-            var model = new SanPhamDao().ListByCateID(loaiHangID);
+            if (page == null)
+            {
+                page = 1;
+            }
+
+            var model = new SanPhamDao().ListByCateID(loaihangID,page,pageSize);
+
             return View(model);
         }
-
         //Chi tiết sản phẩm
         public ActionResult Detail(int id)
         {
