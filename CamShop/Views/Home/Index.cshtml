@@ -18,8 +18,6 @@
         </ol>
         <!-- Wrapper for carousel items -->
         <div class="carousel-inner">
-
-
             @foreach (var obj in slides.Select((item, index) => new { item, index }))
             {
                 <div class='@(obj.index==0?"item active":"item")' style="background-image: url(@obj.item.hinhAnh);">
@@ -81,7 +79,7 @@
                                 <h4>@item.tenSanPham<span>@item.donGia VNĐ</span></h4>
                             </div>
                             <div class="model-info">
-                                <a href="@item.">BUY</a>
+                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">BUY</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>

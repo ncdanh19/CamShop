@@ -15,7 +15,6 @@ namespace Models.Dao
             db = new CamShopDbContext();
         }
 
-
         public LoaiHang ViewDetail(int loaihangID)
         {
             return db.LoaiHangs.Find(loaihangID);

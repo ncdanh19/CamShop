@@ -13,7 +13,7 @@ using PagedList;
 
 namespace CamShop.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private CamShopDbContext db = new CamShopDbContext();
 
@@ -21,7 +21,7 @@ namespace CamShop.Areas.Admin.Controllers
         public ActionResult Index(int page = 1, int pageSize = 10)
         {
             var dao = new UserDao();
-            var model = dao.ListAllPaging(page,pageSize);            
+            var model = dao.ListAllPaging(page,pageSize);
             return View(model);
         }
 

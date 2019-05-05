@@ -19,14 +19,6 @@ namespace Models.Dao
         }
 
         //List sản phẩm theo danh mục
-
-        //public List<SanPham> ListByCateID(int danhmucID, ref int totalRecord, int page = 1, int pageSize = 5)
-        //{
-        //    totalRecord = db.SanPhams.Where(x => x.loaiHang == danhmucID).Count();
-        //    var model = db.SanPhams.Where(x => x.loaiHang == danhmucID).OrderByDescending(x => x.NgayTao).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-        //    return model;
-        //}
-
         public IPagedList<SanPham> ListByCateID(int danhmucID, int? page, int pageSize)
         {
             if (page == null)

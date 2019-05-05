@@ -95,8 +95,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         isHtml: true
                     }
                 }
-
-
             });
         });
     </script>
@@ -110,26 +108,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="left-content">
             <div class="mother-grid-inner">
                 <!--header start here-->
-                
                 @RenderPage("_Header.cshtml")
                 <!--heder end here-->
                 <!-- script-for sticky-nav -->
                 <script>
-		$(document).ready(function() {
-			 var navoffeset=$(".header-main").offset().top;
-			 $(window).scroll(function(){
-				var scrollpos=$(window).scrollTop();
-				if(scrollpos >=navoffeset){
-					$(".header-main").addClass("fixed");
-				}else{
-					$(".header-main").removeClass("fixed");
-				}
-			 });
+                    $(document).ready(function () {
+                        var navoffeset = $(".header-main").offset().top;
+                        $(window).scroll(function () {
+                            var scrollpos = $(window).scrollTop();
+                            if (scrollpos >= navoffeset) {
+                                $(".header-main").addClass("fixed");
+                            } else {
+                                $(".header-main").removeClass("fixed");
+                            }
+                        });
 
-		});
+                    });
                 </script>
                 <!-- /script-for sticky-nav -->
                 <!--inner block start here-->
+                @*Hiển thị nội dung ở body, từ index*@
                 <div class="inner-block">
                     <div class="blank">
                         @RenderBody()
@@ -149,23 +147,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <!--slide bar menu end here-->
     <script>
-var toggle = true;
+        var toggle = true;
 
-$(".sidebar-icon").click(function() {
-  if (toggle)
-  {
-    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-    $("#menu span").css({"position":"absolute"});
-  }
-  else
-  {
-    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-    setTimeout(function() {
-      $("#menu span").css({"position":"relative"});
-    }, 400);
-  }
-                toggle = !toggle;
-            });
+        $(".sidebar-icon").click(function () {
+            if (toggle) {
+                $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                $("#menu span").css({ "position": "absolute" });
+            }
+            else {
+                $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+                setTimeout(function () {
+                    $("#menu span").css({ "position": "relative" });
+                }, 400);
+            }
+            toggle = !toggle;
+        });
     </script>
     <!--scrolling js-->
     <script src="~/Assets/admin/js/jquery.nicescroll.js"></script>
@@ -174,4 +170,4 @@ $(".sidebar-icon").click(function() {
     <script src="~/Assets/admin/js/bootstrap.js"></script>
     <!-- mother grid end here-->
 </body>
-</html>                     
+</html>

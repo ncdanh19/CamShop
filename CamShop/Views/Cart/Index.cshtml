@@ -9,15 +9,17 @@
 }
 <div class="cart">
     <div class="container">
+        @* div top *@
         <div class="cart-top">
             <a href="/">Trang chủ</a>
         </div>
+        @* div trái 9, giỏ hàng *@
         <div class="col-md-9 cart-items">
             <h2>Giỏ hàng</h2>
             @foreach (var item in Model)
             {
                 <div class="cart-header">
-                    <div class="close1"> </div>
+                    <div class="close1" data-id="@item.SanPham.sanPhamID"> </div>
                     <div class="cart-sec">
                         <div class="cart-item cyc">
                             <img src="@item.SanPham.hinhAnh" />
@@ -37,9 +39,9 @@
                     </div>
                 </div>
             }
-
+            <a href="#" class="btn-delete">Xóa hết</a>
         </div>
-
+        @* div phải 3, thanh toán giỏ hàng *@
         <div class="col-md-3 cart-total">
             <a class="continue" href="#">Continue to basket</a>
             <div class="price-details">

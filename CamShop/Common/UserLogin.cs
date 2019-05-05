@@ -5,7 +5,8 @@ using System.Web;
 
 namespace CamShop.Common
 {
-    [Serializable]
+    [Serializable] //Có khả năng kết nối
+    //Sử dụng cho global
     public class UserLogin
     {
         public int UserID { set; get; }
