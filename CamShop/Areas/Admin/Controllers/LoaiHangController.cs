@@ -10,7 +10,7 @@ using Models.EF;
 
 namespace CamShop.Areas.Admin.Controllers
 {
-    public class LoaiHangController : Controller
+    public class LoaiHangController : BaseController
     {
         private CamShopDbContext db = new CamShopDbContext();
 

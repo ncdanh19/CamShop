@@ -41,9 +41,21 @@ namespace CamShop.Controllers
         }
 
         //Xóa sản phẩm
-        public JsonResult Delete()
+        public JsonResult DeleteAll()
         {
             Session[CartSession] = null;
+            return Json(new
+            {
+                status = true
+            });
+        }
+
+        public JsonResult Delete(long id)
+        {
+           
+            var sessionCart = (List<CartItem>)Session[CartSession];
+            sessionCart.RemoveAll(x => x.SanPham.sanPhamID == id);
+            Session[CartSession] = sessionCart;
             return Json(new
             {
                 status = true

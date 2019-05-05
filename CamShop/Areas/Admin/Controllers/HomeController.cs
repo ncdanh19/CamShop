@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CamShop.Areas.Admin.Controllers
 {
+    //Home thừa kế từ Base
     public class HomeController : BaseController
     {
         // GET: Admin/Home

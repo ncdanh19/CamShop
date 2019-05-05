@@ -33,8 +33,24 @@
                 }
             })
         });
-        
-        $('.close1').off('click').on('click', function () {
+
+        //Xóa sản phẩm trong giỏ hàng
+        $('.btn-delete').off('click').on('click', function () {
+            $.ajax({
+                data: { id: $(this).data('id') },
+                url: 'Cart/DeleteAll',
+                dataType: 'json',
+                type: 'POST',
+                success: function (res) {
+                    if (res.status == true) {
+                        window.location.href = "/gio-hang";
+                    }
+                }
+            })
+        });
+
+        $('.close1').off('click').on('click', function (e) {
+            e.preventDefault();
             $.ajax({
                 data: { id: $(this).data('id') },
                 url: 'Cart/Delete',
