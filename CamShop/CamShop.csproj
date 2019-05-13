@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\assets\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Assets\admin\css\bootstrap.css" />
     <Content Include="Assets\admin\css\demo-page.css" />
     <Content Include="Assets\admin\css\examples.css" />
@@ -153,6 +154,7 @@
     <Content Include="Assets\admin\js\jquery-2.1.1.min.js" />
     <Content Include="Assets\admin\js\jquery.magnific-popup.js" />
     <Content Include="Assets\admin\js\jquery.nicescroll.js" />
+    <Content Include="Assets\admin\js\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Assets\admin\js\modernizr.min.js" />
     <Content Include="Assets\admin\js\nivo-lightbox.min.js" />
     <Content Include="Assets\admin\js\scripts.js" />
@@ -728,6 +730,11 @@
     <Content Include="Assets\client\js\responsiveslides.min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
+    <None Include="Scripts\jquery-1.8.0.intellisense.js" />
+    <Content Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

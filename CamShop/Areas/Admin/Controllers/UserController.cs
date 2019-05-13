@@ -18,10 +18,11 @@ namespace CamShop.Areas.Admin.Controllers
         private CamShopDbContext db = new CamShopDbContext();
 
         // GET: Admin/User
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
             var dao = new UserDao();
-            var model = dao.ListAllPaging(page,pageSize);
+            var model = dao.ListAllPaging(searchString, page,pageSize);
+            ViewBag.SearchString = searchString;
             return View(model);
         }
 
@@ -41,65 +42,60 @@ namespace CamShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/User/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
-
-        // POST: Admin/User/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+                
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,userName,passWord,hoTen,eMail,diaChi,soDienThoai")] User user)
+        public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
             {
-                var md5 = Encrytor.MD5Hash(user.passWord);
-                user.passWord = md5;
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(user);
-        }
-
-        // GET: Admin/User/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
-        }
-
-        // POST: Admin/User/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,userName,passWord,hoTen,eMail,diaChi,soDienThoai")] User user)
-        {
-            if (ModelState.IsValid)
-            {
-                if(!string.IsNullOrEmpty(user.passWord))
+                var dao = new UserDao();
+                var encryptedMD5Pas = Encrytor.MD5Hash(user.passWord);
+                user.passWord = encryptedMD5Pas;
+                long id = dao.Insert(user);
+                if (id > 0)
                 {
-                    var md5 = Encrytor.MD5Hash(user.passWord);
-                    user.passWord = md5;
-                }               
-
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Thêm user thành công");
+                }
             }
-            return View(user);
+            return View("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDao();
+                var encryptedMD5Pas = Encrytor.MD5Hash(user.passWord);
+                user.passWord = encryptedMD5Pas;
+                var result = dao.Update(user);
+                if (result)
+                {
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật user thành công");
+                }
+            }
+            return View("Index");
         }
 
         // GET: Admin/User/Delete/5
@@ -127,6 +123,13 @@ namespace CamShop.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //[HttpDelete]
+        //public ActionResult Delete(int id)
+        //{
+        //    new UserDao().Delete(id);
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

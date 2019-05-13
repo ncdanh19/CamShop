@@ -95,6 +95,5 @@ namespace Models.EF
                 .WithOptional(e => e.User)
                 .HasForeignKey(e => e.maKhach);
         }
-
     }
 }

@@ -9,8 +9,8 @@
         });
 
         //Update số lượng sản phẩm
-        $('#Quantity').on('change', function () {
-            var listProduct = $('#Quantity');
+        $('.quantity').on('change', function () {
+            var listProduct = $('#Quantity.quantity');
             var cartList = [];
             $.each(listProduct, function (i, item) {
                 cartList.push({
