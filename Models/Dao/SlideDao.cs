@@ -15,7 +15,7 @@ namespace Models.Dao
             db = new CamShopDbContext();
         }
         public List<Slide> ListAll()
-        {
+        {            
             return db.Slides.Where(x => x.trangThai == true).ToList();
         }
     }
