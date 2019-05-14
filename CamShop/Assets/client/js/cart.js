@@ -21,6 +21,7 @@
                 });
             });
 
+
             $.ajax({
                 url: 'cart-update',
                 data: { cartModel: JSON.stringify(cartList) },

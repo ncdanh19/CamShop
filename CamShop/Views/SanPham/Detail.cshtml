@@ -7,7 +7,6 @@
     var loaihang = (Models.EF.DanhMuc)ViewBag.LoaiHang;
     var related = (List<Models.EF.SanPham>)ViewBag.RelatedSanPham;
     var url = "/san-pham/";
-    var urlgiohang = "/gio-hang/";
 }
 @* Chi tiết sản phẩm.*@
 <div class="product">
@@ -62,18 +61,19 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="details-left-info">
                         <h3>@Model.tenSanPham</h3>
                         <h4>@Model.thuongHieu</h4>
                         <h4></h4>
-                        <p><label>$</label>@(Model.donGia.HasValue ? Model.donGia.Value.ToString("N0") : "Liên hệ") <a href="#">Click for offer</a></p>
+                        <p><label>$</label>@(Model.donGia.HasValue ? Model.donGia.Value.ToString("N0") : "Liên hệ") <a href="#">Liên hệ</a></p>
                         <p class="size">SIZE ::</p>
                         <a class="length" href="#">XS</a>
                         <a class="length" href="#">M</a>
                         <a class="length" href="#">S</a>
                         <div class="btn_form">
-                            <a href="@urlgiohang"> buy now</a>
-                            <a href="cart.html">ADD TO CART</a>
+                            <a href="/them-gio-hang?sanPhamID=@Model.sanPhamID&soluong=1">Mua</a>
+                            <a href="cart.html">Thêm vào giỏ</a>
                         </div>
                         <div class="bike-type">
                             <p>TYPE  ::<a href="#">@Model.loaiHang</a></p>

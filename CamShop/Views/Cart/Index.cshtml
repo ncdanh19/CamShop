@@ -16,6 +16,9 @@
         @* div trái 9, giỏ hàng *@
         <div class="col-md-9 cart-items">
             <h2>Giỏ hàng</h2>
+            @{
+                double? tongTien = 0;
+            }
             @foreach (var item in Model)
             {
                 <div class="cart-header">
@@ -32,12 +35,14 @@
                         </div>
                         <div class="clearfix"></div>
                         <div class="delivery">
-                            <p>Thành tiền: @((item.SanPham.donGia.GetValueOrDefault(0) * item.SoLuong).ToString("N0"))</p>
+                            @*<p class="itemThanhTien" id="ItemThanhTien">Thành tiền:  @((item.SanPham.donGia.GetValueOrDefault(0) * item.SoLuong).ToString("N0"))</p>*@
+                            <p class="itemThanhTien" id="ItemThanhTien">Thành tiền:  @(item.ThanhTien.HasValue ? @item.ThanhTien.Value.ToString("N0") : (item.SanPham.donGia.GetValueOrDefault(0) * item.SoLuong).ToString("N0"))</p>
                             <span>Delivered in 2-3 bussiness days</span>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
+                tongTien += item.ThanhTien;
             }
             <a href="#" class="btn-delete">Xóa hết</a>
         </div>
@@ -46,8 +51,8 @@
             <a class="continue" href="#">Continue to basket</a>
             <div class="price-details">
                 <h3>Price Details</h3>
-                <span>Total</span>
-                <span class="total">6200.00</span>
+                <span>Tạm tính</span>
+                <span class="total">@tongTien</span>
                 <span>Discount</span>
                 <span class="total">---</span>
                 <span>Delivery Charges</span>

@@ -11,5 +11,6 @@ namespace CamShop.Models
     {
         public SanPham SanPham { get; set; }
         public short SoLuong { get; set; }
+        public double? ThanhTien { get; set; }
     }
 }

@@ -34,6 +34,7 @@ namespace CamShop.Controllers
                     if (jsonItem!=null)
                 {
                     item.SoLuong = jsonItem.SoLuong;
+                    item.ThanhTien = item.SoLuong * item.SanPham.donGia;
                 }
             }
             Session[CartSession] = sessionCart;
@@ -77,6 +78,7 @@ namespace CamShop.Controllers
                         if (item.SanPham.sanPhamID == sanPhamID)
                         {
                             item.SoLuong += soLuong;
+                            item.ThanhTien += soLuong * sanPham.donGia;
                         }
                     }
                 }
@@ -86,6 +88,7 @@ namespace CamShop.Controllers
                     var item = new CartItem();
                     item.SanPham = sanPham;
                     item.SoLuong = soLuong;
+                    item.ThanhTien = soLuong*sanPham.donGia;
                     list.Add(item);
                 }
 
@@ -99,6 +102,7 @@ namespace CamShop.Controllers
                 var item = new CartItem();
                 item.SanPham = sanPham;
                 item.SoLuong = soLuong;
+                item.ThanhTien = soLuong * sanPham.donGia;
                 var list = new List<CartItem>();
                 list.Add(item);
                 //Gán vào session
