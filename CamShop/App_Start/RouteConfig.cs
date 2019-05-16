@@ -14,12 +14,26 @@ namespace CamShop
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "Tat ca san pham",
+               url: "san-pham/",
+               defaults: new { controller = "SanPham", action = "Index", id = UrlParameter.Optional },
+               namespaces: new[] { "CamShop.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "List Thuong Hieu",
+               url: "san-pham/thuong-hieu/{MetaTitle}-{thuongHieuID}",
+               defaults: new { controller = "SanPham", action = "LocSanPhamTheoThuongHieu", id = UrlParameter.Optional },
+               namespaces: new[] { "CamShop.Controllers" }
+            );
+
+            routes.MapRoute(
                name: "Danh muc san pham",
                url: "san-pham/{MetaTitle}-{loaiHangID}",
                defaults: new { controller = "SanPham", action = "Category", id = UrlParameter.Optional },
                namespaces: new[] { "CamShop.Controllers" }
            );
-
+            
             routes.MapRoute(
                name: "Chi tiet san pham",
                url: "chi-tiet/{MetaTitle}/{id}",
@@ -52,6 +66,13 @@ namespace CamShop
               name: "dang-ky",
               url: "dang-ky",
               defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
+              namespaces: new[] { "CamShop.Controllers" }
+           );
+
+            routes.MapRoute(
+              name: "dang-nhap",
+              url: "dang-nhap",
+              defaults: new { controller = "User", action = "DangNhap", id = UrlParameter.Optional },
               namespaces: new[] { "CamShop.Controllers" }
            );
 

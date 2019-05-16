@@ -1,22 +1,22 @@
 ﻿@model PagedList.IPagedList<Models.EF.SanPham>
 @using PagedList.Mvc;
 @{
-    var danhmuc = (Models.EF.LoaiHang)ViewBag.LoaiHang;
-    //ViewBag.Title = danhmuc.tenLoai;
+    var thuongHieu = (Models.EF.ThuongHieu)ViewBag.ThuongHieu;
+    ViewBag.Title = thuongHieu.tenThuongHieu;
     Layout = "~/Views/Shared/Categories_layout.cshtml";
 }
 
 @* Danh mục sản phẩm *@
 <div class="parts">
     <div class="container">
-        <h2>@danhmuc.tenLoai</h2>
+        <h2>@thuongHieu.tenThuongHieu</h2>
         <div class="bike-parts-sec">
             <div class="bike-parts">
                 <div class="top">
                     <ul>
                         <li><a href="/">home</a></li>
                         <li><a href="#"> / </a></li>
-                        <li><a href="#">@danhmuc.tenLoai</a></li>
+                        <li><a href="#">@thuongHieu.tenThuongHieu</a></li>
                     </ul>
                 </div>
                 <div class="bike-apparels">
@@ -39,17 +39,15 @@
                     }
                 </div>
             </div>
-            <div class="rsidebar span_1_of_left">
-                @{Html.RenderAction("LeftMenu", "SanPham"); }
-            </div>
-            <div class="rsidebar span_1_of_left">
-                @{Html.RenderAction("LeftMenuThuongHieu", "SanPham"); }
-                <div class="clearfix"></div>
-            </div>
+            @{Html.RenderAction("LeftMenu", "SanPham"); }
+
+
+            @{Html.RenderAction("LeftMenuThuongHieu", "SanPham"); }
+            <div class="clearfix"></div>
         </div>
         <!--Phân Trang-->
         <div class="float-sm-right">
-            @Html.PagedListPager(Model, page => Url.Action("Category", new { loaihangID = Request.Params["loaihangID"], page }))
+            @Html.PagedListPager(Model, page => Url.Action("LocSanPhamTheoThuongHieu", new { thuongHieuID = Request.Params["thuonghieuID"], page }))
         </div>
     </div>
 </div>

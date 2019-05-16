@@ -1,7 +1,5 @@
 ﻿@model Models.EF.SanPham
 @{
-
-
     ViewBag.Title = Model.tenSanPham;
     Layout = "~/Views/Shared/_Layout.cshtml";
     var loaihang = (Models.EF.DanhMuc)ViewBag.LoaiHang;
@@ -64,22 +62,18 @@
 
                     <div class="details-left-info">
                         <h3>@Model.tenSanPham</h3>
-                        <h4>@Model.thuongHieu</h4>
-                        <h4></h4>
-                        <p><label>$</label>@(Model.donGia.HasValue ? Model.donGia.Value.ToString("N0") : "Liên hệ") <a href="#">Liên hệ</a></p>
-                        <p class="size">SIZE ::</p>
-                        <a class="length" href="#">XS</a>
-                        <a class="length" href="#">M</a>
-                        <a class="length" href="#">S</a>
+                        <div class="bike-type">
+                            <p>Thương hiệu:<a href="#">@Model.ThuongHieu1.tenThuongHieu</a></p>
+                        </div>                        
+                        <p>@(Model.donGia.HasValue ? Model.donGia.Value.ToString("N0") : "Liên hệ") <a href="#"></a> VND</p>
                         <div class="btn_form">
                             <a href="/them-gio-hang?sanPhamID=@Model.sanPhamID&soluong=1">Mua</a>
                             <a href="cart.html">Thêm vào giỏ</a>
                         </div>
                         <div class="bike-type">
-                            <p>TYPE  ::<a href="#">@Model.loaiHang</a></p>
-                            @*<p>BRAND  ::<a href="#">SPORTS SCOTTY</a></p>*@
+                            <p>Loại hàng:<a href="@url@loaihang.URL-@loaihang.danhMucID">@Model.LoaiHang1.tenLoai</a></p>
                         </div>
-                        <h5>Mô tả  ::</h5>
+                        <h5>Mô tả:</h5>
                         <p class="desc">
                             @Model.moTa
                         </p>
@@ -90,28 +84,54 @@
         </div>
         <div class="single-bottom2">
             <h6>Related Products</h6>
-            @foreach (var item in related)
-            {
-                var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
-                <div class="product">
-                    <div class="product-desc">
-                        <div class="product-img product-img2">
-                            <img src="@item.hinhAnh" class="img-responsive " alt="" />
+            <ul id="flexiselDemo3">
+                @foreach (var item in related)
+                {
+                    var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
+                    <li>
+                        <img src="@item.hinhAnh" alt="" />
+                        <div class="bike-info">
+                            <div class="model">
+                                <h4>@item.tenSanPham<span>@item.donGia VNĐ</span></h4>
+                            </div>
+                            <div class="model-info">
+                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">BUY</a>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="prod1-desc">
-                            <h5><a class="product_link" href="@urlchitiet">@item.tenSanPham</a></h5>
-                            <p class="product_descr">@item.moTa</p>
+                        <div class="viw">
+                            <a href="@urlchitiet">Quick View</a>
                         </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="product_price">
-                        <span class="price-access">$@item.donGia</span>
-                        <a class="button1" href="cart.html"><span>Add to cart</span></a>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            }
-
+                    </li>
+                }
+            </ul>
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $("#flexiselDemo3").flexisel({
+                        visibleItems: 3,
+                        animationSpeed: 1000,
+                        autoPlay: true,
+                        autoPlaySpeed: 2000,
+                        pauseOnHover: true,
+                        enableResponsiveBreakpoints: true,
+                        responsiveBreakpoints: {
+                            portrait: {
+                                changePoint: 480,
+                                visibleItems: 1
+                            },
+                            landscape: {
+                                changePoint: 640,
+                                visibleItems: 2
+                            },
+                            tablet: {
+                                changePoint: 768,
+                                visibleItems: 3
+                            }
+                        }
+                    });
+                });
+            </script>
+            <script type="text/javascript" src="/Assets/client/js/jquery.flexisel.js"></script>
         </div>
     </div>
 </div>

@@ -1,43 +1,22 @@
 ﻿@model List<Models.EF.LoaiHang>
 
 @* Danh mục theo bộ lọc bên trái *@
-<div class="rsidebar span_1_of_left">
-    <section class="sky-form">
-        <div class="product_right">
-            <div class="dropdown mr-1">
-                <div class="dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Danh mục sản phẩm
-                    </button>
-                    <div class="dropdown-menu">
-                        @foreach (var item in Model)
-                        {
-                            var url = "/san-pham/" + @item.MetaTitle + "-" + item.loaiHangID;
-                            <a class="dropdown-item" href="@url">@item.tenLoai</a>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="sky-form">
-        <div class="product_right">
-            <div class="dropdown mr-1">
-                <div class="dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Giá tiền
-                    </button>
-                    <div class="dropdown-menu">
-                        @foreach (var item in Model)
-                        {
-                            var url = "/san-pham/" + @item.MetaTitle + "-" + item.loaiHangID;
-                            <a class="dropdown-item" href="@url">@item.tenLoai</a>
-                        }
-                    </div>
-                </div>
-            </div>
+<section class="sky-form">
+    <div class="product_right">
+        <div style="text-align:center">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-light"><h3>Danh mục sản phẩm</h3> </li>
+            @foreach (var item in Model)
+            {
+                var url = "/san-pham/" + @item.MetaTitle + "-" + item.loaiHangID;
+            <li class="list-group-item list-group-item-light">
+                <a class="btn-light" href="@url">
+                    @item.tenLoai
+                </a>
+            </li>
+        }
+            </ul>
         </div>
-    </section>
-</div>
+</section>
 

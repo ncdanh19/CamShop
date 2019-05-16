@@ -2,21 +2,21 @@
 @using PagedList.Mvc;
 @{
     var danhmuc = (Models.EF.LoaiHang)ViewBag.LoaiHang;
-    //ViewBag.Title = danhmuc.tenLoai;
+
     Layout = "~/Views/Shared/Categories_layout.cshtml";
 }
 
 @* Danh mục sản phẩm *@
 <div class="parts">
     <div class="container">
-        <h2>@danhmuc.tenLoai</h2>
+        <h2>Tất cả sản phẩm</h2>
         <div class="bike-parts-sec">
             <div class="bike-parts">
                 <div class="top">
                     <ul>
                         <li><a href="/">home</a></li>
                         <li><a href="#"> / </a></li>
-                        <li><a href="#">@danhmuc.tenLoai</a></li>
+                        <li><a href="#">tất cả sản phẩm</a></li>
                     </ul>
                 </div>
                 <div class="bike-apparels">
@@ -47,9 +47,8 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-        <!--Phân Trang-->
         <div class="float-sm-right">
-            @Html.PagedListPager(Model, page => Url.Action("Category", new { loaihangID = Request.Params["loaihangID"], page }))
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString}))
         </div>
     </div>
 </div>

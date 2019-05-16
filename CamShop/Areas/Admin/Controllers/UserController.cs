@@ -73,7 +73,7 @@ namespace CamShop.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             var user = new UserDao().ViewDetail(id);
-            return View();
+            return View(user);
         }
 
         [HttpPost]

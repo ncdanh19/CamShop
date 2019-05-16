@@ -1,9 +1,4 @@
-﻿<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     @* slider *@
     <link href="~/Assets/client/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     @* slider *@
@@ -33,7 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="/Assets/client/js/jquery.easydropdown.js"></script>
     <link href="/Assets/client/css/nav.css" rel="stylesheet" type="text/css" media="all" />
     <script src="/Assets/client/js/scripts.js" type="text/javascript"></script>
-    
+
     <link href="~/Assets/client/bootstrap-4.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!--js-->
     <!---- start-smoth-scrolling---->
@@ -88,34 +83,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a href="/"><img src="~/Assets/client/images/logo.png" alt="" /></a>
                 </div>
                 @{Html.RenderAction("MainMenu", "Home"); }
-                <div class="clearfix"></div>
+                @*<div class="clearfix"></div>*@
             </div>
         </div>
-        @RenderSection("banner", required: false)
     </div>
-    <!--/banner-->
-    @* Hiển thị Category ở trang chủ. Từ Index.cshtml *@
-    @RenderSection("categories", required: false)
+    <div class="parts">
+        <div class="container">
+            <div class="float-sm-right">
+                @using (Html.BeginForm("Index", "SanPham", FormMethod.Get))
+                {
+                    <div>
+                        <div class="col-lg-12">
+                            <div class="col-md-6">
+                                <input type="text" value="@ViewBag.SearchString" name="searchString" />
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @*Hiển thị nội dung ở body ở đây, từ index*@
+        @RenderBody()
 
-
-    @* Hiển thị sản phẩm mới ở trang chủ. Từ Index.cshtml *@
-    @RenderSection("bikes", required: false)
-
-
-    @RenderSection("sanphamhot", required: false)
-
-    @* Hiển thị liên hệ ở trang chủ. Từ Idexl.cshtml *@
-    @RenderSection("contact", required: false)
-
-    @*Hiển thị nội dung ở body ở đây, từ index*@
-    @RenderBody()
-
-    <!--footer-->
-    <div class="footer">
-        @{Html.RenderAction("Footer", "Home");}
-    </div>
-    <!---->
-    @RenderSection("jsCart", false)
+        <!--footer-->
+        <div class="footer">
+            @{Html.RenderAction("Footer", "Home");}
+        </div>
+        <!---->
+        @RenderSection("jsCart", false)
 </body>
 </html>
 

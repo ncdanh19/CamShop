@@ -7,16 +7,28 @@
     <ul class="nav">
         @foreach (var item in Model)
         {
-            var url ="/san-pham/"+@item.URL + "-" + @item.danhMucID;
             <li>
-                <a href="@url" target="@item.Target"><img src="@item.image" alt="" />@item.tenDanhMuc</a>
+                <a href="/san-pham/@item.URL-@item.danhMucID" target="@item.Target"><img src="@item.image" alt="" />@item.tenDanhMuc</a>
             </li>
         }
         <li>
             <a href="/gio-hang" target="_self"><img src="/Assets/client/images/cart.png" alt="" /></a>
         </li>
-        <li>
-            <a href='@Url.Action("Index","Login")' target="_self"><img src="/Assets/client/images/user.png" alt="" /></a>
-        </li>
+        @{
+            var session = (CamShop.Common.UserLogin)Session[CamShop.Common.CommonConstants.USER_SESSION];
+        }
+        @if (session == null)
+        {
+            <li>
+                <a href='/dang-nhap' target="_self"><img src="/Assets/client/images/user.png" alt="" /></a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <h3>@Html.ActionLink(session.UserName, "DangXuat", "User")</h3>
+            </li>
+        }
+
     </ul>
 </div>

@@ -6,7 +6,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-@model CamShop.Areas.Admin.Models.LoginModel
+@model CamShop.Models.DangNhap
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -33,39 +33,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="login-page">
         <div class="login-main">
             <div class="login-head">
-                <h1>Login Admin</h1>
+                <h1>Đăng nhập</h1>
             </div>
             <div class="login-block">
                 @* Form Razor *@
-                @using (Html.BeginForm("Login", "Login", FormMethod.Post))//Callback đến controller, method post: truyền form data (nằm trong message body của http request) từ browser(client) -> sever.
+                @using (Html.BeginForm("DangNhap", "User", FormMethod.Post))//Callback đến controller, method post: truyền form data (nằm trong message body của http request) từ browser(client) -> sever.
                                                                          //Kh giới hạn số lượng ký tự. Cho dạng thông tin nhạy cảm.
                                                                          //method get: truyền gói tin (được mã hóa vào url, gắn vào url như là một tham truy vấn dạng chuỗi) từ browser(client) -> sever.
                                                                          //Giới hạn số lượng ký tự. Cho dạng thông tin submit thông thường.
-               {
+                {
                     @Html.AntiForgeryToken()
                     //Báo lỗi
                     @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
                     //Form Razor textbox
-                    @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Username", @name = "email", @required = "", type = "text" })
-                    
-                    @Html.TextBoxFor(model => model.Password, new { @placeholder = "Password", @class = "lock", @name = "password", type = "password", required = "" })
-                    
+                    @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Tài khoản", @name = "email", @required = "", type = "text" })
+
+                    @Html.TextBoxFor(model => model.Password, new { @placeholder = "Mật khẩu", @class = "lock", @name = "password", type = "password", required = "" })
+
                     <div class="forgot-top-grids">
                         <div class="forgot-grid">
                             <div class="checkbox">
                                 <label>
-                                    @Html.CheckBoxFor(model => model.RememberMe)Remember Me
+                                    @Html.CheckBoxFor(model => model.RememberMe)Ghi nhớ tôi
                                 </label>
                             </div>
                         </div>
                         <div class="forgot">
-                            <a href="#">Forgot password?</a>
+                            <a href="#">Quên mật khẩu?</a>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
-                    <input type="submit" name="Sign In" value="Login">
-                    <h3>Not a member?<a href="signup.html"> Sign up now</a></h3>
-                    <h2>or login with</h2>
+                    <input type="submit" name="DangNhap" value="Đăng nhập">
+                    <h3>Chưa có tài khoản?<a href="/dang-ky"> Đăng ký ngay</a></h3>
+                    <h2>hoặc đăng nhập với </h2>
                     <div class="login-icons">
                         <ul>
                             <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
@@ -74,7 +74,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </ul>
                     </div>
                 }
-                <h5><a href="index.html">Go Back to Home</a></h5>
+                <h5><a href="/">Trở về trang chủ</a></h5>
             </div>
         </div>
     </div>

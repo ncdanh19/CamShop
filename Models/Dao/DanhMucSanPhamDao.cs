@@ -25,5 +25,9 @@ namespace Models.Dao
             return db.LoaiHangs.ToList();
         }
 
+        public List<ThuongHieu> listByThuongHieu()
+        {
+            return db.ThuongHieux.ToList();
+        }
     }
 }

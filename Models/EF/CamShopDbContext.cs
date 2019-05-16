@@ -69,6 +69,10 @@ namespace Models.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<ThuongHieu>()
+                .Property(e => e.metaTitle)
+                .IsFixedLength();
+
+            modelBuilder.Entity<ThuongHieu>()
                 .HasMany(e => e.SanPhams)
                 .WithOptional(e => e.ThuongHieu1)
                 .HasForeignKey(e => e.thuongHieu);

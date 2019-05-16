@@ -29,7 +29,6 @@ E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.dll
 E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.SqlServer.dll
 E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.xml
 E:\GitKraken\CamShop\Models\bin\Debug\EntityFramework.SqlServer.xml
-E:\GitKraken\CamShop\Models\obj\Debug\Models.csprojAssemblyReference.cache
 E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CopyComplete
 E:\GitKraken\CamShop\Models\obj\Debug\Models.dll
@@ -42,3 +41,4 @@ E:\GitKraken\CamShop\Models\bin\Debug\PagedList.dll
 E:\GitKraken\CamShop\Models\bin\Debug\PagedList.Mvc.dll
 E:\GitKraken\CamShop\Models\bin\Debug\PagedList.xml
 E:\GitKraken\CamShop\Models\bin\Debug\PagedList.Mvc.xml
+E:\GitKraken\CamShop\Models\obj\Debug\Models.csprojAssemblyReference.cache
