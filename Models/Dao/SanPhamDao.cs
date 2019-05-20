@@ -36,10 +36,10 @@ namespace Models.Dao
         }
 
         //Sản phẩm liên quan
-        public List<SanPham> ListRelated(int idSanPham)
+        public List<SanPham> ListRelated(int idSanPham,int top)
         {
             var sanpham = db.SanPhams.Find(idSanPham);
-            return db.SanPhams.Where(x => x.loaiHang == sanpham.loaiHang && x.sanPhamID != idSanPham).ToList();
+            return db.SanPhams.Where(x => x.loaiHang == sanpham.loaiHang && x.sanPhamID != idSanPham).Take(top).ToList();
         }
 
         //Chi tiết sản phẩm

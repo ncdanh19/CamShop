@@ -31,7 +31,7 @@
                             <h3>@item.SanPham.tenSanPham<span>@item.SanPham.thuongHieu</span></h3>
                             <h4><span>Giá : </span>@item.SanPham.donGia.GetValueOrDefault(0).ToString("N0")</h4>
                             <p class="qty">Số lượng:</p>
-                            <input min="1" type="number" id="Quantity" class="quantity" name="quantity" data-id="@item.SanPham.sanPhamID" value="@item.SoLuong" class="form-control input-small">
+                            <input min="1" type="number" id="Quantity" class="quantity" name="quantity" style="width:50px" data-id="@item.SanPham.sanPhamID" value="@item.SoLuong" class="form-control input-small">
                         </div>
                         <div class="clearfix"></div>
                         <div class="delivery">

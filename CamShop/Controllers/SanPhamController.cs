@@ -43,7 +43,7 @@ namespace CamShop.Controllers
         {
             var sanPham = new SanPhamDao().ViewDetail(id);
             ViewBag.LoaiHang = new MenuDao().ViewDetail(sanPham.loaiHang.Value);
-            ViewBag.RelatedSanPham = new SanPhamDao().ListRelated(id);
+            ViewBag.sanPhamLienQuan = new SanPhamDao().ListRelated(id,4); //hiển thị 4 sản phẩm liên quan
             return View(sanPham);
         }
 

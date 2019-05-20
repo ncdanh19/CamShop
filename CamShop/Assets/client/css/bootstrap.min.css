@@ -45,7 +45,7 @@ abbr[title] {
 }
 
 b, strong {
-    font-weight: 700
+    font-weight: bold
 }
 
 dfn {
@@ -1345,7 +1345,7 @@ td, th {
 }
 
 html {
-    font-size: 10px;
+    font-size: 62.5%;
     -webkit-tap-highlight-color: rgba(0,0,0,0)
 }
 

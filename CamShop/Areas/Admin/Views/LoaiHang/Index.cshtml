@@ -4,11 +4,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-    <h2>Loại hàng</h2>
-    <p>        
-       @Html.ActionLink("Create New", "Create","",new { @class="hvr-fade" })
-    </p>
-    <table class="table">
+<h2>Loại hàng</h2>
+<p>        
+    @Html.ActionLink("Create New", "Create","",new { @class="hvr-fade" })
+</p>
+<table class="table table-bordered">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.tenLoai)
@@ -16,26 +17,42 @@
             <th>
                 @Html.DisplayNameFor(model => model.MetaTitle)
             </th>
-            <th></th>
+            <th width="5%"></th>
         </tr>
+    <thead>
+    <tbody>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tenLoai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MetaTitle)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.loaiHangID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.loaiHangID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.loaiHangID })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenLoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetaTitle)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li>@Html.ActionLink("Edit", "Edit", new { id = item.loaiHangID})</li>
+                        <li>@Html.ActionLink("Details", "Details", new { id = item.loaiHangID })</li>
+                        <li> @Html.ActionLink("Delete", "Delete", new { id = item.loaiHangID })</li>
+                        @*<li>
+                         @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
+                    {
+                        Confirm="Bạn có muốn xóa bản ghi này không?",
+                        OnComplete = "$('#row_" + @item.ID + "').remove()",
+                        HttpMethod = "Delete"
+                    })
+                     </li>*@
+                    </ul>
+                </div>
+            </td>
+        </tr>
         }
+    </tbody>
 
-    </table>
+</table>
 
 
