@@ -17,53 +17,6 @@ namespace CamShop.Controllers
             return View();
         }
 
-        public ActionResult DangNhap()
-        {
-            return View();
-        }
-
-        public ActionResult DangXuat()
-        {
-            Session[CommonConstants.USER_SESSION] = null;
-            return Redirect("/");
-        }
-
-        [HttpPost]
-        public ActionResult DangNhap(DangNhap model)
-        {
-            //ModelState.IsValid có giá trị false khi thuộc tính bên trong có giá trị không hợp lệ (null)
-            if (ModelState.IsValid)
-            {
-                //Tạo obj kiểu UserDao
-                var dao = new UserDao();
-                //Trả về giá trị có trường username và password
-                var result = dao.Login(model.UserName, Encrytor.MD5Hash(model.Password));
-                //Đăng nhập đúng
-                if (result == 1)
-                {
-                    //Lấy id của user cụ thể
-                    var user = dao.GetById(model.UserName);
-                    //Tạo biến kiểu userLogin
-                    var userSession = new UserLogin();
-                    //Lấy 2 tham số của user
-                    userSession.UserName = user.userName;
-                    userSession.UserID = user.ID;
-                    //Thêm sesstion của user thỏa 2 tham số truyền vào: username, ID
-                    Session.Add(CommonConstants.USER_SESSION, userSession);
-                    //Đổi hướng action về controller Home, Action Index
-                    return Redirect("/");
-                }
-                //Đăng nhập sai
-                else if (result == 0)
-                    ModelState.AddModelError("", "Tài khoản không tồn tại");
-                else if (result == -2)
-                    ModelState.AddModelError("", "Mật khẩu không đúng");
-                else
-                    ModelState.AddModelError("", "Thông tin đăng nhập không chính xác");
-            }
-            return View(model);
-        }
-
         // GET: User
         public ActionResult Register()
         {
@@ -108,6 +61,51 @@ namespace CamShop.Controllers
                 }
             }
             return View(model);
+        }
+
+        public ActionResult DangNhap(DangNhap model)
+        {
+            //ModelState.IsValid có giá trị false khi thuộc tính bên trong có giá trị không hợp lệ (null)
+            if (ModelState.IsValid)
+            {
+                //Tạo obj kiểu UserDao
+                var dao = new UserDao();
+                //Trả về giá trị có trường username và password
+                var result = dao.Login(model.UserName, Encrytor.MD5Hash(model.Password));
+                //Đăng nhập đúng
+                if (result == 1)
+                {
+                    //Lấy id của user cụ thể
+                    var user = dao.GetById(model.UserName);
+                    //Tạo biến kiểu userLogin
+                    var userSession = new UserLogin();
+                    //Lấy tham số của user
+                    userSession.UserID = user.ID;
+                    userSession.UserName = user.userName;
+                    userSession.Name = user.hoTen;
+                    userSession.Address = user.diaChi;
+                    userSession.Email = user.eMail;
+                    userSession.Phone = user.soDienThoai;
+                    //Thêm sesstion của user thỏa 2 tham số truyền vào: username, ID
+                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                    //Đổi hướng action về controller Home, Action Index
+                    return RedirectToAction("Index", "Home");
+                }
+                //Đăng nhập sai
+                else if (result == 0)
+                    ModelState.AddModelError("", "Tài khoản không tồn tại");
+                else if (result == -2)
+                    ModelState.AddModelError("", "Mật khẩu không đúng");
+                else
+                    ModelState.AddModelError("", "Thông tin đăng nhập không chính xác");
+            }
+            return View("Index");
+        }
+
+        public ActionResult DangXuat()
+        {
+            Session[CommonConstants.USER_SESSION] = null;
+            return Redirect("/");
         }
     }
 }

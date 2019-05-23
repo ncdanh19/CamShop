@@ -8,12 +8,9 @@ namespace CamShop.Models
 {
     public class DangNhap
     {
-        [Key]
-        [Required(ErrorMessage = "Hãy nhập tài khoản")]
-        [Display(Name = "Tên đăng nhập")]
+        [Required(ErrorMessage = "Nhập tài khoản")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Hãy nhập mật khẩu")]
-        [Display(Name = "Mật khâir")]
+        [Required(ErrorMessage = "Nhập mật khẩu")]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
     }

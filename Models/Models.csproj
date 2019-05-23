@@ -61,6 +61,7 @@
     <Compile Include="Dao\MenuDao.cs" />
     <Compile Include="Dao\SanPhamDao.cs" />
     <Compile Include="Dao\SlideDao.cs" />
+    <Compile Include="Dao\ThanhToanDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\CamShopDbContext.cs" />
     <Compile Include="EF\ChiTietHoaDon.cs" />

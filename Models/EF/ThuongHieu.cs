@@ -20,7 +20,7 @@ namespace Models.EF
         [StringLength(50)]
         public string tenThuongHieu { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
         public string metaTitle { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

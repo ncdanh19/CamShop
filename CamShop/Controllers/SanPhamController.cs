@@ -4,6 +4,7 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,7 +13,14 @@ namespace CamShop.Controllers
     public class SanPhamController : Controller
     {
         CamShopDbContext db = new CamShopDbContext();
-
+        public string MetaTag()
+        {
+            var strMetatag = new StringBuilder();
+            strMetatag.AppendFormat(@"<meta content='{0}' name = 'keyword'/>", "Cung,cap,thiet-bi,may-and,chinh,hang,so,1,vietnam");
+            strMetatag.AppendFormat(Environment.NewLine);
+            strMetatag.AppendFormat(@"<meta content='{0}' name = 'description'/>", "Cung cấp thiết bị máy ảnh chính hãng số 1 Việt Nam");
+            return strMetatag.ToString();
+        }
         // GET: SanPham
         public ActionResult Index(string searchString, int page = 1, int pageSize = 8)
         {
@@ -30,8 +38,9 @@ namespace CamShop.Controllers
             return PartialView(model);
         }
         
-        public ActionResult Category(int loaihangID, int? page, int pageSize =5 )
+        public ActionResult Category(int loaihangID, int? page, int pageSize = 8)
         {
+            ViewBag.MetaTag = MetaTag();
             var category = new DanhMucSanPhamDao().ViewDetail(loaihangID);
             ViewBag.LoaiHang = category;
             if (page == null)
@@ -68,7 +77,7 @@ namespace CamShop.Controllers
 
             return PartialView();
         }
-        public ActionResult LocSanPhamTheoThuongHieu(int thuongHieuID, int? page, int pageSize = 5)
+        public ActionResult LocSanPhamTheoThuongHieu(int thuongHieuID, int? page, int pageSize = 8)
         {
             if (page == null)
             {
@@ -78,6 +87,34 @@ namespace CamShop.Controllers
 
             ViewBag.ThuongHieu = db.ThuongHieux.Find(thuongHieuID);
             return View(listTH);
+        }
+
+        public JsonResult ListName(string q)
+        {
+            var sanpham = db.SanPhams.ToList();
+
+            var data = (from a in db.SanPhams
+                        where a.tenSanPham.Contains(q)
+                        select new
+                        {
+                            tenSanPham = a.tenSanPham,
+                            donGia = a.donGia,
+                            hinhAnh = a.hinhAnh,
+                            MetaTitle = a.MetaTitle,
+                            sanPhamID = a.sanPhamID,
+                        }).AsEnumerable().Select(x => new SanPham()
+                        {
+                            tenSanPham = x.tenSanPham,
+                            donGia = x.donGia,
+                            hinhAnh = x.hinhAnh,
+                            MetaTitle = x.MetaTitle,
+                            sanPhamID = x.sanPhamID,
+                        });
+            return Json(new
+            {
+                data = data,
+                status = true
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

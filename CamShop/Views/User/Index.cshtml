@@ -14,7 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <link href="/Assets/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
@@ -46,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     //Báo lỗi
                     @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
                     //Form Razor textbox
-                    @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Tài khoản", @name = "email", @required = "", type = "text" })
+                    @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Tài khoản", @name = "username", @required = "", type = "text" })
 
                     @Html.TextBoxFor(model => model.Password, new { @placeholder = "Mật khẩu", @class = "lock", @name = "password", type = "password", required = "" })
 
@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="forgot-grid">
                             <div class="checkbox">
                                 <label>
-                                    @Html.CheckBoxFor(model => model.RememberMe)Ghi nhớ tôi
+                                    @Html.CheckBoxFor(model => model.RememberMe)Ghi nhớ
                                 </label>
                             </div>
                         </div>
@@ -63,9 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div class="clearfix"> </div>
                     </div>
-                    <input type="submit" name="DangNhap" value="Đăng nhập">
+                    <input type="submit" name="Đăng nhập" value="Đăng nhập">
                     <h3>Chưa có tài khoản?<a href="/dang-ky"> Đăng ký ngay</a></h3>
-                    <h2>hoặc đăng nhập với </h2>
+                    <h2>hoặc đăng nhập với</h2>
                     <div class="login-icons">
                         <ul>
                             <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>

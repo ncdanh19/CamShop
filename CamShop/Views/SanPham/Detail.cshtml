@@ -6,6 +6,11 @@
     var related = (List<Models.EF.SanPham>)ViewBag.RelatedSanPham;
     var url = "/san-pham/";
 }
+@section metatag{
+    <meta name="title" content="@Model.tenSanPham" />
+    <meta name="keywords" content="@Model.MetaKeyword" />
+    <meta name="description" content="@Model.MetaDescription" />
+}
 @* Chi tiết sản phẩm.*@
 <div class="product">
     <div class="container">
@@ -61,14 +66,13 @@
                     </div>
 
                     <div class="details-left-info">
-                        <h3>@Model.tenSanPham</h3>
+                        <h1>@Model.tenSanPham</h1>
                         <div class="bike-type">
-                            <p>Thương hiệu:<a href="#">@Model.ThuongHieu1.tenThuongHieu</a></p>
-                        </div>                        
+                            <p>Thương hiệu:<a href="/san-pham/thuong-hieu/@Model.ThuongHieu1.tenThuongHieu-@Model.ThuongHieu1.thuongHieuID">@Model.ThuongHieu1.tenThuongHieu</a></p>
+                        </div>
                         <p>@(Model.donGia.HasValue ? Model.donGia.Value.ToString("N0") : "Liên hệ") <a href="#"></a> VND</p>
                         <div class="btn_form">
-                            <a href="/them-gio-hang?sanPhamID=@Model.sanPhamID&soluong=1">Mua</a>
-                            <a href="cart.html">Thêm vào giỏ</a>
+                            <a href="/them-gio-hang?sanPhamID=@Model.sanPhamID&soluong=1">Thêm vào giỏ</a>
                         </div>
                         <div class="bike-type">
                             <p>Loại hàng:<a href="@url@loaihang.URL-@loaihang.danhMucID">@Model.LoaiHang1.tenLoai</a></p>
@@ -83,7 +87,7 @@
             </div>
         </div>
         <div class="single-bottom2">
-            <h6>Related Products</h6>
+            <h6>Sản phẩm liên quan</h6>
             <ul id="flexiselDemo3">
                 @foreach (var item in related)
                 {
@@ -92,15 +96,15 @@
                         <img src="@item.hinhAnh" alt="" />
                         <div class="bike-info">
                             <div class="model">
-                                <h4>@item.tenSanPham<span>@item.donGia VNĐ</span></h4>
+                                <h4>@item.tenSanPham<span>@item.donGia.GetValueOrDefault(0).ToString("N0") VNĐ</span></h4>
                             </div>
                             <div class="model-info">
-                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">BUY</a>
+                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">MUA NGAY</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="viw">
-                            <a href="@urlchitiet">Quick View</a>
+                            <a href="@urlchitiet">Xem Nhanh</a>
                         </div>
                     </li>
                 }

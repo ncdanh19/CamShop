@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <link href="/Assets/admin/css/bootstrap.css" rel="stylesheet" />
@@ -30,7 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="signup-page-main">
         <div class="signup-main">
             <div class="signup-head">
-                <h1>Sign Up</h1>
+                <h1>Đăng Ký</h1>
             </div>
             <div class="signup-block">
                 @using (Html.BeginForm())
@@ -46,15 +46,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     @*ID*@
                     @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                    @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Tên đăng nhập", @required = "" })
+                    @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Tài khoản", @required = "" })
 
                     @*Password*@
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                    @Html.PasswordFor(model => model.Password, new { @placeholder = "Password", @class = "lock" })
+                    @Html.PasswordFor(model => model.Password, new { @placeholder = "Mật khẩu", @class = "lock" })
 
                     @*ConfirmPassword*@
                     @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-                    @Html.PasswordFor(model => model.ConfirmPassword, new { @placeholder = "Confirm Password", @class = "lock" })
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @placeholder = "Xác nhận mật khẩu", @class = "lock" })
 
 
                     @*Họ tên*@

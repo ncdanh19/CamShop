@@ -13,6 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Bike-shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    @RenderSection("metatag", required: false)
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--webfont-->
     <link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
@@ -89,16 +90,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     <div class="parts">
         <div class="container">
-            <div class="float-sm-right">
+            <div class="float-right">
                 @using (Html.BeginForm("Index", "SanPham", FormMethod.Get))
                 {
                     <div>
                         <div class="col-lg-12">
-                            <div class="col-md-6">
-                                <input type="text" value="@ViewBag.SearchString" name="searchString" />
+                            <div class="col-md-8">
+                                <input style=" padding: 6px 0.5em 5px 0.5em; font-size: initial; width: 190%; float: right;" type="text" value="@ViewBag.SearchString" name="searchString" id="txtKeyword" />
                             </div>
-                            <div class="col-md-6">
-                                <button type="submit">Tìm kiếm</button>
+                            <div class="col-md-4" style="padding: initial;">
+                                <button style="padding:10px 0.5em 10px 0.5em; width:100%" type="submit">Tìm kiếm</button>
                             </div>
                         </div>
                     </div>
@@ -113,7 +114,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             @{Html.RenderAction("Footer", "Home");}
         </div>
         <!---->
+        <script src="~/Assets/client/js/base.js"></script>
         @RenderSection("jsCart", false)
+        @RenderSection("cssP", false)
 </body>
 </html>
 
