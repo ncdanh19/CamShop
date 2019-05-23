@@ -6,17 +6,12 @@ using System.Web;
 
 namespace CamShop.Models
 {
-    public class LoginModel
+    public class DangNhap
     {
-        [Key]
-        [Display(Name ="Tên đăng nhập")]
-        [Required(ErrorMessage ="Điền tên đăng nhập")]
+        [Required(ErrorMessage = "Nhập tài khoản")]
         public string UserName { get; set; }
-
-        [Display(Name ="Mật khẩu")]
-        [Required(ErrorMessage ="Điền mật khẩu")]
+        [Required(ErrorMessage = "Nhập mật khẩu")]
         public string Password { get; set; }
-
         public bool RememberMe { get; set; }
     }
 }

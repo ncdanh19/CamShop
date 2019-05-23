@@ -1,0 +1,122 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bike Shop a Ecommerce Category Flat Bootstarp Responsive Website Template| Home :: w3layouts</title>
+
+    <link href="/Assets/client/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery (Bootstrap's JavaScript plugins) -->
+    <script src="/Assets/client/js/jquery.min.js"></script>
+
+    <!-- Custom Theme files -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Bike-shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    @RenderSection("metatag", required: false)
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!--webfont-->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
+    @* slider *@
+    <link href="~/Assets/client/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @* slider *@
+    <!--webfont-->
+    <!-- dropdown -->
+    <script src="/Assets/client/js/jquery.easydropdown.js"></script>
+    <link href="/Assets/client/css/nav.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/Assets/client/js/scripts.js" type="text/javascript"></script>
+
+    <link href="~/Assets/client/bootstrap-4.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!--js-->
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="~/Assets/client/js/move-top.js"></script>
+    <script type="text/javascript" src="~/Assets/client/js/easing.js"></script>
+    <!-- Custom Theme files -->
+    <link href="/Assets/client/css/form.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 900);
+            });
+        });
+    </script>
+    <!---- start-smoth-scrolling---->
+    <style>
+        button.btn.btn-primary.dropdown-toggle {
+            padding: 10px 40px;
+            background: #464646;
+            text-transform: uppercase;
+        }
+
+        .dropdown-menu.show {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <!--banner-->
+    <script src="~/Assets/client/js/responsiveslides.min.js"></script>
+    <script>
+
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    @* Menu chính/menu top trên cùng. Từ MainMenu.cshtml *@
+    <div class="banner-bg banner-bg1">
+        <div class="container">
+            <div class="header">
+                <div class="logo">
+                    <a href="/"><img src="~/Assets/client/images/logo.png" alt="" /></a>
+                </div>
+                @{Html.RenderAction("MainMenu", "Home"); }
+                @*<div class="clearfix"></div>*@
+            </div>
+        </div>
+    </div>
+    <div class="parts">
+        <div class="container">
+            <div class="float-right">
+                @using (Html.BeginForm("Index", "SanPham", FormMethod.Get))
+                {
+                    <div>
+                        <div class="col-lg-12">
+                            <div class="col-md-8">
+                                <input style=" padding: 6px 0.5em 5px 0.5em; font-size: initial; width: 190%; float: right;" type="text" value="@ViewBag.SearchString" name="searchString" id="txtKeyword" />
+                            </div>
+                            <div class="col-md-4" style="padding: initial;">
+                                <button style="padding:10px 0.5em 10px 0.5em; width:100%" type="submit">Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        @*Hiển thị nội dung ở body ở đây, từ index*@
+        @RenderBody()
+
+        <!--footer-->
+        <div class="footer">
+            @{Html.RenderAction("Footer", "Home");}
+        </div>
+        <!---->
+        <script src="~/Assets/client/js/base.js"></script>
+        @RenderSection("jsCart", false)
+        @RenderSection("cssP", false)
+</body>
+</html>
+

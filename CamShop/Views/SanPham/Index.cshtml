@@ -1,0 +1,62 @@
+﻿@model PagedList.IPagedList<Models.EF.SanPham>
+@using PagedList.Mvc;
+@{
+    var danhmuc = (Models.EF.LoaiHang)ViewBag.LoaiHang;
+
+    Layout = "~/Views/Shared/Categories_layout.cshtml";
+}
+
+@section cssP{
+    <link href="~/Assets/client/css/p.css" rel="stylesheet" />
+}
+
+@* Danh mục sản phẩm *@
+<div class="parts">
+    <div class="container">
+        <h1 style="text-align:center">Tất cả sản phẩm</h1>
+        <div class="bike-parts-sec">
+            <div class="bike-parts">
+                <div class="top">
+                    <ul>
+                        <li><a href="/">home</a></li>
+                        <li><a href="#"> / </a></li>
+                        <li><a href="#">tất cả sản phẩm</a></li>
+                    </ul>
+                </div>
+                <div class="bike-apparels">
+                    @foreach (var item in Model)
+                    {
+                        var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
+                        <div class="col-md-3">
+                            <a href="@urlchitiet"></a><div class="part-sec">
+                                <a href="@urlchitiet">
+                                    <img src="@item.hinhAnh" alt="">
+                                </a><div class="part-info">
+                                    <a href="@urlchitiet"></a>
+                                    <a href="@urlchitiet">
+                                        <p style="white-space: nowrap; width: 100%; height: 18px; text-overflow: ellipsis; overflow: hidden; color:black">@item.tenSanPham</p>
+                                        <h5><span>@item.donGia.GetValueOrDefault(0).ToString("N0") VND</span></h5>
+                                    </a>
+                                    <a class="add-cart" href="@urlchitiet">Xem Nhanh</a>
+                                    <a class="qck" href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">MUA NGAY</a>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="rsidebar span_1_of_left">
+                @{Html.RenderAction("LeftMenu", "SanPham"); }
+            </div>
+            <div class="rsidebar span_1_of_left">
+                @{Html.RenderAction("LeftMenuThuongHieu", "SanPham"); }
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="float-sm-right">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+        </div>
+    </div>
+</div>
+<!---->

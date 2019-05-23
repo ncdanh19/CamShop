@@ -53,5 +53,19 @@ namespace Models.Dao
         {
             return db.SanPhams.OrderByDescending(x => x.Hot).Take(hot).ToList();
         }
+
+        //Phân trang và tìm kiếm sản phẩm theo tên
+        public IEnumerable<SanPham> ListAllPaging(string seachString, int page, int pageSize)
+        {
+            IQueryable<SanPham> model = db.SanPhams;
+            if (!string.IsNullOrEmpty(seachString))
+            {
+                model = model.Where(x => x.tenSanPham.Contains(seachString));
+            }
+            
+            //Liệt kê giảm dần
+            return model.OrderByDescending(x => x.sanPhamID).ToPagedList(page, pageSize);
+        }
+
     }
 }

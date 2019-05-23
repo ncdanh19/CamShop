@@ -16,7 +16,8 @@ namespace CamShop.Models
         public string UserName { get; set; }
 
         [Display(Name = "Mật khẩu")]
-        [StringLength(20,MinimumLength =6,ErrorMessage ="Mật khẩu phải dài hơn 6 kí tự")]
+        [MinLength(6, ErrorMessage =("Mật khẩu có ít nhất 6 ký tự"))]
+        [MaxLength(20, ErrorMessage = ("Mật khẩu dài nhất 20 ký tự"))]
         [Required(ErrorMessage ="Nhập mật khẩu")]
         public string Password { get; set; }
 

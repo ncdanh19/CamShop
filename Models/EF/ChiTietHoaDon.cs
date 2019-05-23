@@ -18,7 +18,7 @@ namespace Models.EF
 
         public short? soLuong { get; set; }
 
-        public int? thanhTien { get; set; }
+        public double? thanhTien { get; set; }
 
         public virtual HoaDon HoaDon { get; set; }
 

@@ -42,6 +42,22 @@ namespace Models.Dao
                 return false;
             }           
         }
+
+        public bool UpdatePassword(User entity)
+        {
+            try
+            {
+                var user = db.Users.Find(entity.ID);
+                user.passWord = entity.passWord;
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
+
         //Phân trang user
         public IEnumerable<User> ListAllPaging(string seachString, int page,int pageSize)
         {
@@ -106,6 +122,12 @@ namespace Models.Dao
         public bool CheckEmail(string email)
         {
             return db.Users.Count(x => x.eMail == email) > 0;
+        }
+
+        // kiểm tra passwork
+        public bool CheckPassWord(string password)
+        {
+            return db.Users.Count(x => x.passWord == password) > 0;
         }
     }
 }

@@ -1,0 +1,117 @@
+﻿@*@model CamShop.Models.DoiMatKhau*@
+
+@{
+    var session = (CamShop.Common.UserLogin)Session[CamShop.Common.CommonConstants.USER_SESSION];
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cart" style="margin-bottom:150px">
+    <div class="container">
+        @* div top *@
+        <div class="cart-top">
+            <a href="/">Trang chú</a>
+            <a href="#">/</a>
+            <a href="/tai-khoan/">Quản lý tài khoản</a>
+        </div>
+        <div class="col-md-9 cart-items" style="padding-left:50px">
+            @using (Html.BeginForm("DoiMatKhau", "QuanLyKH", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+            <h2 style="color:#fead53; text-align:center">Đổi mật khẩu</h2>
+                <div class="cart-header">
+                    <div class="cart-sec">
+                        <div class="cart-item cyc">
+                            <img src="~/Assets/client/images/logo-user.jpg" />
+                        </div>
+                        <div class="cart-item-info" style="border-bottom:unset">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group hide">
+                                <h4><span>ID:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="khachHangID" value="@session.UserID" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <h4><span>Mật khẩu hiện tại:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="passWord" type="password" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <h4><span>Mật khẩu mới:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="newPass" type="password" />
+                                    </div>
+                               
+                            </div>
+                            <div class="form-group">
+                                <h4><span>Xác nhận mật khẩu:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="confPass" type="password" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group hide">
+                                <h4><span>UserName:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="userName" value="@session.UserName" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group hide">
+                                <h4><span>Họ tên khách hàng:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="hoTen" value="@session.Name" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group hide">
+                                <h4><span>Địa chỉ:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="diaChi" value="@session.Address" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group hide">
+                                <h4><span>Email:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="eMail" value="@session.Email" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group hide">
+                                <h4><span>Số điện thoại:</span></h4>
+                                
+                                    <div>
+                                        <input class="form-control " name="soDienThoai" value="@session.Phone" />
+                                    </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Sửa" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-3" style="padding-top:40px">
+            @Html.Partial("DanhMucQLKH")
+        </div>
+    </div>
+</div>
+

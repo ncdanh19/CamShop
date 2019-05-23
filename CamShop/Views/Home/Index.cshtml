@@ -21,10 +21,10 @@
             @foreach (var obj in slides.Select((item, index) => new { item, index }))
             {
                 <div class='@(obj.index==0?"item active":"item")' style="background-image: url(@obj.item.hinhAnh);">
-                    <div class="carousel-caption">
+                    @*<div class="carousel-caption">
                         <h3>First slide label</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
+                    </div>*@
                 </div>
             }
         </div>
@@ -42,16 +42,21 @@
 @section categories{
     <div id="cate" class="categories">
         <div class="container">
-            <h3>Categories</h3>
+            <div>
+                <span class="glyphicon glyphicon-arrow-down"></span>
+                <a href="/san-pham/" class="btn-default"><h1>Tất cả sản phẩm</h1></a>
+                <span class="glyphicon glyphicon-arrow-up"></span>
+            </div>
+            
             <div class="categorie-grids">
                 @foreach (var item in listCategories)
                 {
                     var url = "/" + "san-pham" + "/" + item.MetaTitle + "-" + item.loaiHangID;
                     var style = "col-md-4 cate-grid grid" + item.loaiHangID;
                     <a href="@url?loaiHangID=@item.loaiHangID">
-                        <div class="@style">
+                        <div class="@style" style="font-size: 15px">
                             <h4>@item.tenLoai</h4>
-                            <p>Are you ready for the 27.5 Revloution ?</p>
+                            <p><b>Cam Shop Online</b></p>
                             <a class="store" href="@url">@item.tenLoai</a>
                         </div>
                     </a>
@@ -66,7 +71,7 @@
 @* Sản phẩm nổi bật *@
 @section sanphamhot{
     <div class="bikes">
-        <h3>Sản phẩm nổi bật</h3>
+        <h2>Sản phẩm nổi bật</h2>
         <div class="bikes-grids">
             <ul id="flexiselDemo1">
                 @foreach (var item in listSanPhamHot)
@@ -76,15 +81,15 @@
                         <img src="@item.hinhAnh" alt="" />
                         <div class="bike-info">
                             <div class="model">
-                                <h4>@item.tenSanPham<span>@item.donGia VNĐ</span></h4>
+                                <h4>@item.tenSanPham<span>@item.donGia.GetValueOrDefault(0).ToString("N0") VNĐ</span></h4>
                             </div>
                             <div class="model-info">
-                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">BUY</a>
+                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">MUA NGAY</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="viw">
-                            <a href="@urlchitiet">Quick View</a>
+                            <a href="@urlchitiet">Xem nhanh</a>
                         </div>
                     </li>
                 }
@@ -124,7 +129,7 @@
 <!--bikes-->
 @section bikes{
     <div class="bikes">
-        <h3>Sản phẩm mới</h3>
+        <h2>Sản phẩm mới</h2>
         <div class="bikes-grids">
             <ul id="flexiselDemo2">
                 @foreach (var item in listSanPhamMoi)
@@ -134,15 +139,15 @@
                         <img src="@item.hinhAnh" alt="" />
                         <div class="bike-info">
                             <div class="model">
-                                <h4>@item.tenSanPham<span>@item.donGia VNĐ</span></h4>
+                                <h4>@item.tenSanPham<span>@item.donGia.GetValueOrDefault(0).ToString("N0") VNĐ</span></h4>
                             </div>
                             <div class="model-info">
-                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">BUY</a>
+                                <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">MUA NGAY</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="viw">
-                            <a href="@urlchitiet">Quick View</a>
+                            <a href="@urlchitiet">Xem Nhanh</a>
                         </div>
                     </li>
                 }

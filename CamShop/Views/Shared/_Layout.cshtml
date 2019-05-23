@@ -17,6 +17,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Bike-shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    @RenderSection("metatag", required:false)
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--webfont-->
     <link href='http://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
@@ -90,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a href="/"><img src="/Assets/client/images/logo.png" alt="" /></a>
                 </div>
                 @{Html.RenderAction("MainMenu", "Home"); }
-                @*<div class="clearfix"></div>*@
+                <div class="clearfix"></div>
             </div>
         </div>
         @RenderSection("banner", required: false)

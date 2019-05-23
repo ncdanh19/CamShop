@@ -1,0 +1,21 @@
+﻿
+@{ 
+    var thuongHieu = (List<Models.EF.ThuongHieu>)ViewBag.thuongHieu;
+}
+<section class="sky-form">
+    <div class="product_right">
+        <div style="text-align:center">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light"><h3>Thương hiệu</h3> </li>
+                @foreach (var item in thuongHieu)
+                {
+                    <li class="list-group-item list-group-item-light">
+                        <a class="btn-light" href="/san-pham/thuong-hieu/@item.metaTitle-@item.thuongHieuID">
+                            @item.tenThuongHieu
+                        </a>
+                    </li>
+                } 
+            </ul>
+        </div>
+    </div>
+</section>

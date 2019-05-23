@@ -682,6 +682,7 @@
     <Content Include="Assets\client\images\close.png" />
     <Content Include="Assets\client\images\contact.jpg" />
     <Content Include="Assets\client\images\dwn.png" />
+    <Content Include="Assets\client\images\logo-user.jpg" />
     <Content Include="Assets\client\images\logo.png" />
     <Content Include="Assets\client\images\logo2.png" />
     <Content Include="Assets\client\images\m1.jpg" />
@@ -689,6 +690,13 @@
     <Content Include="Assets\client\images\m3.jpg" />
     <Content Include="Assets\client\images\m4.jpg" />
     <Content Include="Assets\client\images\menu-arrow.png" />
+    <Content Include="Assets\client\images\ongkinh\canon-efs-1855mm-f3556-is-stm.jpg" />
+    <Content Include="Assets\client\images\ongkinh\Ong-Kinh-AF-S-NIKKOR-50mm-f1-8G.jpg" />
+    <Content Include="Assets\client\images\ongkinh\Ong-kinh-Canon-EF50mm-jpg.jpg" />
+    <Content Include="Assets\client\images\ongkinh\Ong-kinh-FUJINON-XF18-55mmF2-8-4-R-LM-OIS.jpg" />
+    <Content Include="Assets\client\images\ongkinh\Ong-Kinh-Sony-FE-50mm-f1-8--SEL50F18F.jpg" />
+    <Content Include="Assets\client\images\ongkinh\sigma-1750mm-f28-ex-dc-os-hsm-for-canon.jpg" />
+    <Content Include="Assets\client\images\ongkinh\sony-sel-50mm-f18-sel50f18-den.jpg" />
     <Content Include="Assets\client\images\p1.jpg" />
     <Content Include="Assets\client\images\p10.jpg" />
     <Content Include="Assets\client\images\p11.jpg" />
@@ -705,6 +713,13 @@
     <Content Include="Assets\client\images\p7.JPG" />
     <Content Include="Assets\client\images\p8.jpg" />
     <Content Include="Assets\client\images\p9.jpg" />
+    <Content Include="Assets\client\images\phukien\1536135667000_1433716_1000x1000.jpg" />
+    <Content Include="Assets\client\images\phukien\270ii_720x720.jpg" />
+    <Content Include="Assets\client\images\phukien\chong_rung_may_anh_dji_ronin_s_1500x1500.jpg" />
+    <Content Include="Assets\client\images\phukien\Den_Flash_Canon_Speedlite_470EX_AI_jpg_800x800.jpg" />
+    <Content Include="Assets\client\images\phukien\gripxt1_1000x1000.jpg" />
+    <Content Include="Assets\client\images\phukien\peak_design_bsl_10_as_1_everyday_sling_10l_ash_1277401_1000x1000.jpg" />
+    <Content Include="Assets\client\images\phukien\Products91070_1000x1000_823465174_1000x1000.jpg" />
     <Content Include="Assets\client\images\p_minus.png" />
     <Content Include="Assets\client\images\p_plus.png" />
     <Content Include="Assets\client\images\r1.jpg" />
@@ -718,6 +733,7 @@
     <Content Include="Assets\client\images\scroll.png" />
     <Content Include="Assets\client\images\slid.png" />
     <Content Include="Assets\client\images\user.png" />
+    <Content Include="Assets\client\js\base.js" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
     <Content Include="Assets\client\js\cart.js" />
     <Content Include="Assets\client\js\classie.js" />
@@ -750,6 +766,7 @@
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Common\Encrytor.cs" />
+    <Compile Include="Controllers\BaseClientController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
@@ -757,12 +774,16 @@
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuanLyKHController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
+    <Compile Include="Controllers\ThanhToanController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\DangNhap.cs" />
+    <Compile Include="Models\DoiMatKhau.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -803,6 +824,20 @@
     <Content Include="Views\SanPham\Category.cshtml" />
     <Content Include="Views\Shared\LeftMenu.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Shared\LeftMenuThuongHieu.cshtml" />
+    <Content Include="Views\SanPham\LocSanPhamTheoThuongHieu.cshtml" />
+    <Content Include="Views\SanPham\Index.cshtml" />
+    <Content Include="Views\Shared\Categories_layout.cshtml" />
+    <Content Include="Views\ThanhToan\ThanhToan.cshtml" />
+    <Content Include="Views\ThanhToan\HoanThanh.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\QuanLyKH\Details.cshtml" />
+    <Content Include="Views\Shared\DanhMucQLKH.cshtml" />
+    <Content Include="Views\QuanLyKH\Edit.cshtml" />
+    <Content Include="Views\QuanLyKH\DoiMatKhau.cshtml" />
+    <Content Include="Views\QuanLyKH\LichSuMuaHang.cshtml" />
+    <Content Include="Views\QuanLyKH\LichSuTraHang.cshtml" />
+    <Content Include="Views\QuanLyKH\TraHang.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

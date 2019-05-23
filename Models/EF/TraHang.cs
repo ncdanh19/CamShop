@@ -16,6 +16,9 @@ namespace Models.EF
 
         public DateTime? ngayTra { get; set; }
 
+        [StringLength(500)]
+        public string lyDo { get; set; }
+
         public virtual HoaDon HoaDon { get; set; }
     }
 }

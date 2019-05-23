@@ -1,0 +1,104 @@
+﻿@model List<CamShop.Models.CartItem>
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sessionUser = (CamShop.Common.UserLogin)Session[CamShop.Common.CommonConstants.USER_SESSION];
+    double? tongTien = ViewBag.tongTien;
+}
+
+@{
+    var dvgh = new SelectList(
+        new List<SelectListItem>
+        {
+new SelectListItem {Text = "GrabExpress", Value = "GrabExpress"},
+new SelectListItem {Text = "VNExpress", Value = "VNExpress"},
+        }, "Value", "Text");
+    double? phiShip = 0;
+}
+
+@section jsCart{
+    <script src="/Assets/client/js/cart.js"></script>
+}
+<div class="cart">
+    <div class="container">
+        @* div top *@
+        <div class="cart-top">
+            <a href="/">Trang chú</a>
+            <a href="#">/</a>
+            <a href="/gio-hang/">Giỏ hàng</a>
+        </div>
+        @* hóa đơn *@
+        <div class="col-md-4 cart-items" style="padding-left: inherit;">
+            <h1 style="text-align:center">Hóa đơn</h1>
+            <div class="cart-header">
+                <div class="cart-sec">
+                    <div class="cart-item-info" style="font-size:10px; width:100%">
+                        @foreach (var item in Model)
+                        {
+                            <div><h4><span>Tên sản phẩm: </span></h4></div>
+                            <div><h4>@item.SanPham.tenSanPham</h4></div>
+                            <div><h4><span>Số lượng: </span>@item.SoLuong</h4></div>
+                            <div><h4><span>Thành tiền: </span>@item.ThanhTien.Value.ToString("N0")<span> VND</span></h4></div>
+
+                        }
+                    </div>
+                    <div style="width:100%; float:left; padding-bottom: 5px; margin-top:7px;">
+                        <h4><span>Tổng hóa đơn: </span>@tongTien.GetValueOrDefault(0).ToString("N0")<span> VND</span></h4>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+
+        @using (Html.BeginForm("ThanhToan", "Cart", FormMethod.Post))
+        {
+            <div class="col-md-4 cart-items" style="padding-left: inherit;">
+                <h1 style="text-align:center">Thông tin khách hàng</h1>
+                <div class="cart-header">
+                    <div class="cart-sec">
+                        <div class="cart-item-info" style="font-size:10px; width:100%">
+                            <div class="hide">
+                                <input type="text" value="@sessionUser.UserID" name="id" class="input-text ">
+                            </div>
+                            <div><h4><span>Họ tên khách hàng: </span></h4></div>
+                            <input type="text" value="@sessionUser.Name" class="input-text" style="padding: 10px 19.8em 10px 0.5em;">
+                            <div><h4><span>Địa chỉ : </span></h4></div>
+                            <input type="text" value="@sessionUser.Address" class="input-text" style="padding: 10px 19.8em 10px 0.5em;">
+                            <div><h4><span>Email: </span></h4></div>
+                            <input type="text" value="@sessionUser.Email" class="input-text" style="padding: 10px 19.8em 10px 0.5em;">
+                            <div><h4><span>Số điện thoại: </span></h4></div>
+                            <input type="text" value="@sessionUser.Phone" class="input-text" style="padding: 10px 19.8em 10px 0.5em;">
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            @* giao hàng *@
+            <div class="col-md-4 cart-items" style="padding-left: inherit;">
+                <h1 style="text-align:center">Thông tin giao hàng</h1>
+                <div class="cart-header">
+                    <div class="cart-sec">
+                        <div class="cart-item-info" style="font-size:10px; width:100%">
+                            <div><h4><span>Đơn vị giao hàng: </span></h4></div>
+                            @Html.DropDownList("donViGH", dvgh, new { @class = "input-text", @style = "padding: 10px 23.3em 10px 0.5em;" })
+                            <div><h4><span>Phí giao hàng: </span>@phiShip.GetValueOrDefault(0).ToString("N0")<span> VND</span></h4></div>
+                            <div><h4><span>Ngày giao hàng: </span></h4><input type="date" name="ngayGiaoHang" required style="padding: 10px 0.5em 10px 0.5em;"></div>
+
+                        </div>
+                        <div style="width:77%; float:left; padding-bottom: 5px; margin-top:7px">
+                            <h4><span>Tổng phí giao hàng: </span>@phiShip.GetValueOrDefault(0).ToString("N0")<span> VND</span></h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <input type="submit" value="Thanh toán" class="button alt; float-right" style="padding: 10px 2.5em 10px 2.5em; font-size:15px; text-align:center">
+            </div>
+        }
+    </div>
+</div>
+
+

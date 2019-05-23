@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "TraHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var session = (CamShop.Common.UserLogin)Session[CamShop.Common.CommonConstants.USER_SESSION];
+}
+
+<div class="cart" style="margin-bottom:150px">
+    <div class="container">
+        @* div top *@
+        <div class="cart-top">
+            <a href="/">Trang chú</a>
+            <a href="#">/</a>
+            <a href="/tai-khoan/">Quản lý tài khoản</a>
+        </div>
+        <div class="col-md-9 cart-items" style="padding-left:50px">
+            @using (Html.BeginForm("TraHang", "QuanLyKH", FormMethod.Post))
+            {
+                <h2 style="color:#fead53; text-align:center">Lịch sử mua hàng</h2>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <label>Lý do trả hàng</label>
+                    <input class="form-control " name="lyDo" />
+                </div>
+                <div>
+                    <button type="submit" value="Xác nhận" class="btn btn-success">Xác nhận</button>
+                    <input hidden />
+                    <a href="tai-khoan">Quay lại</a>
+                </div>
+            }
+        </div>
+        <div class="col-md-3" style="padding-top:40px">
+            @Html.Partial("DanhMucQLKH")
+        </div>
+    </div>
+</div>
+

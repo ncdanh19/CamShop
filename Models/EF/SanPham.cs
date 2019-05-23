@@ -45,6 +45,12 @@ namespace Models.EF
 
         public int? soLuong { get; set; }
 
+        [StringLength(500)]
+        public string MetaKeyword { get; set; }
+
+        [StringLength(500)]
+        public string MetaDescription { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
 
