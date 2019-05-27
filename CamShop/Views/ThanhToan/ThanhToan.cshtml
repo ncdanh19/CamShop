@@ -52,7 +52,7 @@ new SelectListItem {Text = "VNExpress", Value = "VNExpress"},
         </div>
 
 
-        @using (Html.BeginForm("ThanhToan", "Cart", FormMethod.Post))
+        @using (Html.BeginForm("ThanhToan", "ThanhToan", FormMethod.Post))
         {
             <div class="col-md-4 cart-items" style="padding-left: inherit;">
                 <h1 style="text-align:center">Thông tin khách hàng</h1>
@@ -85,8 +85,11 @@ new SelectListItem {Text = "VNExpress", Value = "VNExpress"},
                             <div><h4><span>Đơn vị giao hàng: </span></h4></div>
                             @Html.DropDownList("donViGH", dvgh, new { @class = "input-text", @style = "padding: 10px 23.3em 10px 0.5em;" })
                             <div><h4><span>Phí giao hàng: </span>@phiShip.GetValueOrDefault(0).ToString("N0")<span> VND</span></h4></div>
-                            <div><h4><span>Ngày giao hàng: </span></h4><input type="date" name="ngayGiaoHang" required style="padding: 10px 0.5em 10px 0.5em;"></div>
-
+                            @*<div><h4><span>Ngày giao hàng: </span></h4><input type="date" name="ngayGiaoHang" id="demo" required style="padding: 10px 0.5em 10px 0.5em;"></div>*@
+                            <div>
+                                <input type="datetime" id="submitNgayGiao" name="ngayGiaoHang" value="" hidden/>
+                                <h4><span>Ngày giao hàng dự tính là: </span></h4><h2 id="ngayGiaoHang"></h2>
+                            </div>
                         </div>
                         <div style="width:77%; float:left; padding-bottom: 5px; margin-top:7px">
                             <h4><span>Tổng phí giao hàng: </span>@phiShip.GetValueOrDefault(0).ToString("N0")<span> VND</span></h4>
@@ -100,5 +103,11 @@ new SelectListItem {Text = "VNExpress", Value = "VNExpress"},
         }
     </div>
 </div>
-
+<script>
+    var min_day = new Date();
+    min_day.setDate(min_day.getDate() + 3);
+    let formatted_date = min_day.getFullYear() + "-" + (min_day.getMonth() + 1) + "-" + min_day.getDate()
+    document.getElementById("submitNgayGiao").value = formatted_date;
+    document.getElementById("ngayGiaoHang").innerHTML = formatted_date;
+</script>
 

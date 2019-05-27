@@ -4,6 +4,45 @@
 	License: Creative Commons Attribution 3.0 Unported
 	License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+
+/*line*/
+.section-title {
+    font-size: 50px;
+    font-weight: 100;
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+} 
+
+h2.section-title:before {
+    content: '';
+    display: block;
+    width: 1000px;
+    position: absolute;
+    top: 0.73em;
+    border-top: 1px solid #fead53;
+}
+
+h2.section-title:after {
+    content: '';
+    display: block;
+    width: 1000px;
+    position: absolute;
+    top: 0.73em;
+    border-top: 1px solid #fead53;
+}
+
+h2.section-title:before {
+    right: 70%;
+}
+
+h2.section-title:after {
+    left: 70%;
+}
+
+/*line*/
+
 /*slider*/
 .carousel {
     background: #2f4357;
@@ -73,7 +112,7 @@ ul {
 .banner-bg1 {
     background: url(../images/bg.jpg) no-repeat;
     background-size: cover;
-    min-height: 200px;
+    /*min-height: 200px;*/
 }
 
 .banner-bg2 {
@@ -278,11 +317,15 @@ a.morebtn {
 }
 
 .cate-grid h4 {
+    background:#000;
     color: #fcff19;
-    font-size: 1.1em;
+    font-size: 1.2em;
+    padding: 5px 1em;
+    display: inline-block;
     font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 6px;
+    border-radius: 7px;
 }
 
 .cate-grid p {
@@ -293,10 +336,10 @@ a.morebtn {
 
 a.store {
     color: #fff;
-    font-size: 0.9em;
+    /*font-size: 0.9em;*/
     border: 3px solid #fff;
     border-radius: 7px;
-    font-weight: 500;
+    font-weight: 700;
     display: inline-block;
     padding: 0.7em 1.4em;
     margin-top: 1.5em;
@@ -1405,7 +1448,7 @@ p.qty {
         margin: 0.5em 0;
         font-weight: 500;
         display: inline-block;
-        margin-right: 3em;
+        margin-right: 1em;
     }
 
         .cart-item-info h4 span {

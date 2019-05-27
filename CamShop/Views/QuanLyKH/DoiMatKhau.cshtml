@@ -28,35 +28,39 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group hide">
                                 <h4><span>ID:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="khachHangID" value="@session.UserID" />
-                                    </div>
-                                
+
+                                <div>
+                                    <input class="form-control " name="khachHangID" value="@session.UserID" />
+                                </div>
+
                             </div>
                             <div class="form-group">
-                                <h4><span>Mật khẩu hiện tại:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="passWord" type="password" />
-                                    </div>
-                                
-                            </div>
-                            <div class="form-group">
-                                <h4><span>Mật khẩu mới:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="newPass" type="password" />
-                                    </div>
-                               
-                            </div>
-                            <div class="form-group">
-                                <h4><span>Xác nhận mật khẩu:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="confPass" type="password" />
-                                    </div>
-                                
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h4><span>Mật khẩu hiện tại:</span></h4>
+                                        </td>
+                                        <td>
+                                            <input class="form-control " name="passWord" type="password" style="width:200px" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4><span>Mật khẩu mới:</span></h4>
+                                        </td>
+                                        <td>
+                                            <input class="form-control " name="newPass" type="password" style="width:200px" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4><span>Xác nhận mật khẩu:</span></h4>
+                                        </td>
+                                        <td>
+                                            <input class="form-control " name="confPass" type="password" style="width:200px" />
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="form-group hide">
                                 <h4><span>UserName:</span></h4>

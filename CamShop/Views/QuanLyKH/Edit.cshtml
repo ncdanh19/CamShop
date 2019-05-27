@@ -17,7 +17,7 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-            <h2 style="color:#fead53; text-align:center">Thay đổi thông tin</h2>
+                <h2 style="color:#fead53; text-align:center">Thay đổi thông tin</h2>
                 <div class="cart-header">
                     <div class="cart-sec">
                         <div class="cart-item cyc">
@@ -43,40 +43,44 @@
                                 </h4>
                             </div>
                             <div class="form-group">
-                                <h4><span>Họ tên khách hàng:</span></h4>
-                                <h4>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.hoTen, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
-                                    </div>
-                                </h4>
-                            </div>
-                            <div class="form-group">
-                                <h4><span>Địa chỉ:</span></h4>
-                                <h4>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
-                                    </div>
-                                </h4>
-                            </div>
-                            <div class="form-group">
-                                <h4><span>Email:</span></h4>
-                                <h4>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.eMail, "", new { @class = "text-danger" })
-                                    </div>
-                                </h4>
-                            </div>
-                            <div class="form-group">
-                                <h4><span>Số điện thoại:</span></h4>
-                                <h4>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.soDienThoai, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
-                                    </div>
-                                </h4>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <h4><span>Họ tên khách hàng:</span></h4>
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.hoTen, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4><span>Địa chỉ:</span></h4>
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4><span>Email:</span></h4>
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.eMail, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h4><span>Số điện thoại:</span></h4>
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(model => model.soDienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">

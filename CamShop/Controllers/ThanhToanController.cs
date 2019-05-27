@@ -66,7 +66,7 @@ namespace CamShop.Controllers
                 var giaoHang = new GiaoHang();
                 giaoHang.hoaDonID = hoadonID;
                 giaoHang.donViGiaoHang = donViGH.ToString();
-                giaoHang.ngayGiaoHang = ngayGiaoHang;
+                giaoHang.ngayGiaoHang =ngayGiaoHang;
 
                 //Thêm thông tin vào bảng giao hàng
                 var giaoHangID = new ThanhToanDao().ThemGiaoHang(giaoHang);
