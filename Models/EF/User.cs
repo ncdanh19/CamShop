@@ -24,15 +24,19 @@ namespace Models.EF
         [StringLength(50)]
         public string passWord { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string hoTen { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string eMail { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string diaChi { get; set; }
 
+        [Required]
         [StringLength(11)]
         public string soDienThoai { get; set; }
 

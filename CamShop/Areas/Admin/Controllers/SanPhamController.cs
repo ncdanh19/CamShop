@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Models.Dao;
 using Models.EF;
 
 namespace CamShop.Areas.Admin.Controllers
@@ -15,9 +16,12 @@ namespace CamShop.Areas.Admin.Controllers
         private CamShopDbContext db = new CamShopDbContext();
 
         // GET: Admin/SanPham
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
-            return View(db.SanPhams.ToList());
+            var dao = new SanPhamDao();
+            var model = dao.ListAllPaging(searchString, page, pageSize);
+            ViewBag.SearchString = searchString;
+            return View(model);
         }
 
         // GET: Admin/SanPham/Details/5
@@ -52,9 +56,18 @@ namespace CamShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SanPhams.Add(sanPham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.SanPhams.Where(x => x.tenSanPham == sanPham.tenSanPham).Count() == 0)
+                {
+                    sanPham.hinhAnh = "/Content/images/" + sanPham.hinhAnh;
+
+                    db.SanPhams.Add(sanPham);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Sản phẩm đã tồn tại");
+                } 
             }
 
             ViewBag.loaiHang = new SelectList(db.LoaiHangs, "loaiHangID", "tenLoai", sanPham.loaiHang);
@@ -88,6 +101,8 @@ namespace CamShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                sanPham.hinhAnh = "/Content/images/" + sanPham.hinhAnh;
+
                 db.Entry(sanPham).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

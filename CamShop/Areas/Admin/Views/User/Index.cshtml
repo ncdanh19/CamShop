@@ -7,85 +7,88 @@
 
 <h2>Danh sách người dùng</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<table class="table table-bordered" >
+<div class="col-md-12 clearfix" style="padding: 1em;">
     @using (Html.BeginForm("Index", "User", FormMethod.Get))
     {
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="col-md-4">
-                    <input type="text" value="@ViewBag.SearchString" name="searchString" />
-                </div>
-                <div class="col-md-4">
-                    <button type="submit">Tìm kiếm</button>
-                </div>
-            </div>
+        <div class="search-box" style="float:right">
+            <input type="text" placeholder="Tìm kiếm..." value="@ViewBag.SearchString" name="searchString" required="">
+            <input type="submit" value="">
         </div>
     }
+</div>
 
-    <thead>
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Họ tên
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Địa chỉ
-            </th>
-            <th>
-                SĐT
-            </th>
-            <th width="5%"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+<div>
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.userName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.hoTen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.eMail)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.diaChi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.soDienThoai)
-                </td>
-                <td>
-                    <div class="dropdown">
-                        <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.ID })</li>
-                            <li>@Html.ActionLink("Details", "Details", new { id = item.ID })</li>
-                            <li> @Html.ActionLink("Delete", "Delete", new { id = item.ID })</li>
-                            @*<li>
-                                     @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
-                                {
-                                    Confirm="Bạn có muốn xóa bản ghi này không?",
-                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                    HttpMethod = "Delete"
-                                })
-                                 </li>*@
-                        </ul>
-                    </div>
-                </td>
-
+                <th>
+                    ID
+                </th>
+                <th>
+                    Họ tên
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    SĐT
+                </th>
+                <th width="5%"></th>
             </tr>
-        }
-    </tbody>
-</table>
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.userName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.hoTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.eMail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.diaChi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.soDienThoai)
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ID })</li>
+                                <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.ID })</li>
+                                <li> @Html.ActionLink("Xóa", "Delete", new { id = item.ID })</li>
+                                @*<li>
+                                         @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
+                                    {
+                                        Confirm="Bạn có muốn xóa bản ghi này không?",
+                                        OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                        HttpMethod = "Delete"
+                                    })
+                                     </li>*@
+                            </ul>
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row" style="padding:1em">
+        <div style="display:inline-block; float:left">
+            @Html.ActionLink("Thêm", "Create", "", new { @class = "btn btn-primary" })
+        </div>
+        <div style="display:inline-block;float:right; ">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+        </div>
+    </div>
+</div>
+

@@ -36,11 +36,11 @@ namespace Models.Dao
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 //logging
                 return false;
-            }           
+            }
         }
 
         public bool UpdatePassword(User entity)
@@ -52,22 +52,22 @@ namespace Models.Dao
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
         }
 
         //Phân trang user
-        public IEnumerable<User> ListAllPaging(string seachString, int page,int pageSize)
+        public IEnumerable<User> ListAllPaging(string seachString, int page, int pageSize)
         {
             IQueryable<User> model = db.Users;
-            if(!string.IsNullOrEmpty(seachString))
+            if (!string.IsNullOrEmpty(seachString))
             {
                 model = model.Where(x => x.userName.Contains(seachString) || x.hoTen.Contains(seachString));
             }
             //Liệt kê giảm dần
-            return model.OrderByDescending(x => x.ID).ToPagedList(page,pageSize);
+            return model.OrderByDescending(x => x.ID).ToPagedList(page, pageSize);
         }
         //Lấy id của một user cụ thể
         public User GetById(string userName)
@@ -92,14 +92,14 @@ namespace Models.Dao
                 db.SaveChanges();
                 return true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
         }
 
         //Kiểm tra tài khoản trong DB
-        public int Login(string username,string password)
+        public int Login(string username, string password)
         {
             //Tạo giá trị obj hoặc giá trị default
             var result = db.Users.SingleOrDefault(x => x.userName == username);

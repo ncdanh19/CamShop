@@ -7,10 +7,28 @@
     </div>
     <div class="menu">
         <ul id="menu">
+
             <li id="menu-taikhoan"><a href=@Url.Action("Index","User")><i class="fa fa-user"></i><span>Tài khoản</span></a></li>
-            <li id="menu-loaihang"><a href=@Url.Action("Index","LoaiHang")><i class="fa fa-list-alt"></i><span>Loại hàng</span></a></li>
-            <li id="menu-sanpham"><a href=@Url.Action("Index","SanPham")><i class="fa fa-camera"></i><span>Sản phẩm</span></a></li>
-            <li id="menu-sanpham"><a href=@Url.Action("Index","ThuongHieu")><i class="fa fa-bookmark-o"></i><span>Thương hiệu</span></a></li>
+
+            <li id="menu-dropdown-sanpham">
+                <a href="#"><i class="fa fa fa-camera"></i><span>Sản phẩm</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub">
+                    <li id="menu-sanpham"><a href=@Url.Action("Index","SanPham")><span>Sản phẩm</span></a></li>
+                    <li id="menu-loaihang"><a href=@Url.Action("Index","LoaiHang")><span>Loại hàng</span></a></li>
+                    <li id="menu-thuonghieu"><a href=@Url.Action("Index","ThuongHieu")><span>Thương hiệu</span></a></li>
+                </ul>
+            </li>
+
+            <li id="menu-dropdown-danhmuc">
+                <a href="#"><i class="fa fa-book nav_icon"></i><span>Danh mục</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub">
+                    <li id="menu-danhmuc"> <a href="@Url.Action("Index","DanhMucs")">Danh mục</a></li>
+                    <li id="menu-nhomdanhmuc"> <a href="@Url.Action("Index","NhomDanhMucs")">Nhóm danh mục</a> </li>
+                </ul>
+            </li>
+
+            <li id="menu-slide"><a href=@Url.Action("Index","Slides")><i class="fa fa-bookmark"></i><span>Slide</span></a></li>
+            <li id="menu-slide"><a href=@Url.Action("Index","Tags")><i class="fa fa-tag"></i><span>Tag</span></a></li>
 
         </ul>
     </div>

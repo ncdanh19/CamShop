@@ -1,15 +1,22 @@
-﻿@model IEnumerable<Models.EF.SanPham>
-
+﻿@model PagedList.IPagedList<Models.EF.SanPham>
+@using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách sản phẩm";
     Layout = "/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Danh sách sản phẩm</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="col-md-12 clearfix" style="padding: 1em;">
+    @using (Html.BeginForm("Index", "SanPham", FormMethod.Get))
+    {
+        <div class="search-box" style="float:right;">
+            <input type="text" placeholder="Tìm kiếm..." value="@ViewBag.SearchString" name="searchString" required="">
+            <input type="submit" value="">
+        </div>
+    }
+</div>
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -61,9 +68,9 @@
                     <div class="dropdown">
                         <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li>@Html.ActionLink("Edit", "Edit", new { id = item.sanPhamID })</li>
-                            <li>@Html.ActionLink("Details", "Details", new { id = item.sanPhamID })</li>
-                            <li> @Html.ActionLink("Delete", "Delete", new { id = item.sanPhamID })</li>
+                            <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.sanPhamID })</li>
+                            <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.sanPhamID })</li>
+                            <li> @Html.ActionLink("Xóa", "Delete", new { id = item.sanPhamID })</li>
                             @*<li>
                                      @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
                                 {
@@ -79,3 +86,12 @@
         }
     </tbody>
 </table>
+
+<div class="row" style="padding:1em">
+    <div style="display:inline-block; float:left">
+        @Html.ActionLink("Thêm", "Create", "", new { @class = "btn btn-primary" })
+    </div>
+    <div style="display:inline-block;float:right; ">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
+    </div>
+</div>

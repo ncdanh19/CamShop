@@ -51,22 +51,33 @@ namespace CamShop.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(User user)
         {
+            var dao = new UserDao();
             if (ModelState.IsValid)
-            {
-                var dao = new UserDao();
-                var encryptedMD5Pas = Encrytor.MD5Hash(user.passWord);
-                user.passWord = encryptedMD5Pas;
-                long id = dao.Insert(user);
-                if (id > 0)
+            {                
+                if (db.Users.Count(x=> x.userName == user.userName)>0)
                 {
+                    ModelState.AddModelError("", "Username đã có người dùng"); 
+                }
+                else if (db.Users.Count(x => x.eMail == user.eMail)>0)
+                {
+                    ModelState.AddModelError("", "Email đã có người dùng");                     
+                }
+                else if (db.Users.Count(x => x.soDienThoai == user.soDienThoai)>0)
+                {
+                    ModelState.AddModelError("", "Số điện thoại đã có người dùng");
+                }
+                else //thêm nếu không bị trùng
+                {                    
+                    var encryptedMD5Pas = Encrytor.MD5Hash(user.passWord);
+                    user.passWord = encryptedMD5Pas;
+                    long id = dao.Insert(user);
+                    ModelState.AddModelError("", "Thêm user thành công");
+
                     return RedirectToAction("Index", "User");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Thêm user thành công");
-                }
             }
-            return View("Index");
+            return View(user);
+
         }
 
         [HttpGet]
@@ -92,10 +103,10 @@ namespace CamShop.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật user thành công");
+                    ModelState.AddModelError("", "Cập nhật user không thành công");
                 }
             }
-            return View("Index");
+            return View(user);
         }
 
         // GET: Admin/User/Delete/5

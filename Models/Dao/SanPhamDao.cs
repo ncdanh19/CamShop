@@ -27,7 +27,7 @@ namespace Models.Dao
             }
             int pageNumber = (page ?? 1);
 
-            return db.SanPhams.Where(x => x.loaiHang == danhmucID).OrderBy(x => x.sanPhamID).ToPagedList(pageNumber,pageSize);
+            return db.SanPhams.Where(x => x.loaiHang == danhmucID).OrderBy(x => x.sanPhamID).ToPagedList(pageNumber, pageSize);
         }
         //List sản phẩm mới
         public List<SanPham> ListNewProduct(int top)
@@ -36,7 +36,7 @@ namespace Models.Dao
         }
 
         //Sản phẩm liên quan
-        public List<SanPham> ListRelated(int idSanPham,int top)
+        public List<SanPham> ListRelated(int idSanPham, int top)
         {
             var sanpham = db.SanPhams.Find(idSanPham);
             return db.SanPhams.Where(x => x.loaiHang == sanpham.loaiHang && x.sanPhamID != idSanPham).Take(top).ToList();
@@ -62,7 +62,7 @@ namespace Models.Dao
             {
                 model = model.Where(x => x.tenSanPham.Contains(seachString));
             }
-            
+
             //Liệt kê giảm dần
             return model.OrderByDescending(x => x.sanPhamID).ToPagedList(page, pageSize);
         }
