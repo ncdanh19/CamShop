@@ -6,70 +6,62 @@
 }
 
 <h2>Danh sách loại hàng</h2>
-<div class="col-md-12 clearfix" style="padding: 1em;">
-    @using (Html.BeginForm("Index", "LoaiHang", FormMethod.Get))
-    {
-        <div class="search-box" style="float:right;">
-            <input type="text" placeholder="Tìm kiếm..." value="@ViewBag.SearchString" name="searchString" required="">
-            <input type="submit" value="">
-        </div>
-    }
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered searchItem" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        Tên loại
+                    </th>
+                    <th>
+                        Meta Tittle
+                    </th>
+                    <th width="5%"></th>
+                </tr>
+            <thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tenLoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MetaTitle)
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.loaiHangID })</li>
+                                    <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.loaiHangID })</li>
+                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.loaiHangID })</li>
+                                    @*<li>
+                                             @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
+                                        {
+                                            Confirm="Bạn có muốn xóa bản ghi này không?",
+                                            OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                            HttpMethod = "Delete"
+                                        })
+                                         </li>*@
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
 </div>
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>
-                Tên loại
-            </th>
-            <th>
-                Meta Tittle
-            </th>
-            <th width="5%"></th>
-        </tr>
-    <thead>
-    <tbody>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tenLoai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MetaTitle)
-                </td>
-                <td>
-                    <div class="dropdown">
-                        <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.loaiHangID })</li>
-                            <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.loaiHangID })</li>
-                            <li> @Html.ActionLink("Xóa", "Delete", new { id = item.loaiHangID })</li>
-                            @*<li>
-                                     @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
-                                {
-                                    Confirm="Bạn có muốn xóa bản ghi này không?",
-                                    OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                    HttpMethod = "Delete"
-                                })
-                                 </li>*@
-                        </ul>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-
-</table>
-
 
 <div class="row" style="padding:1em">
     <div style="display:inline-block; float:left">
         @Html.ActionLink("Thêm", "Create", "", new { @class = "btn btn-primary" })
-    </div>
-    <div style="display:inline-block;float:right; ">
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
-    </div>
+    </div> 
 </div>
 
 

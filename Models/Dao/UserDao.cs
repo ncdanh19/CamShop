@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Models.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Models.EF;
-using PagedList;
 
 namespace Models.Dao
 {
@@ -24,24 +23,24 @@ namespace Models.Dao
             return entity.ID;
         }
 
-        public bool Update(User entity)
-        {
-            try
-            {
-                var user = db.Users.Find(entity.ID);
-                user.hoTen = entity.hoTen;
-                user.eMail = entity.eMail;
-                user.diaChi = entity.diaChi;
-                user.soDienThoai = entity.soDienThoai;
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                //logging
-                return false;
-            }
-        }
+        //public bool Update(User entity)
+        //{
+        //    try
+        //    {
+        //        var user = db.Users.Find(entity.ID);
+        //        user.hoTen = entity.hoTen;
+        //        user.eMail = entity.eMail;
+        //        user.diaChi = entity.diaChi;
+        //        user.soDienThoai = entity.soDienThoai;
+        //        db.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //logging
+        //        return false;
+        //    }
+        //}
 
         public bool UpdatePassword(User entity)
         {
@@ -58,17 +57,7 @@ namespace Models.Dao
             }
         }
 
-        //Phân trang user
-        public IEnumerable<User> ListAllPaging(string seachString, int page, int pageSize)
-        {
-            IQueryable<User> model = db.Users;
-            if (!string.IsNullOrEmpty(seachString))
-            {
-                model = model.Where(x => x.userName.Contains(seachString) || x.hoTen.Contains(seachString));
-            }
-            //Liệt kê giảm dần
-            return model.OrderByDescending(x => x.ID).ToPagedList(page, pageSize);
-        }
+       
         //Lấy id của một user cụ thể
         public User GetById(string userName)
         {
@@ -118,12 +107,7 @@ namespace Models.Dao
         {
             return db.Users.Count(x => x.userName == userName) > 0;
         }
-        //Kiểm tra email
-        public bool CheckEmail(string email)
-        {
-            return db.Users.Count(x => x.eMail == email) > 0;
-        }
-
+       
         // kiểm tra passwork
         public bool CheckPassWord(string password)
         {

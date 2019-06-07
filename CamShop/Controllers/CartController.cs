@@ -28,6 +28,7 @@ namespace CamShop.Controllers
                 // lưu sản phẩm trong giỏ hàng vào session
                 list = (List<CartItem>)cart;
             // trả list cho view
+
             return View(list);
         }
 

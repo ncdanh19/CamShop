@@ -1,5 +1,7 @@
 ﻿@model List<CamShop.Models.CartItem>
 @{
+    /**/
+
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var sessionUser = Session[CamShop.Common.CommonConstants.USER_SESSION];
@@ -55,7 +57,7 @@
             @if (@tongTien == 0)
             {
                 <div style="padding-top:30px; padding-left:30px"><h2>Giỏ hàng rỗng, <a href="/">tiếp tục mua hàng!</a></h2></div>
-                
+
             }
         </div>
         @* div phải 3, thanh toán giỏ hàng *@
@@ -82,23 +84,68 @@
             {
                 if (sessionUser == null)
                 {
-                    <a class="order" href="/dang-nhap/">Thanh toán</a>
+                    <a class="order" href="#" data-toggle="modal" data-target="#myModalHorizontal">
+                        Thanh toán
+                    </a>
                 }
                 else
                 {
                     <a class="order" href="/thanh-toan/">Thanh toán</a>
                 }
-
             }
-
-            <div class="total-item">
-                <h3>Chức năng</h3>
-                <h4>COUPONS</h4>
-                <a class="cpns" href="#">Dùng Coupons </a>
-                <p><a href="#">Đăng nhập</a> để sử dụng coupons</p>
-            </div>
         </div>
     </div>
 </div>
 
+
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table>
+                    <tr style="height:3em">
+                        <td>
+                            <label>Bạn đã có tài khoản</label>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning" href="/dang-nhap/" style="margin-left:2em; width:150%">Đăng nhập</a>
+                        </td>
+                    </tr>
+                    <tr style="height:3em">
+                        <td>
+                            <label>Chưa có tài khoản</label>
+                        </td>
+                        <td>
+                            <a class="btn btn-success" href="/dang-ki/" style="margin-left:2em; width:150%">Đăng kí</a>
+                        </td>
+                    </tr>
+                    <tr style="height:3em">
+                        <td>
+                            <label>Mua ngay không cần đăng nhập</label>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" id="btnThanhToan" href="#" style="margin-left:2em; width:150%">Mua ngay</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Close
+                </button> 
+            </div>
+        </div>
+    </div>
+</div>
 

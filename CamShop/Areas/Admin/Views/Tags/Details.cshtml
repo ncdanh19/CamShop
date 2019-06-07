@@ -1,15 +1,14 @@
 ﻿@model Models.EF.Tag
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết thẻ";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết thẻ</h2>
 
 <div>
-    <h4>Tag</h4>
-    <hr />
+     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -30,6 +29,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.tagID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.tagID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-default" })
+
 </p>

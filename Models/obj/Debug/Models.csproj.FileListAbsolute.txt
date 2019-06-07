@@ -1,15 +1,3 @@
-E:\CamShop\CamShop\Models\bin\Debug\Models.dll.config
-E:\CamShop\CamShop\Models\bin\Debug\Models.dll
-E:\CamShop\CamShop\Models\bin\Debug\Models.pdb
-E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.dll
-E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.SqlServer.dll
-E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.xml
-E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.SqlServer.xml
-E:\CamShop\CamShop\Models\obj\Debug\Models.csprojAssemblyReference.cache
-E:\CamShop\CamShop\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
-E:\CamShop\CamShop\Models\obj\Debug\Models.csproj.CopyComplete
-E:\CamShop\CamShop\Models\obj\Debug\Models.dll
-E:\CamShop\CamShop\Models\obj\Debug\Models.pdb
 E:\VS Project\CamShop\Models\bin\Debug\Models.dll.config
 E:\VS Project\CamShop\Models\bin\Debug\Models.dll
 E:\VS Project\CamShop\Models\bin\Debug\Models.pdb
@@ -33,12 +21,24 @@ E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 E:\GitKraken\CamShop\Models\obj\Debug\Models.csproj.CopyComplete
 E:\GitKraken\CamShop\Models\obj\Debug\Models.dll
 E:\GitKraken\CamShop\Models\obj\Debug\Models.pdb
-E:\CamShop\CamShop\Models\bin\Debug\PagedList.dll
-E:\CamShop\CamShop\Models\bin\Debug\PagedList.Mvc.dll
-E:\CamShop\CamShop\Models\bin\Debug\PagedList.xml
-E:\CamShop\CamShop\Models\bin\Debug\PagedList.Mvc.xml
 E:\GitKraken\CamShop\Models\bin\Debug\PagedList.dll
 E:\GitKraken\CamShop\Models\bin\Debug\PagedList.Mvc.dll
 E:\GitKraken\CamShop\Models\bin\Debug\PagedList.xml
 E:\GitKraken\CamShop\Models\bin\Debug\PagedList.Mvc.xml
 E:\GitKraken\CamShop\Models\obj\Debug\Models.csprojAssemblyReference.cache
+E:\CamShop\CamShop\Models\bin\Debug\Models.dll.config
+E:\CamShop\CamShop\Models\bin\Debug\Models.dll
+E:\CamShop\CamShop\Models\bin\Debug\Models.pdb
+E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.dll
+E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.SqlServer.dll
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.dll
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.Mvc.dll
+E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.xml
+E:\CamShop\CamShop\Models\bin\Debug\EntityFramework.SqlServer.xml
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.xml
+E:\CamShop\CamShop\Models\bin\Debug\PagedList.Mvc.xml
+E:\CamShop\CamShop\Models\obj\Debug\Models.csprojAssemblyReference.cache
+E:\CamShop\CamShop\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+E:\CamShop\CamShop\Models\obj\Debug\Models.csproj.CopyComplete
+E:\CamShop\CamShop\Models\obj\Debug\Models.dll
+E:\CamShop\CamShop\Models\obj\Debug\Models.pdb

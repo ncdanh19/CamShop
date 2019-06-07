@@ -24,9 +24,6 @@ namespace Models.EF
 
         public bool? trangThai { get; set; }
 
-        [StringLength(50)]
-        public string image { get; set; }
-
         public virtual NhomDanhMuc NhomDanhMuc { get; set; }
     }
 }

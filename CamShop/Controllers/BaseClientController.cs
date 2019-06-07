@@ -20,7 +20,7 @@ namespace CamShop.Controllers
             if (session == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new
-                    RouteValueDictionary(new { controller = "User", action = "DangNhap"}));
+                    RouteValueDictionary(new { controller = "KhachHang", action = "DangNhap"}));
             }
             base.OnActionExecuting(filterContext);
         }

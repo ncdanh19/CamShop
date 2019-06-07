@@ -15,8 +15,9 @@ namespace CamShop.Areas.Admin.Controllers
         private CamShopDbContext db = new CamShopDbContext();
 
         // GET: Admin/NhomDanhMucs
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
+            ViewBag.SearchString = searchString;
             return View(db.NhomDanhMucs.ToList());
         }
 

@@ -12,7 +12,7 @@ namespace Models.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tag()
         {
-            SanPhams = new HashSet<SanPham>();
+            SanPhamTags = new HashSet<SanPhamTag>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -25,6 +25,6 @@ namespace Models.EF
         public string Type { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SanPham> SanPhams { get; set; }
+        public virtual ICollection<SanPhamTag> SanPhamTags { get; set; }
     }
 }

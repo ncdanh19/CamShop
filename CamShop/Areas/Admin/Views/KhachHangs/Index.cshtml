@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Models.EF.KhachHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tài khoản khách hàng</h2>
+
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered searchItem" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.userName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.hoTen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.eMail)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.soDienThoai)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.trangThai)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.userName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.hoTen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.eMail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.soDienThoai)
+                        </td>
+                        <td>
+                            @if (item.trangThai == null)
+                            {
+                            <p>Khách</p>
+                                        }
+                            else
+                            {
+                            <p>Thành viên</p>
+                                        }
+                        </td>
+
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.khachHangID })</li>
+                                    <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.khachHangID })</li>
+                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.khachHangID })</li>
+                                    @*<li>
+                                             @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
+                                        {
+                                            Confirm="Bạn có muốn xóa bản ghi này không?",
+                                            OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                            HttpMethod = "Delete"
+                                        })
+                                         </li>*@
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<div class="row" style="padding:1em">
+    <div style="display:inline-block; float:left">
+        @Html.ActionLink("Thêm", "Create", "", new { @class = "btn btn-primary" })
+    </div>
+</div>
+

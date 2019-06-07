@@ -11,7 +11,7 @@
         @foreach (var item in Model)
         {
             <li>
-                <a href="/san-pham/@item.URL-@item.danhMucID" target="@item.Target"><img src="@item.image" alt="" />@item.tenDanhMuc</a>
+                <a href="/san-pham/@item.URL-@item.danhMucID" target="@item.Target">@item.tenDanhMuc</a>
             </li>
         }
         <li>
@@ -29,7 +29,7 @@
                 <a href="#">Chào @session.Name</a>
                 <ul style="color: whitesmoke; font-size:12px">
                     <li><h4><a href='/khach-hang-@session.UserID/' target="_self">Quản lý tài khoản</a></h4></li>
-                    <li><h4>@Html.ActionLink("Đăng xuất", "DangXuat", "User")</h4></li>
+                    <li><h4>@Html.ActionLink("Đăng xuất", "DangXuat", "KhachHang")</h4></li>
                 </ul>
             </li>
         }

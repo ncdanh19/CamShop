@@ -1,14 +1,13 @@
 ﻿@model Models.EF.Slide
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết slide";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết slide</h2>
 
 <div>
-    <h4>Slide</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -46,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-default" })
 </p>

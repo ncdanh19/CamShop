@@ -108,17 +108,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
             </div>
         </div>
-        @*Hiển thị nội dung ở body ở đây, từ index*@
-        @RenderBody()
+    </div>
+    @*Hiển thị nội dung ở body ở đây, từ index*@
+    @RenderBody()
 
-        <!--footer-->
-        <div class="footer">
-            @{Html.RenderAction("Footer", "Home");}
-        </div>
-        <!---->
-        <script src="~/Assets/client/js/base.js"></script>
-        @RenderSection("jsCart", false)
-        @RenderSection("cssP", false)
+    <!--footer-->
+    <div class="footer">
+        @{Html.RenderAction("Footer", "Home");}
+    </div>
+    <!---->
+    <script src="~/Assets/client/js/base.js"></script>
+    @RenderSection("jsCart", false)
+    @RenderSection("cssP", false)
 </body>
 </html>
 

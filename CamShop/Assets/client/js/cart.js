@@ -8,6 +8,10 @@
             window.location.href = "/";
         });
 
+        $('#btnThanhToan').off('click').on('click', function () {
+            window.location.href = "/thanh-toan";
+        });
+
         //Update số lượng sản phẩm
         $('.quantity').on('change', function () {
             var listProduct = $('#Quantity.quantity');

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Models.Dao;
 using Models.EF;
 
 namespace CamShop.Areas.Admin.Controllers
@@ -21,13 +22,14 @@ namespace CamShop.Areas.Admin.Controllers
             return View(danhMucs.ToList());
         }
 
+
         // GET: Admin/DanhMucs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            }   
             DanhMuc danhMuc = db.DanhMucs.Find(id);
             if (danhMuc == null)
             {

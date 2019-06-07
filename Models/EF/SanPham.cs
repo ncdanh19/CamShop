@@ -13,7 +13,8 @@ namespace Models.EF
         public SanPham()
         {
             ChiTietHoaDons = new HashSet<ChiTietHoaDon>();
-            Tags = new HashSet<Tag>();
+            DanhGias = new HashSet<DanhGia>();
+            SanPhamTags = new HashSet<SanPhamTag>();
         }
 
         public int sanPhamID { get; set; }
@@ -51,14 +52,23 @@ namespace Models.EF
         [StringLength(500)]
         public string MetaDescription { get; set; }
 
+        public double? giaKhuyenMai { get; set; }
+
+        public double? Rating { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietHoaDon> ChiTietHoaDons { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DanhGia> DanhGias { get; set; }
+
+        public virtual KhuyenMai KhuyenMai { get; set; }
 
         public virtual LoaiHang LoaiHang1 { get; set; }
 
         public virtual ThuongHieu ThuongHieu1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<SanPhamTag> SanPhamTags { get; set; }
     }
 }

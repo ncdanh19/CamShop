@@ -1,0 +1,82 @@
+﻿@model Models.EF.KhachHang
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết tài khoản</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diaChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soDienThoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soDienThoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.passWord)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passWord)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.confirmPassword)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.confirmPassword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.khachHangID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-default " })
+</p>

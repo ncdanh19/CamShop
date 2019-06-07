@@ -65,10 +65,10 @@ namespace CamShop
             routes.MapRoute(
                 name: "Thanh toan",
                 url: "thanh-toan",
-                defaults: new { controller = "ThanhToan", action = "ThanhToan", id = UrlParameter.Optional },
+                defaults: new { controller = "ThanhToan", action = "ThanhToanKhach", id = UrlParameter.Optional },
                 namespaces: new[] { "CamShop.Controllers" }
              );
-
+             
             routes.MapRoute(
                 name: "Hoan thanh",
                 url: "hoan-thanh",
@@ -79,14 +79,14 @@ namespace CamShop
             routes.MapRoute(
               name: "dang ky",
               url: "dang-ky",
-              defaults: new { controller = "User", action = "Register", id = UrlParameter.Optional },
+              defaults: new { controller = "KhachHang", action = "Register", id = UrlParameter.Optional },
               namespaces: new[] { "CamShop.Controllers" }
            );
 
             routes.MapRoute(
               name: "dang nhap",
               url: "dang-nhap",
-              defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional },
+              defaults: new { controller = "KhachHang", action = "Index", id = UrlParameter.Optional },
               namespaces: new[] { "CamShop.Controllers" }
            );
 

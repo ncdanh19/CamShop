@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Models.Dao;
 using Models.EF;
 
 namespace CamShop.Areas.Admin.Controllers
@@ -15,9 +16,12 @@ namespace CamShop.Areas.Admin.Controllers
         private CamShopDbContext db = new CamShopDbContext();
 
         // GET: Admin/Slides
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
-            return View(db.Slides.ToList());
+            var dao = new SlideDao();
+            var model = dao.ListAllPaging(searchString, page, pageSize);
+            ViewBag.SearchString = searchString;
+            return View(model);
         }
 
         // GET: Admin/Slides/Details/5

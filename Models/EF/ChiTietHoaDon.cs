@@ -9,6 +9,12 @@ namespace Models.EF
     [Table("ChiTietHoaDon")]
     public partial class ChiTietHoaDon
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ChiTietHoaDon()
+        {
+            TraHangs = new HashSet<TraHang>();
+        }
+
         [Key]
         public int chitietID { get; set; }
 
@@ -18,10 +24,17 @@ namespace Models.EF
 
         public short? soLuong { get; set; }
 
+        public double? donGia { get; set; }
+
+        public double? giaKhuyenMai { get; set; }
+
         public double? thanhTien { get; set; }
 
         public virtual HoaDon HoaDon { get; set; }
 
         public virtual SanPham SanPham { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TraHang> TraHangs { get; set; }
     }
 }

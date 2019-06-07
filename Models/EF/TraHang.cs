@@ -19,6 +19,10 @@ namespace Models.EF
         [StringLength(500)]
         public string lyDo { get; set; }
 
+        public int? chitietHDID { get; set; }
+
+        public virtual ChiTietHoaDon ChiTietHoaDon { get; set; }
+
         public virtual HoaDon HoaDon { get; set; }
     }
 }

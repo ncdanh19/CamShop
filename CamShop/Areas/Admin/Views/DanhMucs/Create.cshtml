@@ -1,39 +1,38 @@
 ﻿@model Models.EF.DanhMuc
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Thêm danh mục";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Thêm danh mục</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>DanhMuc</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.tenDanhMuc, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tenDanhMuc, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.tenDanhMuc, new { htmlAttributes = new { @class = "form-control", @required = "" } })
                 @Html.ValidationMessageFor(model => model.tenDanhMuc, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.URL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.URL, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.URL, new { htmlAttributes = new { @class = "form-control", @required = "" } })
                 @Html.ValidationMessageFor(model => model.URL, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.groupID, "groupID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-3">
                 @Html.DropDownList("groupID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.groupID, "", new { @class = "text-danger" })
             </div>
@@ -41,7 +40,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Target, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-3">
                 @Html.EditorFor(model => model.Target, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Target, "", new { @class = "text-danger" })
             </div>
@@ -49,7 +48,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.trangThai, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-3">
                 <div class="checkbox">
                     @Html.EditorFor(model => model.trangThai)
                     @Html.ValidationMessageFor(model => model.trangThai, "", new { @class = "text-danger" })
@@ -58,21 +57,13 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-primary" })
 </div>

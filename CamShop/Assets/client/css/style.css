@@ -5,6 +5,7 @@
 	License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 
+ 
 /*line*/
 .section-title {
     font-size: 50px;
@@ -297,7 +298,7 @@ a.morebtn {
     padding: 10em 0 0 0;
     min-height: 290px;
     background-size: 100%;
-    margin: 0 12px;
+    margin: 0 6px;
     width: 31%;
 }
 
@@ -364,7 +365,7 @@ a.store {
 
 .nbs-flexisel-container {
     position: relative;
-    max-width: 60%;
+    max-width: 75%;
     margin: auto
 }
 
@@ -403,9 +404,9 @@ a.store {
 }
 
 .model {
-    float: left;
+    /*float: left;
     width: 50%;
-    text-align: left;
+    text-align: left;*/
 }
 
     .model h4 {
@@ -423,8 +424,8 @@ a.store {
         }
 
 .model-info {
-    float: left;
-    width: 50%;
+    /*float: left;
+    width: 50%;*/
 }
 
 select {
@@ -452,9 +453,9 @@ select {
 .viw {
     position: absolute;
     background: #000;
-    padding: 1.3em 2.5em;
+    padding: 0 1.5em;
     font-size: 1em;
-    margin-right: 1em;
+    /*margin-right: 1em;*/
     font-weight: 500;
     border-radius: 7px;
     top: 33%;
@@ -1629,11 +1630,11 @@ label {
 /*--responsive--*/
 @media (max-width: 1440px) {
     .model {
-        width: 45%;
+        /*width: 45%;*/
     }
 
     .model-info {
-        width: 55%;
+        /*width: 55%;*/
     }
 
     .contact form input[type="submit"] {
@@ -1655,11 +1656,11 @@ label {
 
 @media (max-width: 1280px) {
     .model {
-        width: 37%;
+        /*width: 37%;*/
     }
 
     .model-info {
-        width: 59%;
+        /*width: 59%;*/
     }
 
     .banner-bg1 {
@@ -1725,8 +1726,8 @@ label {
     .cate-grid {
         padding: 7em 0 0 0;
         min-height: 273px;
-        margin: 0px 15px;
-        width: 30%;
+        margin: 0px 6px;
+        width: 31%;
     }
 
     .categories {
@@ -1742,7 +1743,7 @@ label {
         }
 
     .model {
-        width: 30%;
+        /*width: 30%;*/
     }
 
     select {
@@ -2794,4 +2795,15 @@ label {
     .none2 {
         display: none;
     }
+}
+.modal-body .form-horizontal .col-sm-10 {
+    width: 100%
+}
+
+.modal-body .form-horizontal .control-label {
+    text-align: left;
+}
+
+.modal-body .form-horizontal .col-sm-offset-2 {
+    margin-left: 15px;
 }

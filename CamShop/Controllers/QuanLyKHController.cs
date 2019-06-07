@@ -36,7 +36,7 @@ namespace CamShop.Controllers
         // GET: QuanLyKH/Details/5
         public ActionResult Details()
         {
-            User user = db.Users.Find(maKhach);
+            KhachHang user = db.KhachHangs.Find(maKhach);
             return View(user);
         }
 
@@ -44,7 +44,7 @@ namespace CamShop.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
-            User user = db.Users.Find(maKhach);
+            KhachHang user = db.KhachHangs.Find(maKhach);
             if (user == null)
             {
                 return HttpNotFound();
@@ -55,11 +55,11 @@ namespace CamShop.Controllers
         // POST: QuanLyKH/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(KhachHang user)
         {
             // gán các item của user vào item thông tin
-            var thongTin = new User();
-            thongTin.ID = user.ID;
+            var thongTin = new KhachHang();
+            thongTin.khachHangID = user.khachHangID;
             thongTin.userName = user.userName;
             thongTin.passWord = user.passWord;
             thongTin.hoTen = user.hoTen;
@@ -69,7 +69,7 @@ namespace CamShop.Controllers
 
             // gán các item của user vào item userSession
             var userSession = new UserLogin();
-            userSession.UserID = user.ID;
+            userSession.UserID = user.khachHangID;
             userSession.UserName = user.userName;
             userSession.Name = user.hoTen;
             userSession.Address = user.diaChi;
@@ -90,7 +90,7 @@ namespace CamShop.Controllers
         [HttpGet]
         public ActionResult DoiMatKhau()
         {
-            User user = db.Users.Find(maKhach);
+            KhachHang user = db.KhachHangs.Find(maKhach);
             return View(user);
         }
 
@@ -101,8 +101,8 @@ namespace CamShop.Controllers
             var md5newpass = Encrytor.MD5Hash(newPass);
             var md5confpass = Encrytor.MD5Hash(confPass);
 
-            var thongTin = new User();
-            thongTin.ID = khachHangID;
+            var thongTin = new KhachHang();
+            thongTin.khachHangID = khachHangID;
             thongTin.userName = userName;
             thongTin.passWord = md5newpass;
             thongTin.hoTen = hoTen;
@@ -125,7 +125,7 @@ namespace CamShop.Controllers
                 }
                 else if(passWord != "" && newPass != "" && confPass != "")
                 {
-                    if (db.Users.Where(x => x.passWord == md5 && x.ID == maKhach).Count() > 0)
+                    if (db.KhachHangs.Where(x => x.passWord == md5 && x.khachHangID == maKhach).Count() > 0)
                     {
                         if (md5newpass == md5confpass)
                         {

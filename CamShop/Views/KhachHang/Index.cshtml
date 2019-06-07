@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+}
+<!--Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+@model CamShop.Models.DangNhap
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Shoppy an Admin Panel Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+    Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link href="/Assets/admin/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Custom Theme files -->
+    <link href="/Assets/admin/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--js-->
+    <script src="~/Assets/admin/js/jquery-2.1.1.min.js"></script>
+    <!--icons-css-->
+    <link href="/Assets/admin/css/font-awesome.css" rel="stylesheet">
+    <!--Google Fonts-->
+    <link href='//fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Work+Sans:400,500,600' rel='stylesheet' type='text/css'>
+    <!--static chart-->
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-main">
+            <div class="login-head">
+                <h1>Đăng nhập</h1>
+            </div>
+            <div class="login-block">
+                @* Form Razor *@
+                @using (Html.BeginForm("DangNhap", "KhachHang", FormMethod.Post))//Callback đến controller, method post: truyền form data (nằm trong message body của http request) từ browser(client) -> sever.
+                                                                         //Kh giới hạn số lượng ký tự. Cho dạng thông tin nhạy cảm.
+                                                                         //method get: truyền gói tin (được mã hóa vào url, gắn vào url như là một tham truy vấn dạng chuỗi) từ browser(client) -> sever.
+                                                                         //Giới hạn số lượng ký tự. Cho dạng thông tin submit thông thường.
+                {
+                    @Html.AntiForgeryToken()
+                    //Báo lỗi
+                    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+                    //Form Razor textbox
+                    @Html.TextBoxFor(model => model.UserName, new { @placeholder = "Tài khoản", @name = "username", @required = "", type = "text" })
+
+                    @Html.TextBoxFor(model => model.Password, new { @placeholder = "Mật khẩu", @class = "lock", @name = "password", type = "password", required = "" })
+
+                    <div class="forgot-top-grids">
+                        <div class="forgot-grid">
+                            <div class="checkbox">
+                                <label>
+                                    @Html.CheckBoxFor(model => model.RememberMe)Ghi nhớ
+                                </label>
+                            </div>
+                        </div>
+                        <div class="forgot">
+                            <a href="#">Quên mật khẩu?</a>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <input type="submit" name="Đăng nhập" value="Đăng nhập">
+                    <h3>Chưa có tài khoản?<a href="/dang-ky"> Đăng ký ngay</a></h3>
+                    <h2>hoặc đăng nhập với</h2>
+                    <div class="login-icons">
+                        <ul>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                }
+                <h5><a href="/">Trở về trang chủ</a></h5>
+            </div>
+        </div>
+    </div>
+    <!--inner block end here-->
+    <!--copy rights start here-->
+    <div class="copyrights">
+        <p>© 2016 Shoppy. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+    </div>
+    <!--COPY rights end here-->
+    <!--scrolling js-->
+    <script src="/Assets/admin/js/jquery.nicescroll.js"></script>
+    <script src="/Assets/admin/js/scripts.js"></script>
+    <!--//scrolling js-->
+    <script src="/Assets/admin/js/bootstrap.js"></script>
+    <!-- mother grid end here-->
+</body>
+</html>
+
+
+
+

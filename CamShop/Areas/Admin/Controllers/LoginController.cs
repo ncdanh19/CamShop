@@ -33,13 +33,8 @@ namespace CamShop.Areas.Admin.Controllers
                     var user = dao.GetById(model.UserName);
                     //Tạo biến kiểu userLogin
                     var userSession = new UserLogin();
-                    //Lấy tham số của user
-                    userSession.UserID = user.ID;
-                    userSession.UserName = user.userName;
-                    userSession.Name = user.hoTen;
-                    userSession.Address = user.diaChi;
-                    userSession.Email = user.eMail;
-                    userSession.Phone = user.soDienThoai;
+                    //Lấy tham số của user 
+                    userSession.UserName = user.userName; 
                     //Thêm sesstion của user thỏa 2 tham số truyền vào: username, ID
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     //Đổi hướng action về controller Home, Action Index
@@ -48,8 +43,8 @@ namespace CamShop.Areas.Admin.Controllers
                 //Đăng nhập sai
                 else if (result == 0)
                     ModelState.AddModelError("", "Tài khoản không tồn tại");
-                else if (result == -2)
-                    ModelState.AddModelError("", "Mật khẩu không đúng");
+                //else if (result == -2)
+                //    ModelState.AddModelError("", "Mật khẩu không đúng");
                 else
                     ModelState.AddModelError("", "Thông tin đăng nhập không chính xác");
             }
