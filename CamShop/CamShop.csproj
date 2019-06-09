@@ -2205,6 +2205,7 @@
     <Content Include="Assets\client\css\etalage.css" />
     <Content Include="Assets\client\css\form.css" />
     <Content Include="Assets\client\css\nav.css" />
+    <Content Include="Assets\client\css\rating.css" />
     <Content Include="Assets\client\css\style.css" />
     <Content Include="Assets\client\images\a1.JPG" />
     <Content Include="Assets\client\images\a10.jpg" />
@@ -2290,6 +2291,12 @@
     <Content Include="Assets\client\images\r2.jpg" />
     <Content Include="Assets\client\images\r3.jpg" />
     <Content Include="Assets\client\images\r4.jpg" />
+    <Content Include="Assets\client\images\rating\5-star-rating.png" />
+    <Content Include="Assets\client\images\rating\a-star.png" />
+    <Content Include="Assets\client\images\rating\laz-empty-star.png" />
+    <Content Include="Assets\client\images\rating\laz-star.png" />
+    <Content Include="Assets\client\images\rating\star-yellow-512.png" />
+    <Content Include="Assets\client\images\rating\star.png" />
     <Content Include="Assets\client\images\s1.jpg" />
     <Content Include="Assets\client\images\s2.jpg" />
     <Content Include="Assets\client\images\s3.jpg" />
@@ -2606,6 +2613,8 @@
     <Content Include="Views\KhachHang\Login.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\ThanhToan\ThanhToanKhach.cshtml" />
+    <Content Include="Views\SanPham\LocSanPham.cshtml" />
+    <Content Include="Views\Shared\ViewLocSanPham.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2617,6 +2626,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Code\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="RatingImages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<Models.EF.SanPham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+    Layout = "~/Views/Shared/Categories_layout.cshtml";
+}
+
+@section cssP{
+    <link href="~/Assets/client/css/p.css" rel="stylesheet" />
+}
+@section metatag{
+    @Html.Raw(ViewBag.MetaTag)
+}
+@* Danh mục sản phẩm *@
+<div class="parts">
+    @if (Model.Count() > 0)
+    {
+        <div class="container">
+            <h2 style="text-align:center">Kết quả tìm kiếm</h2>
+            <div class="bike-parts-sec">
+                <div class="bike-parts">
+                    <div class="bike-apparels">
+                        @foreach (var item in Model)
+                        {
+                            var urlchitiet = "/chi-tiet/" + item.MetaTitle + "/" + item.sanPhamID;
+                            <div class="col-md-3">
+                                <a href="@urlchitiet"></a><div class="part-sec">
+                                    <a href="@urlchitiet">
+                                        <img src="@item.hinhAnh" alt="">
+                                    </a><div class="part-info">
+                                        <a href="@urlchitiet"></a>
+                                        <a href="@urlchitiet">
+                                            <p style="white-space: nowrap; width: 100%; height: 18px; text-overflow: ellipsis; overflow: hidden; color:black">@item.tenSanPham</p>
+                                            <h5><span>@item.donGia.GetValueOrDefault(0).ToString("N0") VND</span></h5>
+                                        </a>
+                                        <a class="add-cart" href="@urlchitiet">Xem Nhanh</a>
+                                        <a class="qck" href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">MUA NGAY</a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="rsidebar span_1_of_left">
+                    @{Html.RenderAction("LeftMenu", "SanPham"); }
+                </div>
+                <div class="rsidebar span_1_of_left">
+                    @{Html.RenderAction("LeftMenuThuongHieu", "SanPham"); }
+                </div>
+                <div class="rsidebar span_1_of_left">
+                    @Html.Partial("ViewLocSanPham")
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--Phân Trang-->
+            <div class="float-sm-right">
+                @Html.PagedListPager(Model, page => Url.Action("LocSanPham", new { minprice = Request.QueryString["minprice"], maxprice = Request.QueryString["maxprice"], page }))
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <h2 style="text-align:center">Kết quả tìm kiếm</h2>
+            <div class="bike-parts-sec">
+                <div class="bike-parts">
+                    <div class="bike-apparels">
+                        <div class="col-md-4">
+                            <h4>Không tìm thấy sản phẩm.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="rsidebar span_1_of_left">
+                    @{Html.RenderAction("LeftMenu", "SanPham"); }
+                </div>
+                <div class="rsidebar span_1_of_left">
+                    @{Html.RenderAction("LeftMenuThuongHieu", "SanPham"); }
+                </div>
+                <div class="rsidebar span_1_of_left">
+                    @Html.Partial("ViewLocSanPham")
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--Phân Trang-->
+
+        </div>
+    }
+</div>
+<!---->

@@ -47,11 +47,17 @@
                     }
                 </div>
             </div>
-            @{Html.RenderAction("LeftMenu", "SanPham"); }
+            <div class="rsidebar span_1_of_left">
+                @{Html.RenderAction("LeftMenu", "SanPham"); }
+            </div>
+            <div class="rsidebar span_1_of_left">
+                @{Html.RenderAction("LeftMenuThuongHieu", "SanPham"); }
 
-
-            @{Html.RenderAction("LeftMenuThuongHieu", "SanPham"); }
-            <div class="clearfix"></div>
+            </div>
+            <div class="rsidebar span_1_of_left">
+                @Html.Partial("ViewLocSanPham")
+                <div class="clearfix"></div>
+            </div>
         </div>
         <!--Phân Trang-->
         <div class="float-sm-right">

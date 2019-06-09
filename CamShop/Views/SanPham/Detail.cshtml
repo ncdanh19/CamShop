@@ -1,10 +1,15 @@
 ﻿@model Models.EF.SanPham
+@using System.Xml.Linq;
+@using System.IO;
 @{
     ViewBag.Title = Model.tenSanPham;
     Layout = "~/Views/Shared/_Layout.cshtml";
     var loaihang = (Models.EF.DanhMuc)ViewBag.LoaiHang;
     var related = (List<Models.EF.SanPham>)ViewBag.sanPhamLienQuan;
     var url = "/san-pham/";
+
+    var session = (CamShop.Common.UserLogin)Session[CamShop.Common.CommonConstants.USER_SESSION];
+    var binhLuan = (List<Models.EF.DanhGia>)ViewBag.danhGia;
 }
 @section metatag{
     <meta name="title" content="@Model.tenSanPham" />
@@ -12,6 +17,7 @@
     <meta name="description" content="@Model.MetaDescription" />
 }
 @* Chi tiết sản phẩm.*@
+<link href="~/Assets/client/css/rating.css" rel="stylesheet" />
 <div class="product">
     <div class="container">
         <div class="ctnt-bar cntnt">
@@ -64,8 +70,7 @@
                             </ul>
                         </div>
                     </div>
-
-                    <div class="details-left-info">
+                    <div class="details-left-info" style="margin-bottom:2em;">
                         <h1>@Model.tenSanPham</h1>
                         <div class="bike-type">
                             <p>Thương hiệu:<a href="/san-pham/thuong-hieu/@Model.ThuongHieu1.tenThuongHieu-@Model.ThuongHieu1.thuongHieuID">@Model.ThuongHieu1.tenThuongHieu</a></p>
@@ -77,14 +82,280 @@
                         <div class="bike-type">
                             <p>Loại hàng:<a href="@url@loaihang.URL-@loaihang.danhMucID">@Model.LoaiHang1.tenLoai</a></p>
                         </div>
-                        <h5>Mô tả:</h5>
-                        <p class="desc">
-                            @Model.moTa
-                        </p>
+                        <div role="tabpanel">
+                            <ul class="btn_form" style="width:100%" role="tablist">
+                                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Mô tả</a></li>
+                                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                    <h3 style="text-align:center">Mô tả sản phẩm</h3>
+                                    <h5>@Model.moTa</h5>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="profile">
+                                    <h3 style="text-align:center">Đánh giá</h3>
+                                    <div class="submit-review">
+                                        @using (Html.BeginForm("DanhGia", "SanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                                        {
+                                            <input type="text" name="sanPhamID" value="@Model.sanPhamID" hidden />
+                                            <div class="rating-chooser">
+                                                <h4>Đánh giá của bạn</h4>
+                                                <div class="rating-wrap-post">
+                                                    <span class="rating">
+                                                        <input type="radio" class="rating-input" id="rating-input-1-5" name="diem" value="5">
+                                                        <label for="rating-input-1-5" class="rating-star"></label>
+                                                        <input type="radio" class="rating-input" id="rating-input-1-4" name="diem" value="4">
+                                                        <label for="rating-input-1-4" class="rating-star"></label>
+                                                        <input type="radio" class="rating-input" id="rating-input-1-3" name="diem" value="3">
+                                                        <label for="rating-input-1-3" class="rating-star"></label>
+                                                        <input type="radio" class="rating-input" id="rating-input-1-2" name="diem" value="2">
+                                                        <label for="rating-input-1-2" class="rating-star"></label>
+                                                        <input type="radio" class="rating-input" id="rating-input-1-1" name="diem" value="1">
+                                                        <label for="rating-input-1-1" class="rating-star"></label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h4><label for="review">Bình luận</label> <textarea name="binhLuan" id="" cols="30" rows="10"></textarea></h4>
+                                            </div>
+                                            <h4><input type="file" name="filesUpload" multiple /></h4>
+                                            <h4 class="text-danger">@ViewBag.thongBao</h4>
+                                            if (session != null)
+                                            {
+                                                <h4><input class="a-style" type="submit" value="Gửi" id="btnRating" /></h4>
+                                            }
+
+                                            else
+                                            { 
+                                                    <a class="a-style" href="/dang-nhap">Gửi</a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
+        </div>
+        <div class="single-bottom2">
+            <h6 class="related-products-title" style="margin-bottom:15px;">Đánh giá của sản phẩm @Model.tenSanPham</h6>
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="~/Assets/client/images/rating/star-yellow-512.png" style="width:50%" />
+                    @if (Model.Rating == 0)
+                    {
+                        <span style="font-size:44px">0</span><span style="font-size:32px;color:#9e9e9e">/5</span>
+                    }
+                    else
+                    {
+                        <span style="font-size:44px">@Model.Rating</span><span style="font-size:32px;color:#9e9e9e">/5</span>
+                    }
+
+
+
+                    <div style="margin-top:9px;color:#757575">@ViewBag.countRating đánh giá</div>
+                </div>
+                <div class="col-md-7">
+                    <ul style="list-style-type:none">
+                        <li>
+                            <div>
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <span style="margin-left:10px">@ViewBag.countRating_5</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <span style="margin-left:10px">@ViewBag.countRating_4</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <span style="margin-left:10px">@ViewBag.countRating_3</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <span style="margin-left:10px">@ViewBag.countRating_2</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                <span style="margin-left:10px">@ViewBag.countRating_1</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="single-bottom2">
+            <h6 class="related-products-title" style="margin-bottom:15px;">Đánh giá sản phẩm</h6>
+            <div class="card mb-3">
+                <div>
+                    <div class="table-responsive">
+                        <table style="border:0px solid black" class="table table-bordered table-cmt" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Danh sách
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var bl in binhLuan)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div style="padding-bottom:30px">
+                                                @if (bl.Diem == 5)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <span style="float:left">
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                        </span>
+                                                    </div>
+                                                }
+                                                @if (bl.Diem == 4)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <span style="float:left">
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                        </span>
+                                                    </div>
+                                                }
+                                                @if (bl.Diem == 3)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <span style="float:left">
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                        </span>
+                                                    </div>
+                                                }
+                                                @if (bl.Diem == 2)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <span style="float:left">
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                        </span>
+                                                    </div>
+                                                }
+                                                @if (bl.Diem == 1)
+                                                {
+                                                    <div class="col-md-6">
+                                                        <span style="float:left">
+                                                            <img src="~/Assets/client/images/rating/laz-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                            <img src="~/Assets/client/images/rating/laz-empty-star.png" style="width:15.96px;height:15.96px" />
+                                                        </span>
+                                                    </div>
+                                                }
+                                                @if ((DateTime.Now.DayOfYear - bl.NgayDanhGia.Value.DayOfYear) > 0)
+                                                {
+                                                    <div class="col-md-6"><span style="float:right;color:#757575">@(DateTime.Now.DayOfYear - bl.NgayDanhGia.Value.DayOfYear) ngày trước</span></div>
+                                                }
+                                                else
+                                                {
+                                                    if ((DateTime.Now.Hour - bl.NgayDanhGia.Value.DayOfYear) > 0)
+                                                    {
+                                                        <div class="col-md-6"><span style="float:right;color:#757575">@(DateTime.Now.Hour - bl.NgayDanhGia.Value.Hour) giờ trước</span></div>
+                                                    }
+                                                    else if ((DateTime.Now.Minute - bl.NgayDanhGia.Value.Minute) > 0)
+                                                    {
+                                                        <div class="col-md-6"><span style="float:right;color:#757575">@(DateTime.Now.Minute - bl.NgayDanhGia.Value.Minute) phút trước</span></div>
+                                                    }
+                                                    else if ((DateTime.Now.Minute - bl.NgayDanhGia.Value.Minute) == 0)
+                                                    {
+                                                        <div class="col-md-6"><span style="float:right;color:#757575">@(DateTime.Now.Second - bl.NgayDanhGia.Value.Second) giây trước</span></div>
+                                                    }
+
+
+                                                }
+                                            </div>
+                                            <div class="col-md-12">
+                                                <span style="font-size:16px;color:gray">@bl.KhachHang.hoTen</span>
+                                            </div>
+                                            <div class="content col-md-12" style="margin-bottom:30px">
+                                                @bl.binhLuan
+                                            </div>
+                                            @if (bl.nhieuHinhAnh != null)
+                                            {
+                                                <div class="content col-md-12" style="margin-bottom:30px">
+                                                    @{
+
+                                                        var images = bl.nhieuHinhAnh;
+
+                                                        XElement xImages = XElement.Parse(images);
+                                                        List<string> listImages = new List<string>();
+
+                                                        foreach (XElement element in xImages.Elements())
+                                                        {
+                                                            listImages.Add(element.Value);
+
+                                                        }
+                                                        foreach (var item in listImages)
+                                                        {
+                                                            <img src="@Url.Content(item)" style="width:20%" />
+                                                        }
+                                                    }
+
+                                                </div>
+                                            }
+
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <div class="single-bottom2">
             <h6>Sản phẩm liên quan</h6>
