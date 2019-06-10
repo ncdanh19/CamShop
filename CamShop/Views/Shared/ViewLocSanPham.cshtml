@@ -1,0 +1,29 @@
+﻿<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+<style>
+    .btn-loc {
+        color: rgb(255, 255, 255);
+        background-color: rgb(90, 136, 202);
+        border-color: rgb(90, 136, 202);
+    }
+
+    .input-loc {
+        padding: 0px 7px;
+        border-radius: 3px;
+        border-width: 1px;
+        width: 80px;
+        height: 30px;
+    }
+</style>
+<hr />
+<h3 class="sidebar-title" style="text-align:center">Lọc sản phẩm</h3>
+<span style="font-size:16px;padding-bottom:15px; text-align:center">Chọn mức giá:</span>
+<div class="container" style="width:auto">
+
+    @using (Html.BeginForm("LocSanPham", "SanPham", FormMethod.Get))
+    {
+        <input class="input-loc" placeholder="Min" type="number" min="0" name="minprice" /><label style="margin:13px">-</label> <input class="input-loc" placeholder="Max" type="number" name="maxprice" /> <button class="btn-loc" style="border-radius:3px;border-width:1px;width:31px;height:30px"><i class="fas fa-caret-right"></i></button>
+
+    }
+
+</div>

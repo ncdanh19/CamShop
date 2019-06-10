@@ -33,7 +33,14 @@ namespace CamShop
                defaults: new { controller = "SanPham", action = "Category", id = UrlParameter.Optional },
                namespaces: new[] { "CamShop.Controllers" }
            );
-            
+
+            routes.MapRoute(
+                name: "LocSanPham",
+                url: "san-pham/loc",
+                defaults: new { controller = "SanPham", action = "LocSanPham", id = UrlParameter.Optional },
+                namespaces: new[] { "CamShop.Controllers" }
+            );
+
             routes.MapRoute(
                name: "Chi tiet san pham",
                url: "chi-tiet/{MetaTitle}/{id}",
