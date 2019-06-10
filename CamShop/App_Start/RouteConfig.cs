@@ -86,30 +86,17 @@ namespace CamShop
             routes.MapRoute(
               name: "dang nhap",
               url: "dang-nhap",
-              defaults: new { controller = "KhachHang", action = "Index", id = UrlParameter.Optional },
+              defaults: new { controller = "KhachHang", action = "Login", id = UrlParameter.Optional },
               namespaces: new[] { "CamShop.Controllers" }
            );
-
-            routes.MapRoute(
-              name: "quanlytaikhoanget",
-              url: "khach-hang-{id}",
-              defaults: new { controller = "QuanLyKH", action = "DetailsGet", id = UrlParameter.Optional },
-              namespaces: new[] { "CamShop.Controllers" }
-           );
+             
 
             routes.MapRoute(
               name: "quanlytaikhoan",
-              url: "tai-khoan",
-              defaults: new { controller = "QuanLyKH", action = "Details", id = UrlParameter.Optional },
-              namespaces: new[] { "CamShop.Controllers" }
-           );
-
-            routes.MapRoute(
-              name: "thaydoithongtin",
-              url: "thay-doi-thong-tin",
+              url: "tai-khoan-{id}",
               defaults: new { controller = "QuanLyKH", action = "Edit", id = UrlParameter.Optional },
               namespaces: new[] { "CamShop.Controllers" }
-           );
+           ); 
 
             routes.MapRoute(
                 name: "LichSuMuaHang",
@@ -138,6 +125,13 @@ namespace CamShop
                 defaults: new { controller = "QuanLyKH", action = "TraHang", id = UrlParameter.Optional },
                 namespaces: new[] { "CamShop.Controllers" }
             );
+
+            routes.MapRoute(
+               name: "xemCTHoaDon",
+               url: "chi-tiet-{id}",
+               defaults: new { controller = "QuanLyKH", action = "XemChiTietHoaDon", id = UrlParameter.Optional },
+               namespaces: new[] { "CamShop.Controllers" }
+           );
 
             routes.MapRoute(
                 name: "DoiMatKhau",

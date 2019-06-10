@@ -33,12 +33,12 @@
                         </div>
                         <div class="cart-item-info">
                             <h3 style="font-size:20px">@item.SanPham.tenSanPham<span style="font-size:15px">@item.SanPham.ThuongHieu1.tenThuongHieu</span></h3>
-                            <h4><span>Giá : </span>@item.SanPham.donGia.GetValueOrDefault(0).ToString("N0")<span> VND</span></h4>
+                            <h4><span>Giá : </span>@item.SanPham.donGia.GetValueOrDefault(0).ToString("N0")<span> $</span></h4>
                             <p class="qty" style="font-size: 12px; font-weight: 400">Số lượng:</p>
-                            <input min="1" type="number" id="Quantity" class="quantity" name="quantity" data-id="@item.SanPham.sanPhamID" value="@item.SoLuong" class="form-control input-small">
+                            <input min="1" type="number" id="Quantity" class="quantity form-control input-small" name="quantity" data-id="@item.SanPham.sanPhamID" value="@item.SoLuong">
                         </div>
                         <div style="width:77%; float:left; padding-bottom: 5px;">
-                            <h4 class="itemThanhTien" id="ItemThanhTien" style="margin-top:7px; font-size:20px"><span style="font-size:12px">Thành tiền:</span>  @(item.ThanhTien.HasValue ? @item.ThanhTien.Value.ToString("N0") : (item.SanPham.donGia.GetValueOrDefault(0) * item.SoLuong).ToString("N0"))<span> VND</span></h4>
+                            <h4 class="itemThanhTien" id="ItemThanhTien" style="margin-top:7px; font-size:20px"><span style="font-size:12px">Thành tiền:</span>  @(item.ThanhTien.HasValue ? @item.ThanhTien.Value.ToString("N0") : (item.SanPham.donGia.GetValueOrDefault(0) * item.SoLuong).ToString("N0"))<span> $</span></h4>
                             <div class="clearfix"></div>
                         </div>
                         <div class="clearfix"></div>
@@ -66,7 +66,7 @@
             <div class="price-details">
                 <h3>Đơn hàng</h3>
                 <span>Tạm tính</span>
-                <span class="total">@tongTien.GetValueOrDefault(0).ToString("N0") VND</span>
+                <span class="total">@tongTien.GetValueOrDefault(0).ToString("N0") $</span>
                 <span>Khuyến mãi</span>
                 <span class="total">---</span>
                 <span>Phí giao hàng</span>
@@ -74,7 +74,7 @@
                 <div class="clearfix"></div>
             </div>
             <h4 class="last-price">Tổng đơn</h4>
-            <span class="total final">@tongTien.GetValueOrDefault(0).ToString("N0")<span> VND</span></span>
+            <span class="total final">@tongTien.GetValueOrDefault(0).ToString("N0")<span> $</span></span>
             <div class="clearfix"></div>
             @if (tongTien == 0)
             {

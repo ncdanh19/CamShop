@@ -284,8 +284,10 @@ E:\CamShop\CamShop\CamShop\bin\EntityFramework.SqlServer.dll
 E:\CamShop\CamShop\CamShop\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 E:\CamShop\CamShop\CamShop\bin\Microsoft.Web.Infrastructure.dll
 E:\CamShop\CamShop\CamShop\bin\Models.dll
+E:\CamShop\CamShop\CamShop\bin\Newtonsoft.Json.dll
 E:\CamShop\CamShop\CamShop\bin\PagedList.dll
 E:\CamShop\CamShop\CamShop\bin\PagedList.Mvc.dll
+E:\CamShop\CamShop\CamShop\bin\PayPal.dll
 E:\CamShop\CamShop\CamShop\bin\System.Web.Helpers.dll
 E:\CamShop\CamShop\CamShop\bin\System.Web.Mvc.dll
 E:\CamShop\CamShop\CamShop\bin\System.Web.Razor.dll
@@ -296,8 +298,10 @@ E:\CamShop\CamShop\CamShop\bin\Models.pdb
 E:\CamShop\CamShop\CamShop\bin\Models.dll.config
 E:\CamShop\CamShop\CamShop\bin\EntityFramework.xml
 E:\CamShop\CamShop\CamShop\bin\EntityFramework.SqlServer.xml
+E:\CamShop\CamShop\CamShop\bin\Newtonsoft.Json.xml
 E:\CamShop\CamShop\CamShop\bin\PagedList.xml
 E:\CamShop\CamShop\CamShop\bin\PagedList.Mvc.xml
+E:\CamShop\CamShop\CamShop\bin\PayPal.xml
 E:\CamShop\CamShop\CamShop\bin\System.Web.Razor.xml
 E:\CamShop\CamShop\CamShop\bin\System.Web.Webpages.xml
 E:\CamShop\CamShop\CamShop\bin\System.Web.Webpages.Deployment.xml
@@ -310,7 +314,3 @@ E:\CamShop\CamShop\CamShop\obj\Debug\CamShop.csproj.CoreCompileInputs.cache
 E:\CamShop\CamShop\CamShop\obj\Debug\CamShop.csproj.CopyComplete
 E:\CamShop\CamShop\CamShop\obj\Debug\CamShop.dll
 E:\CamShop\CamShop\CamShop\obj\Debug\CamShop.pdb
-E:\CamShop\CamShop\CamShop\bin\Newtonsoft.Json.dll
-E:\CamShop\CamShop\CamShop\bin\PayPal.dll
-E:\CamShop\CamShop\CamShop\bin\Newtonsoft.Json.xml
-E:\CamShop\CamShop\CamShop\bin\PayPal.xml

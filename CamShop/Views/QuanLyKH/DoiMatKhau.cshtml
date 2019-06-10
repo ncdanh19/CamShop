@@ -14,101 +14,49 @@
             <a href="#">/</a>
             <a href="/tai-khoan/">Quản lý tài khoản</a>
         </div>
-        <div class="col-md-9 cart-items" style="padding-left:50px">
-            @using (Html.BeginForm("DoiMatKhau", "QuanLyKH", FormMethod.Post))
+        <div class="col-md-9" style="padding-top:40px">
+            @using (Html.BeginForm("DoiMatKhau", "QuanLyKH", FormMethod.Post, new { @class = "form-horizontal" }))
             {
-                @Html.AntiForgeryToken()
-            <h2 style="color:#fead53; text-align:center">Đổi mật khẩu</h2>
-                <div class="cart-header">
-                    <div class="cart-sec">
-                        <div class="cart-item cyc">
-                            <img src="~/Assets/client/images/logo-user.jpg" />
-                        </div>
-                        <div class="cart-item-info" style="border-bottom:unset">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            <div class="form-group hide">
-                                <h4><span>ID:</span></h4>
+                <div class="table-bordered">
+                    <input class="form-control " name="khachHangID" value="@session.UserID" hidden />
+                    <input class="form-control " name="userName" value="@session.UserName" hidden />
+                    <input class="form-control " name="hoTen" value="@session.Name" hidden />
+                    <input class="form-control " name="diaChi" value="@session.Address" hidden />
+                    <input class="form-control " name="soDienThoai" value="@session.Phone" hidden />
+                     <input class="form-control " name="email" value="@session.Email" hidden />
 
-                                <div>
-                                    <input class="form-control " name="khachHangID" value="@session.UserID" />
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <h4><span>Mật khẩu hiện tại:</span></h4>
-                                        </td>
-                                        <td>
-                                            <input class="form-control " name="passWord" type="password" style="width:200px" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4><span>Mật khẩu mới:</span></h4>
-                                        </td>
-                                        <td>
-                                            <input class="form-control " name="newPass" type="password" style="width:200px" />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4><span>Xác nhận mật khẩu:</span></h4>
-                                        </td>
-                                        <td>
-                                            <input class="form-control " name="confPass" type="password" style="width:200px" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="form-group hide">
-                                <h4><span>UserName:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="userName" value="@session.UserName" />
-                                    </div>
-                                
-                            </div>
-                            <div class="form-group hide">
-                                <h4><span>Họ tên khách hàng:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="hoTen" value="@session.Name" />
-                                    </div>
-                                
-                            </div>
-                            <div class="form-group hide">
-                                <h4><span>Địa chỉ:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="diaChi" value="@session.Address" />
-                                    </div>
-                                
-                            </div>
-                            <div class="form-group hide">
-                                <h4><span>Email:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="eMail" value="@session.Email" />
-                                    </div>
-                                
-                            </div>
-                            <div class="form-group hide">
-                                <h4><span>Số điện thoại:</span></h4>
-                                
-                                    <div>
-                                        <input class="form-control " name="soDienThoai" value="@session.Phone" />
-                                    </div>
-                                
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Sửa" class="btn btn-default" />
-                                </div>
-                            </div>
+                    @Html.AntiForgeryToken()
+                    <h2 id="form-tittle">Đổi mật khẩu</h2>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Mật khẩu hiện tại:
+                        </label>
+                        <div class="col-md-5">
+                            <input class="form-control " name="passWord" type="password" placeholder="Mật khẩu hiện tại" required />
                         </div>
-                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Mật khẩu mới:
+                        </label>
+                        <div class="col-md-5">
+                            <input class="form-control " name="newPass" type="password" placeholder="Mật khẩu mới" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">
+                            Xác nhận mật khẩu:
+                        </label>
+                        <div class="col-md-5">
+                            <input class="form-control " name="confPass" type="password" placeholder="Xác nhận mật khẩu" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Đổi mật khẩu" class="btn btn-default" />
+                        </div>
                     </div>
                 </div>
             }

@@ -4,6 +4,7 @@ using Models.Dao;
 using Models.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +13,9 @@ namespace CamShop.Controllers
 {
     public class KhachHangController : Controller
     {
-        public ActionResult Index()
+        CamShopDbContext db = new CamShopDbContext();
+
+        public ActionResult Login()
         {
             return View();
         }
@@ -26,45 +29,60 @@ namespace CamShop.Controllers
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
-            if(ModelState.IsValid)
+             KhachHang kh = db.KhachHangs.SingleOrDefault(x => x.soDienThoai == model.Phone && x.trangThai == null);
+            if (ModelState.IsValid)
             {
-                ModelState.Clear();
-                var dao = new KhachHangDao();
-                if(dao.CheckUserName(model.UserName))
+                if (kh != null)
                 {
-                    ModelState.AddModelError("", "Tên đăng nhập đã tồn tại");
-                }
-                else if (dao.CheckEmail(model.Email))
-                {
-                    ModelState.AddModelError("", "Email đã tồn tại");
+                    kh.userName = model.UserName;
+                    kh.hoTen = model.Name;
+                    kh.eMail = model.Email;
+                    kh.diaChi = model.Address;
+                    kh.passWord = Encrytor.MD5Hash(model.Password);
+                    kh.confirmPassword = Encrytor.MD5Hash(model.ConfirmPassword);
+                    kh.trangThai = true;
+                    db.Entry(kh).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Login", "KhachHang");
                 }
                 else
                 {
-                    var user = new KhachHang();
-                    var md5 = Encrytor.MD5Hash(model.Password);
-                    //user.userName = model.UserName;
-                    user.passWord = md5;
-                    user.hoTen = model.Name;
-                    user.diaChi = model.Address;
-                    user.eMail = model.Email;
-                    user.soDienThoai = model.Phone;
-                    user.trangThai = true;
-                    var result = dao.Insert(user);
-                    if (result > 0)
+                    //Kiem tra so dien thoai 
+                    if (db.KhachHangs.Count(x => x.userName == model.UserName) > 0)
                     {
-                        ViewBag.Success = "Đăng kí thành công";
-                        model = new RegisterModel();
+                        ModelState.AddModelError("", "Tên đăng nhập đã có người sử dụng");
+                    }
+                    //Kiem tra so dien thoai 
+                    else if (db.KhachHangs.Count(x => x.soDienThoai == model.Phone) > 0)
+                    {
+                        ModelState.AddModelError("", "Số điện thoại đã có người sử dụng");
+                    }
+                    else if (db.KhachHangs.Count(x => x.eMail == model.Email) > 0)
+                    {
+                        ModelState.AddModelError("", "Email đã có người sử dụng");
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Đăng kí không thành công");
+                        var user = new KhachHang();
+                        user.userName = model.UserName;
+                        user.hoTen = model.Name;
+                        user.eMail = model.Email;
+                        user.diaChi = model.Address;
+                        user.soDienThoai = model.Phone;
+                        user.passWord = Encrytor.MD5Hash(model.Password);
+                        user.confirmPassword = Encrytor.MD5Hash(model.ConfirmPassword);
+                        user.trangThai = true;
+                        db.KhachHangs.Add(user);
+                        db.SaveChanges();                                                
+                        return RedirectToAction("Login", "KhachHang");
                     }
                 }
             }
             return View(model);
         }
 
-        public ActionResult DangNhap(DangNhap model)
+        [HttpPost]
+        public ActionResult Login(DangNhap model)
         {
             //ModelState.IsValid có giá trị false khi thuộc tính bên trong có giá trị không hợp lệ (null)
             if (ModelState.IsValid)
@@ -100,7 +118,7 @@ namespace CamShop.Controllers
                 else
                     ModelState.AddModelError("", "Thông tin đăng nhập không chính xác");
             }
-            return View("Index");
+            return View(model);
         }
 
         public ActionResult DangXuat()

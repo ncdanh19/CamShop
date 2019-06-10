@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -52,22 +53,35 @@ namespace CamShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "sanPhamID,loaiHang,thuongHieu,tenSanPham,donGia,moTa,hinhAnh,nhieuHinhAnh,NgayTao,MetaTitle,Hot,soLuong")] SanPham sanPham)
+        public ActionResult Create([Bind(Include = "sanPhamID,loaiHang,thuongHieu,tenSanPham,donGia,moTa,hinhAnh,nhieuHinhAnh,NgayTao,MetaTitle,Hot,soLuong")] SanPham sanPham, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
                 if (db.SanPhams.Where(x => x.tenSanPham == sanPham.tenSanPham).Count() == 0)
                 {
-                    sanPham.hinhAnh = "/Content/images/" + sanPham.hinhAnh;
+                    if (fileUpload == null)
+                    {
+                        ViewBag.thongBao = "Vui lòng chọn hình ảnh";
+                    }
+                    else
+                    {
+                         //Lấy tên file
+                        var fileName = Path.GetFileName(fileUpload.FileName);
+                        //Lấy đường dẫn
+                        var path = Path.Combine(Server.MapPath("~/Assets/client/images/sanpham"), fileName);
+                        //Lưu file vào thư mục /Content/images
+                        fileUpload.SaveAs(path);
+                        sanPham.hinhAnh = "/Assets/client/images/sanpham/" + fileName;
 
-                    db.SanPhams.Add(sanPham);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                        db.SanPhams.Add(sanPham);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
                 }
                 else
                 {
                     ModelState.AddModelError("", "Sản phẩm đã tồn tại");
-                } 
+                }
             }
 
             ViewBag.loaiHang = new SelectList(db.LoaiHangs, "loaiHangID", "tenLoai", sanPham.loaiHang);
@@ -97,12 +111,24 @@ namespace CamShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "sanPhamID,loaiHang,thuongHieu,tenSanPham,donGia,moTa,hinhAnh,nhieuHinhAnh,NgayTao,MetaTitle,Hot,soLuong")] SanPham sanPham)
+        public ActionResult Edit([Bind(Include = "sanPhamID,loaiHang,thuongHieu,tenSanPham,donGia,moTa,hinhAnh,nhieuHinhAnh,NgayTao,MetaTitle,Hot,soLuong")] SanPham sanPham, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
-                sanPham.hinhAnh = "/Content/images/" + sanPham.hinhAnh;
-
+                 if (fileUpload == null)
+                {
+                    sanPham.hinhAnh = sanPham.hinhAnh;
+                }
+                else
+                {
+                    //Lấy tên file
+                    var fileName = Path.GetFileName(fileUpload.FileName);
+                    //Lấy đường dẫn
+                    var path = Path.Combine(Server.MapPath("~/Assets/client/images/sanpham"), fileName);
+                    //Lưu file vào thư mục /Content/images
+                    fileUpload.SaveAs(path);
+                    sanPham.hinhAnh = "/Assets/client/images/sanpham/" + fileName;
+                }
                 db.Entry(sanPham).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

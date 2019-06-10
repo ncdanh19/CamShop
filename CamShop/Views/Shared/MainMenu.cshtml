@@ -20,15 +20,17 @@
         @if (session == null)
         {
             <li>
-                <a href='/dang-nhap/' target="_self"><img src="/Assets/client/images/user.png" alt="" /></a>
+                <a href='/dang-nhap/'target="_self"><img src="/Assets/client/images/user.png" alt="" /></a>
             </li>
         }
         else
         {
             <li style="color: whitesmoke; font-size:20px;">
-                <a href="#">Chào @session.Name</a>
+                <a href="#">Chào <strong>@session.Name</strong></a>
                 <ul style="color: whitesmoke; font-size:12px">
-                    <li><h4><a href='/khach-hang-@session.UserID/' target="_self">Quản lý tài khoản</a></h4></li>
+                    <li><h4>@*<a href='/khach-hang-@session.UserID/' target="_self">Quản lý tài khoản</a>*@</h4></li>
+
+                    <li><h4><a href='/tai-khoan-@session.UserID' target="_self">Quản lý tài khoản</a></h4></li>
                     <li><h4>@Html.ActionLink("Đăng xuất", "DangXuat", "KhachHang")</h4></li>
                 </ul>
             </li>

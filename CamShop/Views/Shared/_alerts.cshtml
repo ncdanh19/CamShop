@@ -1,0 +1,10 @@
+﻿@foreach (string key in CamShop.Models.MyAlerts.ALL.Except(new[] { CamShop.Models.MyAlerts.WARNING }))
+{
+    if (TempData.ContainsKey(key))
+    {
+    <div class="alert alert-@key">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        @TempData[key]
+    </div>
+    }
+}

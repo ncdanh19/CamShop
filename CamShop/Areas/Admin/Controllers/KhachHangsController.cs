@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CamShop.Common;
+using CamShop.Models;
 using Models.EF;
 
 namespace CamShop.Areas.Admin.Controllers
@@ -48,11 +50,31 @@ namespace CamShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "khachHangID,hoTen,eMail,diaChi,soDienThoai,passWord,confirmPassword,trangThai,userName")] KhachHang khachHang)
         {
+            int checkUser = db.KhachHangs.Count(x => x.userName == khachHang.userName);
+            int checkPhone = db.KhachHangs.Count(x => x.soDienThoai == khachHang.soDienThoai);
+            int checkEmail = db.KhachHangs.Count(x => x.eMail == khachHang.eMail);
+            khachHang.passWord = Encrytor.MD5Hash(khachHang.passWord);
+            khachHang.confirmPassword = khachHang.passWord;
             if (ModelState.IsValid)
             {
-                db.KhachHangs.Add(khachHang);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (checkUser > 0)
+                {
+                    TempData[MyAlerts.DANGER] = "Username đã được sử dụng";
+                }
+                else if (checkPhone > 0)
+                {
+                    TempData[MyAlerts.DANGER] = "Số điện thoại đã được sử dụng";
+                }
+                else if (checkEmail > 0)
+                {
+                    TempData[MyAlerts.DANGER] = "Email đã được sử dụng";
+                }
+                else
+                {
+                    db.KhachHangs.Add(khachHang);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(khachHang);
@@ -80,11 +102,31 @@ namespace CamShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "khachHangID,hoTen,eMail,diaChi,soDienThoai,passWord,confirmPassword,trangThai,userName")] KhachHang khachHang)
         {
+            int checkUser = db.KhachHangs.Count(x => x.userName == khachHang.userName);
+            int checkPhone = db.KhachHangs.Count(x => x.soDienThoai == khachHang.soDienThoai);
+            int checkEmail = db.KhachHangs.Count(x => x.eMail == khachHang.eMail);
+            khachHang.passWord = Encrytor.MD5Hash(khachHang.passWord);
+            khachHang.confirmPassword = khachHang.passWord;
             if (ModelState.IsValid)
             {
-                db.Entry(khachHang).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (checkUser > 0)
+                {
+                    TempData[MyAlerts.DANGER] = "Username đã được sử dụng";
+                }
+                else if (checkPhone > 0)
+                {
+                    TempData[MyAlerts.DANGER] = "Số điện thoại đã được sử dụng";
+                }
+                else if (checkEmail > 0)
+                {
+                    TempData[MyAlerts.DANGER] = "Email đã được sử dụng";
+                }
+                else
+                {
+                    db.Entry(khachHang).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
             return View(khachHang);
         }

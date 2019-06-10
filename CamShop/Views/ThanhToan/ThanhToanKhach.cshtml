@@ -1,9 +1,9 @@
 ﻿@{ var dvgh = new SelectList(
-      new List<SelectListItem>
-      {
+                                              new List<SelectListItem>
+                                              {
 new SelectListItem {Text = "VNPost", Value = "VNPost"},
 new SelectListItem {Text = "VNExpress", Value = "VNExpress"},
-      }, "Value", "Text");
+                                              }, "Value", "Text");
 
     var phuong = new SelectList(
     new List<SelectListItem>
@@ -59,9 +59,9 @@ new SelectListItem {Text = "Đà Nẵng", Value = "Đà Nẵng"},
 @{
     var tongtien = ViewBag.tongtien;
     var phiship = 0;
-    if (tongtien < 200000)
+    if (tongtien < 200)
     {
-        phiship = 30000;
+        phiship = 2;
     }
     else
     {
@@ -75,14 +75,6 @@ new SelectListItem {Text = "Đà Nẵng", Value = "Đà Nẵng"},
 }
 
 
-<style>
-    .input-number {
-        border: 1px solid #ddd;
-        padding: 10px;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-</style>
 
 <div class="product-big-title-area">
     <div class="container">
@@ -95,209 +87,172 @@ new SelectListItem {Text = "Đà Nẵng", Value = "Đà Nẵng"},
         </div>
     </div>
 </div>
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="product-content-right">
-                    <div class="woocommerce">
-                        @using (Html.BeginForm("PaymentWithPaypal", "ThanhToan", FormMethod.Post))
-                        {
-                            if (session != null)
-                            {
-                                <input type="text" value="@session.UserID" name="id" class="input-text " hidden>
-                                <div class="contact">
-                                    <div class="container">
-                                        <h3>Thông tin khách hàng</h3>
-                                        <form>
-                                            <label>Tên khách hàng</label>
-                                            <input type="text" value="@session.Name" name="hoTen" class="input-text " readonly>
-                                            <label>Địa chỉ</label>
-                                            <input type="text" value="@session.Address" name="diaChi" class="input-text " readonly>
-                                            <label>Email</label>
-                                            <input type="text" value="@session.Email" name="eMail" class="input-text " readonly>
-                                            <label>Số điện thoại</label>
-                                            <input type="text" value="@session.Phone" name="soDienThoai" class="input-text " readonly>
-
-                                        </form>
-                                    </div>
-                                </div>
-                                
-
-                                <div class="col-2">
-                                    <div class="woocommerce-shipping-fields">
-                                        <h3 id="ship-to-different-address">
-                                            <label class="checkbox" for="ship-to-different-address-checkbox">Thông tin giao hàng</label>
-
-                                        </h3>
-                                        <p class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                            <label class="" for="shipping_state">Đơn vị giao hàng</label>
-                                            @Html.DropDownList("donViGH", dvgh, new { @class = "input-text" })
-                                        </p>
-                                        <p class="form-row form-row-last address-field validate-required validate-postcode">
-                                        </p>
-                                        @if (Model.Count() > 0)
-                                        {
-                                            <input type="submit" value="Thanh toán" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-                                        }
-                                        else
-                                        {
-
-                                        }
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div id="customer_details" class="col2-set">
-                                <div class="col-1">
-                                    <div class="woocommerce-billing-fields">
-                                        <h3>Thông tin thanh toán</h3>
-                                        @*<p class="form-row form-row-first validate-required hide">
-                                                <label class="" for="billing_first_name">
-                                                    ID <abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                <input type="text" name="id" class="input-text" required>
-                                            </p>*@
-                                        <p class="form-row form-row-first validate-required">
-                                            <label class="" for="billing_first_name">
-                                                Họ tên <abbr title="required" class="required">*</abbr>
-                                            </label>
-                                            <input type="text" name="hoTen" class="input-text" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết tên')"
-                                                   oninput="this.setCustomValidity('')">
-                                        </p>
-                                        <div class="clear"></div>
-                                        <p class="form-row form-row-wide address-field validate-required">
-                                            <label class="" for="billing_address_1">
-                                                Địa chỉ
-                                                <abbr title="required" class="required">*</abbr>
-                                            </label>
-                                            <input type="text" name="diaChi" placeholder="Số nhà" style="width:49%" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết số nhà')"
-                                                   oninput="this.setCustomValidity('')">
-                                            <input type="text" placeholder="Đường" name="duong" style="width:49%" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết tên đường')"
-                                                   oninput="this.setCustomValidity('')" />
-                                            @Html.DropDownList("phuong", phuong, new { @class = "", @style = "width:49%" })
-                                            @Html.DropDownList("quan", quan, new { @class = "", @style = "width:49%" })
-                                            @Html.DropDownList("thanhPho", thanhPho, new { @class = "", @style = "width:100%" })
-                                        </p>
-                                        <p class="form-row form-row-first validate-required validate-email">
-                                            <label class="" for="billing_email">
-                                                Email <abbr title="required" class="required">*</abbr>
-                                            </label>
-                                            <input type="text" name="eMail" class="input-text" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết email')"
-                                                   oninput="this.setCustomValidity('')">
-                                        </p>
-
-                                        <p class="form-row form-row-last validate-required validate-phone">
-                                            <label class="" for="billing_phone">
-                                                Điện thoại <abbr title="required" class="required">*</abbr>
-                                            </label>
-                                            <input type="number" name="soDienThoai" class="input-number" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết số điện thoại')"
-                                                   oninput="this.setCustomValidity('')">
-                                        </p>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-2">
-                                    <div class="woocommerce-shipping-fields">
-                                        <h3 id="ship-to-different-address">
-                                            <label class="checkbox" for="ship-to-different-address-checkbox">Thông tin giao hàng</label>
-
-                                        </h3>
-                                        <p class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                            <label class="" for="shipping_state">Đơn vị giao hàng</label>
-                                            @Html.DropDownList("donViGH", dvgh, new { @class = "input-text" })
-                                        </p>
-                                        <p class="form-row form-row-last address-field validate-required validate-postcode">
-                                        </p>
-                                        @if (Model.Count() > 0)
-                                        {
-                                            <input type="submit" value="Thanh toán" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-                                        }
-                                        else
-                                        {
-
-                                        }
-                                        <div class="clear"></div>
-                                    </div>
-                                    <br />
-                                    @if (TempData["AlertMess"] != null)
-                                    {
-                                        <div id="Alerts" class="text-danger ">
-                                            @TempData["AlertMess"]
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                        }
-                    }
-                        <h3 id="order_review_heading">Hóa đơn của bạn</h3>
-
-                        <div id="order_review" style="position: relative;">
-                            <table class="shop_table">
-                                <thead>
-                                    <tr>
-                                        <th class="product-name">Sản phẩm</th>
-                                        <th class="product-total">Tổng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr class="cart_item">
-                                            <td class="product-name">
-                                                @item.SanPham.tenSanPham x <strong class="product-quantity">@item.SoLuong</strong>
-                                            </td>
-                                            <td class="product-total">
-                                                @if (item.SanPham.giaKhuyenMai > 0)
-                                                {
-                                                    <span class="amount">@(item.SanPham.giaKhuyenMai * item.SoLuong)</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="amount">@(item.SanPham.donGia * item.SoLuong)</span>
-                                                }
-
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                                <tfoot>
-
-                                    <tr class="cart-subtotal">
-                                        <th>Thành tiền</th>
-                                        <td>
-                                            <span class="amount">@tongtien</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr class="shipping">
-                                        <th>Phí vận chuyển</th>
-                                        <td>
-                                            @phiship
-                                            <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
-                                        </td>
-                                    </tr>
-
-
-                                    <tr class="order-total">
-                                        <th>Tổng hóa đơn</th>
-                                        <td><strong><span class="amount">@thanhtien</span></strong> </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-
-
-                            <div class="clear"></div>
-
+<div class="container">
+    <div class="col-md-12">
+        @using (Html.BeginForm("PaymentWithPaypal", "ThanhToan", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+        <div class="col-md-6">
+            @{
+                if (session != null)
+                {
+                    <input type="text" value="@session.UserID" name="id" class="input-text " hidden> 
+                    <h3><label>Thông tin khách hàng</label></h3>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Tên khách hàng</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Name" name="hoTen">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Địa chỉ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Address" name="diaChi">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Email</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Email" name="eMail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Số điện thoại</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Phone" name="soDienThoai">
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <h3><label>Nhập thông tin</label></h3>
+                    <div class="form-group validate-required">
+                        <label class="control-label col-sm-2" for="billing_first_name">
+                            Họ tên <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="hoTen" class="form-control input-text" placeholder="Họ tên" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết tên')"
+                                   oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="form-group validate-required">
+                        <label class="control-label col-sm-2" for="billing_address_1">
+                            Địa chỉ
+                            <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="diaChi" placeholder="Số nhà" style="width:100%" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết số nhà')"
+                                       oninput="this.setCustomValidity('')">
+                            </div>
+                            <span>
+                                <input type="text" class="form-control" placeholder="Đường" name="duong" style="width:49%" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết tên đường')"
+                                       oninput="this.setCustomValidity('')" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            @Html.DropDownList("phuong", phuong, new { @class = "col-sm-4", @style = "width:31%" })
+                            @Html.DropDownList("quan", quan, new { @class = "col-sm-4", @style = "width:31%" })
+                            @Html.DropDownList("thanhPho", thanhPho, new { @class = "col-sm-4", @style = "width:31%" })
+                        </div>
+                    </div>
+
+                    <div class="form-group validate-required validate-email">
+                        <label class="control-label col-sm-2" for="billing_email">
+                            Email <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="eMail" class="form-control input-text" placeholder="Email" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết email')"
+                                   oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+
+                    <div class="form-group validate-required validate-phone">
+                        <label class="control-label col-sm-2" for="billing_phone">
+                            Điện thoại <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="number" name="soDienThoai" class="form-control input-number" placeholder="Số điện thoại" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết số điện thoại')"
+                                   oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                }
+                <hr />
+                <h3>
+                    <label>Thông tin giao hàng</label>
+                </h3>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="shipping_state">Đơn vị giao hàng</label>
+                    <div class="col-sm-8">
+                        @Html.DropDownList("donViGH", dvgh, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
+                <hr />
+                <div>
+                    <div>
+                        <label>Thành tiền</label>
+                        <div style="float:right">
+                            @tongtien
+                        </div>
+                    </div>
+                    <div>
+                        <label>Phí vận chuyển</label>
+                        <div style="float:right">
+                            @phiship
+                            <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
+                        </div>
+                    </div>
+                    <div>
+                        <label>Tổng hóa đơn</label>
+                        <div style="float:right"><strong><span class="amount">@thanhtien</span></strong> </div>
+                    </div>
+                </div>
+
+            }
+
         </div>
+            <div class="col-md-6">
+                <h3><label>Hóa đơn của bạn</label></h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="20%"></th>
+                            <th class="product-name">Sản phẩm</th>
+                            <th class="product-total">Tổng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img width="100%" src="@item.SanPham.hinhAnh" /></td>
+                                <td>
+                                    @item.SanPham.tenSanPham <div><strong>Số lượng:</strong> @item.SoLuong</div>
+                                </td>
+                                <td>
+                                    @if (item.SanPham.giaKhuyenMai > 0)
+                                    {
+                                        <span class="amount">@(item.SanPham.giaKhuyenMai * item.SoLuong)</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="amount">@(item.SanPham.donGia * item.SoLuong)</span>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <hr />
+                <div style="display: block; text-align: center;">
+                    <input type="submit" value="Thanh toán" id="thanhtoanbtn" class="btn btn-success">
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        }
     </div>
-    </div>
+</div>

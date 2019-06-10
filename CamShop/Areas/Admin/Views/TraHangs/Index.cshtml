@@ -5,11 +5,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Danh mục trả hàng</h2>
+ 
 
 <div class="card-body">
     <div class="table-responsive">
@@ -42,22 +39,15 @@
                             @Html.DisplayFor(modelItem => item.lyDo)
                         </td>
                         <td>
-                            <div class="dropdown">
+                            @*<div class="dropdown">
                                 <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.phieuTraHangID })</li>
                                     <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.phieuTraHangID })</li>
                                     <li> @Html.ActionLink("Xóa", "Delete", new { id = item.phieuTraHangID })</li>
-                                    @*<li>
-                                             @Ajax.ActionLink("Xóa", "Delete", new { @id = item.ID}, new AjaxOptions
-                                        {
-                                            Confirm="Bạn có muốn xóa bản ghi này không?",
-                                            OnComplete = "$('#row_" + @item.ID + "').remove()",
-                                            HttpMethod = "Delete"
-                                        })
-                                         </li>*@
+                                     
                                 </ul>
-                            </div>
+                            </div>*@
                         </td>
                     </tr>
                 }

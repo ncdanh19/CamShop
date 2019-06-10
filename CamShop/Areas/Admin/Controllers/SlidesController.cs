@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -50,13 +51,25 @@ namespace CamShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,tenSlide,hinhAnh,URL,trangThai")] Slide slide)
+        public ActionResult Create([Bind(Include = "ID,tenSlide,hinhAnh,URL,trangThai")] Slide slide, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
-                db.Slides.Add(slide);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (fileUpload == null)
+                {
+                    ViewBag.thongBao = "Vui lòng chọn hình ảnh";
+                }
+                else
+                {
+                     var fileName = Path.GetFileName(fileUpload.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/slide"), fileName);
+                    fileUpload.SaveAs(path);
+                    slide.hinhAnh = "/Assets/client/images/slide/" + fileName;
+
+                    db.Slides.Add(slide);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(slide);
@@ -82,11 +95,22 @@ namespace CamShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,tenSlide,hinhAnh,URL,trangThai")] Slide slide)
+        public ActionResult Edit([Bind(Include = "ID,tenSlide,hinhAnh,URL,trangThai")] Slide slide, HttpPostedFileBase fileUpload)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(slide).State = EntityState.Modified;
+                if (fileUpload == null)
+                {
+                    slide.hinhAnh = slide.hinhAnh;
+                }
+                else
+                {
+                    var fileName = Path.GetFileName(fileUpload.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Content/images/slide"), fileName);
+                    fileUpload.SaveAs(path);
+                    slide.hinhAnh = "/Assets/client/images/slide/" + fileName;
+                }
+                 db.Entry(slide).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

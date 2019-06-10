@@ -13,48 +13,42 @@
             <a href="#">/</a>
             <a href="/tai-khoan/">Quản lý tài khoản</a>
         </div>
-        <div class="col-md-9 cart-items" style="padding-left:50px">
-            <h2 style="color:#fead53; text-align:center">Lịch sử mua hàng</h2>
-            <hr />
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Mã hóa đơn
-                                    </th>
-                                    <th>
-                                        Lý do
-                                    </th>
-                                    <th>
-                                        Ngày trả
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in lichsuTraHang)
-                                {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.hoaDonID)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.lyDo)
-                                        </td>
+        <div class="col-md-9" style="padding-top:40px">
+            <h2 id="form-tittle" style="margin-bottom:0px">Lịch sử trả hàng</h2>
+            <div class="">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã hóa đơn
+                            </th>
+                            <th>
+                                Lý do
+                            </th>
+                            <th>
+                                Thời gian
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in lichsuTraHang)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.hoaDonID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.lyDo)
+                                </td>
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ngayTra)
-                                        </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ngayTra)
+                                </td>
 
-                                    </tr>
-                                }
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="col-md-3" style="padding-top:40px">

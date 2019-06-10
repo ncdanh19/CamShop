@@ -7,7 +7,7 @@
 
 <h2>Thêm sản phẩm mới</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "SanPham", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -57,7 +57,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.hinhAnh, htmlAttributes: new { @class = "control-label col-md-2", @style = "text-align:left" })
             <div class="col-md-3">
-                @Html.EditorFor(model => model.hinhAnh, new { htmlAttributes = new { @class = "", @type = "file", @required = "" } })
+                @Html.EditorFor(model => model.hinhAnh, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <input type="file" name="fileUpload" style="margin-top:10px" />
                 @Html.ValidationMessageFor(model => model.hinhAnh, "", new { @class = "text-danger" })
             </div>
         </div>

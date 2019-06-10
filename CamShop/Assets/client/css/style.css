@@ -86,7 +86,7 @@ body {
     margin: 0;
     padding: 0;
     background: #fff;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
     body a {
@@ -556,7 +556,7 @@ select {
 /*--footer--*/
 .footer {
     background: #fcff19;
-    padding: 1.5em;
+    padding: 1em;
 }
 
 .logo2 {
@@ -575,7 +575,7 @@ select {
         .ftr-menu ul li a {
             display: block;
             text-decoration: none;
-            font-size: 1.15em;
+            font-size: 1.5em;
             font-weight: 500;
             color: #000;
             padding: 0 1em;
@@ -1391,10 +1391,10 @@ p.qty {
     text-align: center;
 }
 
-.form-control {
+/*.form-control {
     display: inline-block;
     width: 13%;
-}
+}*/
 
 .cart h2 {
     font-size: 1.5em;
@@ -2806,4 +2806,17 @@ label {
 
 .modal-body .form-horizontal .col-sm-offset-2 {
     margin-left: 15px;
+}
+#thanhtoanbtn {
+    width: 50%;
+    font-size: large;
+    font-weight: 700;
+    padding: 0.5em 1em;
+}
+
+#form-tittle {
+    color: #0d0d0d;
+    text-align: center;
+    padding: 1.75rem 1.25rem;
+    background-color: aliceblue
 }

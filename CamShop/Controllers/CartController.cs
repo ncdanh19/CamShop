@@ -87,7 +87,7 @@ namespace CamShop.Controllers
             if(cart!=null)
             {
                 var list = (List<CartItem>)cart;
-                if(list.Exists(x=>x.SanPham.sanPhamID==sanPhamID))
+                if(list.Exists(x=>x.SanPham.sanPhamID==sanPhamID)) 
                 {
                     foreach (var item in list)
                     {

@@ -1,10 +1,11 @@
 ﻿@model Models.EF.KhachHang
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Thông tin khách hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="cart" style="margin-bottom:150px">
+ 
+<div class="cart">
     <div class="container">
         @* div top *@
         <div class="cart-top">
@@ -12,91 +13,73 @@
             <a href="#">/</a>
             <a href="/tai-khoan/">Quản lý tài khoản</a>
         </div>
-        <div class="col-md-9 cart-items" style="padding-left:50px">
-            @using (Html.BeginForm())
+
+        <div style="margin-top:10px">
+            @{Html.RenderPartial("_alerts");}
+        </div>
+        @* div trái 9, giỏ hàng *@
+        <div class="col-md-9" style="padding-top:40px">
+            @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
             {
-                @Html.AntiForgeryToken()
-                <h2 style="color:#fead53; text-align:center">Thay đổi thông tin</h2>
-                <div class="cart-header">
-                    <div class="cart-sec">
-                        <div class="cart-item cyc">
-                            <img src="~/Assets/client/images/logo-user.jpg" />
+                <div class="table-bordered">
+                    <h2 id="form-tittle">Thông tin tài khoản</h2>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.khachHangID)
+                    @Html.HiddenFor(model => model.userName)
+                    @Html.HiddenFor(model => model.passWord)
+                    @Html.HiddenFor(model =>model.trangThai)
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            Họ tên khách hàng:
+                        </label>
+                        <div class="col-sm-6">
+                            @Html.EditorFor(model => model.hoTen, new { htmlAttributes = new { @class = "form-control",@placeholder="Họ tên" ,@required=""} })
+                            @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
                         </div>
-                        <div class="cart-item-info" style="border-bottom:unset">
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @Html.HiddenFor(model => model.khachHangID)
-                            <div class="form-group hide">
-                                <h4>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
-                                    </div>
-                                </h4>
-                            </div>
-                            <div class="form-group hide">
-                                <h4>
-                                    <div>
-                                        @Html.TextBoxFor(model => model.passWord, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.passWord, "", new { @class = "text-danger" })
-                                    </div>
-                                </h4>
-                            </div>
-                            <div class="form-group">
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <h4><span>Họ tên khách hàng:</span></h4>
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(model => model.hoTen, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.hoTen, "", new { @class = "text-danger" })
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4><span>Địa chỉ:</span></h4>
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4><span>Email:</span></h4>
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.eMail, "", new { @class = "text-danger" })
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h4><span>Số điện thoại:</span></h4>
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(model => model.soDienThoai, new { htmlAttributes = new { @class = "form-control" } })
-                                            @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Sửa" class="btn btn-default" />
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            Địa chỉ:
+                        </label>
+                        <div class="col-sm-6">
+                            @Html.EditorFor(model => model.diaChi, new { htmlAttributes = new { @class = "form-control", @placeholder = "Địa chỉ", @required = "" } })
+                            @Html.ValidationMessageFor(model => model.diaChi, "", new { @class = "text-danger" })
                         </div>
-                        <div class="clearfix"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            Email:
+                        </label>
+                        <div class="col-sm-6">
+                            @Html.EditorFor(model => model.eMail, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email", @required = "" } })
+                            @Html.ValidationMessageFor(model => model.eMail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">
+                            Số điện thoại:
+                        </label>
+                        <div class="col-sm-6">
+                            @Html.EditorFor(model => model.soDienThoai, new { htmlAttributes = new { @class = "form-control", @placeholder = "Số điện thoại", @required = "" } })
+                            @Html.ValidationMessageFor(model => model.soDienThoai, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Cập nhật" class="btn btn-default" />
+                        </div>
                     </div>
                 </div>
             }
         </div>
+        @* div phải 3, thanh toán giỏ hàng *@
         <div class="col-md-3" style="padding-top:40px">
             @Html.Partial("DanhMucQLKH")
         </div>
     </div>
 </div>
+
 
 
 

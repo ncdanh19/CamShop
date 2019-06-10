@@ -70,7 +70,7 @@
                         <div class="bike-type">
                             <p>Thương hiệu:<a href="/san-pham/thuong-hieu/@Model.ThuongHieu1.tenThuongHieu-@Model.ThuongHieu1.thuongHieuID">@Model.ThuongHieu1.tenThuongHieu</a></p>
                         </div>
-                        <p>@(Model.donGia.HasValue ? Model.donGia.Value.ToString("N0") : "Liên hệ") <a href="#"></a> VND</p>
+                        <p>@(Model.donGia.HasValue ? Model.donGia.Value.ToString("N0") : "Liên hệ") <a href="#"></a> $</p>
                         <div class="btn_form">
                             <a href="/them-gio-hang?sanPhamID=@Model.sanPhamID&soluong=1">Thêm vào giỏ</a>
                         </div>
@@ -96,7 +96,7 @@
                         <img src="@item.hinhAnh" alt="" />
                         <div class="bike-info">
                             <div class="model">
-                                <h4>@item.tenSanPham<span>@item.donGia.GetValueOrDefault(0).ToString("N0") VNĐ</span></h4>
+                                <h4>@item.tenSanPham<span>@item.donGia.GetValueOrDefault(0).ToString("N0") $</span></h4>
                             </div>
                             <div class="model-info">
                                 <a href="/them-gio-hang?sanPhamID=@item.sanPhamID&soluong=1">MUA NGAY</a>

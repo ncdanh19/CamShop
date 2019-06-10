@@ -13,27 +13,55 @@
             <a href="#">/</a>
             <a href="/tai-khoan/">Quản lý tài khoản</a>
         </div>
-        <div class="col-md-9 cart-items" style="padding-left:50px">
-            @using (Html.BeginForm("TraHang", "QuanLyKH", FormMethod.Post))
-            {
-                <h2 style="color:#fead53; text-align:center">Lịch sử mua hàng</h2>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div style="margin-top:10px">
+            @{Html.RenderPartial("_alerts");}
+        </div>
+        <div class="col-md-12" style="padding-top:40px">
 
-                <div class="form-group">
-                    <label>Lý do trả hàng</label>
-                    <input class="form-control " name="lyDo" />
-                </div>
-                <div>
-                    <button type="submit" value="Xác nhận" class="btn btn-success">Xác nhận</button>
-                    <input hidden />
-                    <a href="tai-khoan">Quay lại</a>
-                </div>
-            }
+            <div class="table table-bordered">
+                @using (Html.BeginForm("TraHang", "QuanLyKH", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <h2 id="form-tittle">Trả hàng</h2>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Mã Hóa Đơn</label>
+                        <div class="col-md-5">
+                            @Html.DropDownList("ctHoaDon", null, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Lý do trả hàng</label>
+                        <div class="col-md-5">
+                            <input id="lyDo" class="form-control " name="lyDo" placeholder="Lý do" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <input id="traHang"type="submit" value="Xác nhận" class="btn btn-success" /> |
+                            <a href="lich-su-mua-hang" class="btn btn-default">Quay lại</a>
+                                <a style="float:right" class="btn btn-danger" href="#" id="TraTatCa" onclick="TraTatCa()">Trả tất cả</a>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
-        <div class="col-md-3" style="padding-top:40px">
-            @Html.Partial("DanhMucQLKH")
-        </div>
+
     </div>
 </div>
 
+<script>
+    var TraTatCa = function () {
+        var lyDo = $("#lyDo").val();
+        if (lyDo == "")
+            $('#traHang').click();
+        if (lyDo != "")
+            $.ajax({
+                type: "POST",
+                url: "/QuanLyKH/TraTatCa",
+                data: { lyDo: lyDo },
+                success: function (result) {
+                    window.location.href = "lich-su-mua-hang"
+                }
+            });
+    }
+</script>

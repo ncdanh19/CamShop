@@ -1,12 +1,14 @@
-﻿
+﻿@{
+    var session = (CamShop.Common.UserLogin)Session[CamShop.Common.CommonConstants.USER_SESSION];
+}
 <section class="sky-form">
     <div class="product_right">
         <div style="text-align:center">
             <ul class="list-group">
-                <li class="list-group-item list-group-item-light"><h3>Quản lý tài khoản</h3> </li>
+                <li class="list-group-item list-group-item-light" id="form-tittle"><h3>Quản lý tài khoản</h3> </li>
                 <li class="list-group-item list-group-item-light">
-                    <a class="btn-light" href="/thay-doi-thong-tin/">
-                        Thay đổi thông tin tài khoản
+                    <a class="btn-light" href="/tai-khoan-@session.UserID">
+                        Thông tin tài khoản
                     </a>
                 </li>
                 <li class="list-group-item list-group-item-light">

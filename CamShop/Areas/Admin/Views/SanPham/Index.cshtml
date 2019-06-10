@@ -13,20 +13,14 @@
         <table class="table table-bordered searchItem" id="dataTable" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th>
-                        Tên loại
-                    </th>
-                    <th>
-                        Thương hiệu
+                    <th width="10%">
+                        Hình ảnh
                     </th>
                     <th>
                         Tên sản phẩm
                     </th>
                     <th>
-                        Đơn giá
-                    </th>
-                    <th>
-                        Hot status
+                        Giá khuyến mãi
                     </th>
                     <th>
                         Số lượng
@@ -40,19 +34,15 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.LoaiHang1.tenLoai)
+                            <img width="100%" src="@item.hinhAnh" />
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ThuongHieu1.tenThuongHieu)
-                        </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.tenSanPham)
                         </td>
+
                         <td>
-                            @Html.DisplayFor(modelItem => item.donGia)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Hot)
+                            @(item.giaKhuyenMai.HasValue ? item.giaKhuyenMai.Value.ToString("N0") : "")
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.soLuong)
@@ -85,5 +75,5 @@
 <div class="row" style="padding:1em">
     <div style="display:inline-block; float:left">
         @Html.ActionLink("Thêm", "Create", "", new { @class = "btn btn-primary" })
-    </div>     
+    </div>
 </div>

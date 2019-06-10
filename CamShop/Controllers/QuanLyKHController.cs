@@ -27,6 +27,12 @@ namespace CamShop.Controllers
             return View();
         }
 
+        public ActionResult LichSuMuaHang()
+        {
+            ViewBag.lichSuMuaHang = db.HoaDons.Where(x => x.maKhach == maKhach).ToList();
+            return View();
+        }
+
         public ActionResult DetailsGet(int id)
         {
             maKhach = id;
@@ -42,8 +48,10 @@ namespace CamShop.Controllers
 
         // GET: QuanLyKH/Edit/5
         [HttpGet]
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
+            maKhach = id;
+
             KhachHang user = db.KhachHangs.Find(maKhach);
             if (user == null)
             {
@@ -66,6 +74,7 @@ namespace CamShop.Controllers
             thongTin.diaChi = user.diaChi;
             thongTin.eMail = user.eMail;
             thongTin.soDienThoai = user.soDienThoai;
+            thongTin.trangThai = true;
 
             // gán các item của user vào item userSession
             var userSession = new UserLogin();
@@ -76,15 +85,16 @@ namespace CamShop.Controllers
             userSession.Email = user.eMail;
             userSession.Phone = user.soDienThoai;
             Session.Add(CommonConstants.USER_SESSION, userSession);
-            
+
             // nếu đúng thì lưu item thông tin và chuyển hướng về details
             if (ModelState.IsValid)
             {
                 db.Entry(thongTin).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                TempData[MyAlerts.SUCCESS] = "Cập nhật thông tin thành công";
+                return RedirectToAction("Edit");
             }
-            return View(user);
+            return View(thongTin);
         }
 
         [HttpGet]
@@ -109,21 +119,22 @@ namespace CamShop.Controllers
             thongTin.soDienThoai = soDienThoai;
             thongTin.diaChi = diaChi;
             thongTin.eMail = eMail;
+            thongTin.trangThai = true;
             if (ModelState.IsValid)
             {
-                if(passWord == "")
+                if (passWord == "")
                 {
                     ModelState.AddModelError("", "Hãy nhập mật khẩu hiện tại");
                 }
-                else if(newPass == "")
+                else if (newPass == "")
                 {
                     ModelState.AddModelError("", "Hãy nhập mật khẩu mới");
                 }
-                else if(confPass == "")
+                else if (confPass == "")
                 {
                     ModelState.AddModelError("", "Hãy nhập xác nhận mật khẩu");
                 }
-                else if(passWord != "" && newPass != "" && confPass != "")
+                else if (passWord != "" && newPass != "" && confPass != "")
                 {
                     if (db.KhachHangs.Where(x => x.passWord == md5 && x.khachHangID == maKhach).Count() > 0)
                     {
@@ -149,14 +160,19 @@ namespace CamShop.Controllers
                     ModelState.AddModelError("", "Vui nhập đầy đủ thông tin");
                 }
             }
-            return View();
+            return View(thongTin);
         }
 
-        public ActionResult LichSuMuaHang()
+        public ActionResult XemChiTietHoaDon(int id)
         {
-            ViewBag.lichSuMuaHang = db.HoaDons.Where(x => x.maKhach == maKhach).ToList();
-            return View();
+            ViewBag.hoaDon = db.HoaDons.Find(id);
+            ViewBag.giaoHang = db.GiaoHangs.SingleOrDefault(x => x.hoaDonID == id);
+            ViewBag.traHang = db.TraHangs.Where(x => x.hoaDonID == id).ToList();
+            var chiTiet = db.ChiTietHoaDons.Where(x => x.hoaDonID == id).ToList();
+
+            return View(chiTiet);
         }
+
 
         public ActionResult LichSuTraHang()
         {
@@ -175,51 +191,116 @@ namespace CamShop.Controllers
         {
             HoaDon hoaDon = db.HoaDons.Find(hoadonID);
             hoadonID = hoaDon.hoaDonID;
+            //Kiểm tra sản phẩm chưa được trả trong hóa đơn
+            var check = db.ChiTietHoaDons.Where(x => x.hoaDonID == hoadonID &&
+                !db.TraHangs.Any(th => th.chitietHDID == x.chitietID &&
+                x.hoaDonID == th.hoaDonID));
+            ViewBag.ctHoaDon = new SelectList(check.Include(x => x.SanPham), "chitietID", "SanPham.tenSanPham");
             return View(hoaDon);
         }
 
-        //POST: Trả hàng
         [HttpPost]
-        public ActionResult TraHang(string lyDo)
+        public ActionResult TraHang(FormCollection data)
         {
             var traHang = new TraHang();
             traHang.hoaDonID = hoadonID;
-            traHang.lyDo = lyDo;
+            traHang.chitietHDID = int.Parse(data[0].ToString());
+            traHang.lyDo = data[1].ToString();
             traHang.ngayTra = System.DateTime.Now;
 
-            var hoaDon = new HoaDon();
-            hoaDon.hoaDonID = hoadonID;
-            hoaDon.maKhach = maKhach;
-            hoaDon.loaiHoaDon = "Mua";
-            hoaDon.trangThai = false;
 
-            var hdTra = db.ChiTietHoaDons.Where(x => x.hoaDonID == hoadonID).ToList();
+            var cthd = db.ChiTietHoaDons.Where(x => x.hoaDonID == traHang.hoaDonID && !db.TraHangs.Any(y => y.chitietHDID == x.chitietID && y.hoaDonID == x.hoaDonID)).Count();
+
+            ChiTietHoaDon chiTiet = db.ChiTietHoaDons.Find(traHang.chitietHDID);
 
             if (ModelState.IsValid)
             {
-                if (traHang.lyDo != null)
+                if (traHang.lyDo != "")
                 {
-                    db.TraHangs.Add(traHang);
-                    db.Entry(hoaDon).State = EntityState.Modified;
-                    db.SaveChanges();
-                    foreach (var item in hdTra)
+                    if (cthd == 1)
                     {
-                        var soLuongChiTiet = db.SanPhams.Find(item.SanPham.sanPhamID);
-                        soLuongChiTiet.soLuong = soLuongChiTiet.soLuong + item.soLuong;
-                        db.Entry(soLuongChiTiet).State = EntityState.Modified;
-                        db.SaveChanges();
+                        var hd = db.HoaDons.Find(traHang.hoaDonID);
+                        hd.trangThai = false;
                     }
 
-                    return RedirectToAction("LichSuTraHang");
+                    SanPham soLuongChiTiet = db.SanPhams.Find(chiTiet.sanPhamID);
+                    soLuongChiTiet.soLuong = soLuongChiTiet.soLuong + chiTiet.soLuong;
+                    db.Entry(soLuongChiTiet).State = EntityState.Modified;
+                    db.TraHangs.Add(traHang);
+                    db.SaveChanges();
+                    return Redirect(Request.UrlReferrer.ToString());
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Vui lòng cho biết lý do");
+                    ModelState.AddModelError("", "Vui lòng cho chúng tôi biết lý do");
                 }
 
             }
             return View();
         }
 
+        //Post: Trả đơn hàng
+        [HttpPost]
+        public ActionResult TraTatCa(string lyDo)
+        {
+            var traHang = new TraHang();
+            traHang.hoaDonID = hoadonID;
+            traHang.lyDo = lyDo;
+            traHang.ngayTra = System.DateTime.Now;
+
+            HoaDon hoaDon = db.HoaDons.Find(hoadonID);
+            hoaDon.trangThai = false;
+
+            var chiTiet = db.ChiTietHoaDons.Where(x => x.hoaDonID == hoadonID).ToList();
+
+            if (ModelState.IsValid)
+            {
+                if (traHang.lyDo != "")
+                {
+                    foreach (var item in chiTiet)
+                    {
+                        traHang.chitietHDID = item.chitietID;
+                        db.TraHangs.Add(traHang);
+                        SanPham soLuongChiTiet = db.SanPhams.Find(item.sanPhamID);
+                        soLuongChiTiet.soLuong = soLuongChiTiet.soLuong + item.soLuong;
+                        db.Entry(soLuongChiTiet).State = EntityState.Modified;
+                        db.SaveChanges();
+
+                        return Redirect(Request.UrlReferrer.ToString());
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Vui lòng cho chúng tôi biết lý do");  
+                }
+            }
+            return View();
+        }
+
+        //Get: Hủy đơn hàng
+        [HttpGet]
+        public ActionResult HuyDon(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HoaDon hoaDon = db.HoaDons.Find(id);
+            if (hoaDon == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hoaDon);
+        }
+
+        //Post: Hủy đơn hàng
+        [HttpPost]
+        public ActionResult HuyDon(int id)
+        {
+            HoaDon hoaDon = db.HoaDons.Find(id);
+            hoaDon.trangThai = null;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

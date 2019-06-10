@@ -2308,6 +2308,7 @@
     <Content Include="Assets\client\js\jquery.min.js" />
     <Content Include="Assets\client\js\move-top.js" />
     <Content Include="Assets\client\js\responsiveslides.min.js" />
+    <Content Include="Assets\client\js\scripts.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\SanPham\Create.cshtml" />
@@ -2539,6 +2540,7 @@
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LienHeController.cs" />
     <Compile Include="Controllers\QuanLyKHController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\ThanhToanController.cs" />
@@ -2552,6 +2554,7 @@
     <Compile Include="Models\DangNhap.cs" />
     <Compile Include="Models\DoiMatKhau.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MyAlerts.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="PayPal\PaypalConfiguration.cs" />
     <Compile Include="PayPal\PaypalLogger.cs" />
@@ -2592,9 +2595,8 @@
     <Content Include="Views\SanPham\LocSanPhamTheoThuongHieu.cshtml" />
     <Content Include="Views\SanPham\Index.cshtml" />
     <Content Include="Views\Shared\Categories_layout.cshtml" />
-    <Content Include="Views\ThanhToan\ThanhToan.cshtml" />
     <Content Include="Views\ThanhToan\HoanThanh.cshtml" />
-    <Content Include="Views\KhachHang\Index.cshtml" />
+    <Content Include="Views\KhachHang\Login.cshtml" />
     <Content Include="Views\QuanLyKH\Details.cshtml" />
     <Content Include="Views\Shared\DanhMucQLKH.cshtml" />
     <Content Include="Views\QuanLyKH\Edit.cshtml" />
@@ -2602,10 +2604,12 @@
     <Content Include="Views\QuanLyKH\LichSuMuaHang.cshtml" />
     <Content Include="Views\QuanLyKH\LichSuTraHang.cshtml" />
     <Content Include="Views\QuanLyKH\TraHang.cshtml" />
-    <Content Include="Views\Cart\Payment.cshtml" />
-    <Content Include="Views\KhachHang\Login.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\ThanhToan\ThanhToanKhach.cshtml" />
+    <Content Include="Views\Shared\_alerts.cshtml" />
+    <Content Include="Views\LienHe\LienHe.cshtml" />
+    <Content Include="Views\LienHe\GioiThieu.cshtml" />
+    <Content Include="Views\QuanLyKH\XemChiTietHoaDon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2617,6 +2621,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Code\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Assets\client\images\sanpham\" />
+    <Folder Include="Assets\client\images\slide\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
