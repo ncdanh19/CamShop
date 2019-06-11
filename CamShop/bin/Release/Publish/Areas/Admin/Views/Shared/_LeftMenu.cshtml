@@ -1,0 +1,49 @@
+﻿<div class="sidebar-menu">
+    <div class="logo">
+        <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="#">
+            <span id="logo"></span>
+            <!--<img id="logo" src="" alt="Logo"/>-->
+        </a>
+    </div>
+    <div class="menu">
+        <ul id="menu">
+             <li id="menu-dropdown-taikhoan">
+                <a href="#"><i class="fa fa-user"></i><span>Tài khoản</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub">
+                    <li id="menu-user"><a href=@Url.Action("Index","Users")><span>Admin</span></a></li>
+                    <li id="menu-loaihang"><a href=@Url.Action("Index","KhachHangs")><span>Khách hàng</span></a></li>
+                </ul>
+            </li>
+            <li id="menu-dropdown-sanpham">
+                <a href="#"><i class="fa fa-camera"></i><span>Sản phẩm</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub">
+                    <li id="menu-sanpham"><a href=@Url.Action("Index","SanPham")><span>Sản phẩm</span></a></li>
+                    <li id="menu-loaihang"><a href=@Url.Action("Index","LoaiHang")><span>Loại hàng</span></a></li>
+                    <li id="menu-thuonghieu"><a href=@Url.Action("Index","ThuongHieu")><span>Thương hiệu</span></a></li>
+                    <li id="menu-khuyenmai"><a href=@Url.Action("Index","KhuyenMais")><span>Khuyến mãi</span></a></li>
+                </ul>
+            </li>
+
+            <li id="menu-dropdown-danhmuc">
+                <a href="#"><i class="fa fa-book nav_icon"></i><span>Danh mục</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub">
+                    <li id="menu-danhmuc"> <a href="@Url.Action("Index","DanhMucs")">Danh mục</a></li>
+                    <li id="menu-nhomdanhmuc"> <a href="@Url.Action("Index","NhomDanhMucs")">Nhóm danh mục</a> </li>
+                </ul>
+            </li>
+
+            <li id="menu-slide"><a href=@Url.Action("Index","Slides")><i class="fa fa-bookmark"></i><span>Slide</span></a></li>
+            <li id="menu-slide"><a href=@Url.Action("Index","Tags")><i class="fa fa-tag"></i><span>Thẻ</span></a></li>
+
+            <li id="menu-dropdown-giaotra">
+                <a href="#"><i class="fa fa-truck nav_icon"></i><span>Giao - Trả hàng</span><span class="fa fa-angle-right" style="float: right"></span></a>
+                <ul id="menu-academico-sub">
+                    <li id="menu-danhmuc"> <a href="@Url.Action("Index","GiaoHangs")">Giao hàng</a></li>
+                    <li id="menu-nhomdanhmuc"> <a href="@Url.Action("Index","TraHangs")">Trả hàng</a> </li>
+                </ul>
+            </li>
+            <li id="menu-hoadon"><a href=@Url.Action("Index","HoaDons")><i class="fa fa-list"></i><span>Hóa đơn</span></a></li>
+
+        </ul>
+    </div>
+</div>

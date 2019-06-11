@@ -1,0 +1,258 @@
+﻿@{ var dvgh = new SelectList(
+                                              new List<SelectListItem>
+                                              {
+new SelectListItem {Text = "VNPost", Value = "VNPost"},
+new SelectListItem {Text = "VNExpress", Value = "VNExpress"},
+                                              }, "Value", "Text");
+
+    var phuong = new SelectList(
+    new List<SelectListItem>
+    {
+new SelectListItem {Text = "Phường 1", Value = "Phường 1"},
+new SelectListItem {Text = "Phường 2", Value = "Phường 2"},
+new SelectListItem {Text = "Phường 3", Value = "Phường 3"},
+new SelectListItem {Text = "Phường 4", Value = "Phường 4"},
+new SelectListItem {Text = "Phường 5", Value = "Phường 5"},
+new SelectListItem {Text = "Phường 6", Value = "Phường 6"},
+new SelectListItem {Text = "Phường 7", Value = "Phường 7"},
+new SelectListItem {Text = "Phường 8", Value = "Phường 8"},
+new SelectListItem {Text = "Phường 9", Value = "Phường 9"},
+new SelectListItem {Text = "Phường 10", Value = "Phường 10"},
+    }, "Value", "Text");
+
+    var quan = new SelectList(
+new List<SelectListItem>
+{
+new SelectListItem {Text = "Quận 1", Value = "Quận 1"},
+new SelectListItem {Text = "Quận 2", Value = "Quận 2"},
+new SelectListItem {Text = "Quận 3", Value = "Quận 3"},
+new SelectListItem {Text = "Quận 4", Value = "Quận 4"},
+new SelectListItem {Text = "Quận 5", Value = "Quận 5"},
+new SelectListItem {Text = "Quận 6", Value = "Quận 6"},
+new SelectListItem {Text = "Quận 7", Value = "Quận 7"},
+new SelectListItem {Text = "Quận 8", Value = "Quận 8"},
+new SelectListItem {Text = "Quận 9", Value = "Quận 9"},
+new SelectListItem {Text = "Quận 10", Value = "Quận 10"},
+new SelectListItem {Text = "Quận 11", Value = "Quận 11"},
+new SelectListItem {Text = "Quận 12", Value = "Quận 12"},
+new SelectListItem {Text = "Bình Thạnh", Value = "Quận Bình Thạnh"},
+new SelectListItem {Text = "Phú Nhuận", Value = "Quận Phú Nhuận"},
+new SelectListItem {Text = "Tân Phú", Value = "Quận Tân Phú"},
+new SelectListItem {Text = "Tân Bình", Value = "Quận Tân Bình"},
+new SelectListItem {Text = "Đống Đa", Value = "Quận Đống Đa"},
+new SelectListItem {Text = "Hoàn Kiếm", Value = "Quận Hoàn Kiếm"},
+}, "Value", "Text");
+
+    var thanhPho = new SelectList(
+new List<SelectListItem>
+{
+new SelectListItem {Text = "Hồ Chí Minh", Value = "Hồ Chí Minh"},
+new SelectListItem {Text = "Cần Thơ", Value = "Cần Thơ"},
+new SelectListItem {Text = "Hà Nội", Value = "Hà Nội"},
+new SelectListItem {Text = "Đà Nẵng", Value = "Đà Nẵng"},
+
+}, "Value", "Text");
+}
+
+@model List<CamShop.Models.CartItem>
+
+@{
+    var tongtien = ViewBag.tongtien;
+    var phiship = 0;
+    if (tongtien < 200)
+    {
+        phiship = 2;
+    }
+    else
+    {
+        phiship = 0;
+    }
+    var thanhtien = tongtien + phiship;
+    var session = (CamShop.Common.UserLogin)Session[CamShop.Common.CommonConstants.USER_SESSION];
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    double? tongTien = ViewBag.tongTien;
+}
+
+
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Thanh toán</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-12">
+        @using (Html.BeginForm("PaymentWithPaypal", "ThanhToan", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+        <div class="col-md-6">
+            @{
+                if (session != null)
+                {
+                    <input type="text" value="@session.UserID" name="id" class="input-text " hidden> 
+                    <h3><label>Thông tin khách hàng</label></h3>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Tên khách hàng</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Name" name="hoTen">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Địa chỉ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Address" name="diaChi">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Email</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Email" name="eMail">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Số điện thoại</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control input-text" value="@session.Phone" name="soDienThoai">
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <h3><label>Nhập thông tin</label></h3>
+                    <div class="form-group validate-required">
+                        <label class="control-label col-sm-2" for="billing_first_name">
+                            Họ tên <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="hoTen" class="form-control input-text" placeholder="Họ tên" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết tên')"
+                                   oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                    <div class="form-group validate-required">
+                        <label class="control-label col-sm-2" for="billing_address_1">
+                            Địa chỉ
+                            <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="diaChi" placeholder="Số nhà" style="width:100%" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết số nhà')"
+                                       oninput="this.setCustomValidity('')">
+                            </div>
+                            <span>
+                                <input type="text" class="form-control" placeholder="Đường" name="duong" style="width:49%" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết tên đường')"
+                                       oninput="this.setCustomValidity('')" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            @Html.DropDownList("phuong", phuong, new { @class = "col-sm-4", @style = "width:31%" })
+                            @Html.DropDownList("quan", quan, new { @class = "col-sm-4", @style = "width:31%" })
+                            @Html.DropDownList("thanhPho", thanhPho, new { @class = "col-sm-4", @style = "width:31%" })
+                        </div>
+                    </div>
+
+                    <div class="form-group validate-required validate-email">
+                        <label class="control-label col-sm-2" for="billing_email">
+                            Email <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" name="eMail" class="form-control input-text" placeholder="Email" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết email')"
+                                   oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+
+                    <div class="form-group validate-required validate-phone">
+                        <label class="control-label col-sm-2" for="billing_phone">
+                            Điện thoại <abbr title="required" class="required">*</abbr>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="number" name="soDienThoai" class="form-control input-number" placeholder="Số điện thoại" required title="Vui lòng điền đầy đủ" oninvalid="this.setCustomValidity('Vui lòng cho biết số điện thoại')"
+                                   oninput="this.setCustomValidity('')">
+                        </div>
+                    </div>
+                }
+                <hr />
+                <h3>
+                    <label>Thông tin giao hàng</label>
+                </h3>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="shipping_state">Đơn vị giao hàng</label>
+                    <div class="col-sm-8">
+                        @Html.DropDownList("donViGH", dvgh, new { @class = "form-control" })
+                    </div>
+                </div>
+                <hr />
+                <div>
+                    <div>
+                        <label>Thành tiền</label>
+                        <div style="float:right">
+                            @tongtien
+                        </div>
+                    </div>
+                    <div>
+                        <label>Phí vận chuyển</label>
+                        <div style="float:right">
+                            @phiship
+                            <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
+                        </div>
+                    </div>
+                    <div>
+                        <label>Tổng hóa đơn</label>
+                        <div style="float:right"><strong><span class="amount">@thanhtien</span></strong> </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+            <div class="col-md-6">
+                <h3><label>Hóa đơn của bạn</label></h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="20%"></th>
+                            <th class="product-name">Sản phẩm</th>
+                            <th class="product-total">Tổng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img width="100%" src="@item.SanPham.hinhAnh" /></td>
+                                <td>
+                                    @item.SanPham.tenSanPham <div><strong>Số lượng:</strong> @item.SoLuong</div>
+                                </td>
+                                <td>
+                                    @if (item.SanPham.giaKhuyenMai > 0)
+                                    {
+                                        <span class="amount">@(item.SanPham.giaKhuyenMai * item.SoLuong)</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="amount">@(item.SanPham.donGia * item.SoLuong)</span>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <hr />
+                <div style="display: block; text-align: center;">
+                    <input type="submit" value="Thanh toán" id="thanhtoanbtn" class="btn btn-success">
+                </div>
+
+                <div class="clear"></div>
+            </div>
+        }
+    </div>
+</div>

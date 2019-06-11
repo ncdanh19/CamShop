@@ -1,0 +1,16 @@
+E:\CamShop\CamShop\Models\bin\Release\Models.dll.config
+E:\CamShop\CamShop\Models\bin\Release\Models.dll
+E:\CamShop\CamShop\Models\bin\Release\Models.pdb
+E:\CamShop\CamShop\Models\bin\Release\EntityFramework.dll
+E:\CamShop\CamShop\Models\bin\Release\EntityFramework.SqlServer.dll
+E:\CamShop\CamShop\Models\bin\Release\PagedList.dll
+E:\CamShop\CamShop\Models\bin\Release\PagedList.Mvc.dll
+E:\CamShop\CamShop\Models\bin\Release\EntityFramework.xml
+E:\CamShop\CamShop\Models\bin\Release\EntityFramework.SqlServer.xml
+E:\CamShop\CamShop\Models\bin\Release\PagedList.xml
+E:\CamShop\CamShop\Models\bin\Release\PagedList.Mvc.xml
+E:\CamShop\CamShop\Models\obj\Release\Models.csprojAssemblyReference.cache
+E:\CamShop\CamShop\Models\obj\Release\Models.csproj.CoreCompileInputs.cache
+E:\CamShop\CamShop\Models\obj\Release\Models.csproj.CopyComplete
+E:\CamShop\CamShop\Models\obj\Release\Models.dll
+E:\CamShop\CamShop\Models\obj\Release\Models.pdb

@@ -1,0 +1,151 @@
+﻿@model List<CamShop.Models.CartItem>
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var sessionUser = Session[CamShop.Common.CommonConstants.USER_SESSION];
+}
+
+@section jsCart{
+    <script src="/Assets/client/js/cart.js"></script>
+}
+<div class="cart" style="padding-bottom:11em">
+    <div class="container">
+        @* div top *@
+        <div class="cart-top">
+            <a href="/">Trang chủ</a>
+        </div>
+        @* div trái 9, giỏ hàng *@
+        <div class="col-md-9 cart-items">
+            <h1>Giỏ hàng</h1>
+
+            @{
+                double? tongTien = 0;
+            }
+            @foreach (var item in Model)
+            {
+                <div class="cart-header">
+                    <div class="close1" data-id="@item.SanPham.sanPhamID"> </div>
+                    <div class="cart-sec">
+                        <div class="cart-item cyc">
+                            <img src="@item.SanPham.hinhAnh" />
+                        </div>
+                        <div class="cart-item-info">
+                            <h3 style="font-size:20px">@item.SanPham.tenSanPham<span style="font-size:15px">@item.SanPham.ThuongHieu1.tenThuongHieu</span></h3>
+                            <h4><span>Giá : </span>@item.SanPham.donGia.GetValueOrDefault(0).ToString("N0")<span> $</span></h4>
+                            <p class="qty" style="font-size: 12px; font-weight: 400">Số lượng:</p>
+                            <input min="1" type="number" id="Quantity" class="quantity form-control input-small" name="quantity" data-id="@item.SanPham.sanPhamID" value="@item.SoLuong">
+                        </div>
+                        <div style="width:77%; float:left; padding-bottom: 5px;">
+                            <h4 class="itemThanhTien" id="ItemThanhTien" style="margin-top:7px; font-size:20px"><span style="font-size:12px">Thành tiền:</span>  @(item.ThanhTien.HasValue ? @item.ThanhTien.Value.ToString("N0") : (item.SanPham.donGia.GetValueOrDefault(0) * item.SoLuong).ToString("N0"))<span> $</span></h4>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="delivery">
+                            <span>Giao hàng trong vòng 2 - 3 ngày</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                tongTien += item.ThanhTien;
+            }
+            @if (@tongTien > 0)
+            {
+                <a style="font-size:15px" href="#" class="btn-delete">Xóa hết</a>
+            }
+            @if (@tongTien == 0)
+            {
+                <div style="padding-top:30px; padding-left:30px"><h2>Giỏ hàng rỗng, <a href="/">tiếp tục mua hàng!</a></h2></div>
+
+            }
+        </div>
+        @* div phải 3, thanh toán giỏ hàng *@
+        <div class="col-md-3 cart-total">
+            <a class="continue" href="#">Tiếp tục mua hàng</a>
+            <div class="price-details">
+                <h3>Đơn hàng</h3>
+                <span>Tạm tính</span>
+                <span class="total">@tongTien.GetValueOrDefault(0).ToString("N0") $</span>
+                <span>Khuyến mãi</span>
+                <span class="total">---</span>
+                <span>Phí giao hàng</span>
+                <span class="total">---</span>
+                <div class="clearfix"></div>
+            </div>
+            <h4 class="last-price">Tổng đơn</h4>
+            <span class="total final">@tongTien.GetValueOrDefault(0).ToString("N0")<span> $</span></span>
+            <div class="clearfix"></div>
+            @if (tongTien == 0)
+            {
+                <a class="order" href="#">Thanh toán</a>
+            }
+            @if (tongTien > 0)
+            {
+                if (sessionUser == null)
+                {
+                    <a class="order" href="#" data-toggle="modal" data-target="#myModalHorizontal">
+                        Thanh toán
+                    </a>
+                }
+                else
+                {
+                    <a class="order" href="/thanh-toan/">Thanh toán</a>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table>
+                    <tr style="height:3em">
+                        <td>
+                            <label>Bạn đã có tài khoản</label>
+                        </td>
+                        <td>
+                            <a class="btn btn-warning" href="/dang-nhap/" style="margin-left:2em; width:150%">Đăng nhập</a>
+                        </td>
+                    </tr>
+                    <tr style="height:3em">
+                        <td>
+                            <label>Chưa có tài khoản</label>
+                        </td>
+                        <td>
+                            <a class="btn btn-success" href="/dang-ki/" style="margin-left:2em; width:150%">Đăng kí</a>
+                        </td>
+                    </tr>
+                    <tr style="height:3em">
+                        <td>
+                            <label>Mua ngay không cần đăng nhập</label>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" id="btnThanhToan" href="#" style="margin-left:2em; width:150%">Mua ngay</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Close
+                </button> 
+            </div>
+        </div>
+    </div>
+</div>
+

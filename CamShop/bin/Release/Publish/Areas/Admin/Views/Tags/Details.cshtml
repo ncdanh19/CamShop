@@ -1,0 +1,35 @@
+﻿@model Models.EF.Tag
+
+@{
+    ViewBag.Title = "Chi tiết thẻ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết thẻ</h2>
+
+<div>
+     <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.tagID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-default" })
+
+</p>

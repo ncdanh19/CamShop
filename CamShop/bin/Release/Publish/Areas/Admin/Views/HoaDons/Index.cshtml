@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Models.EF.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hóa đơn</h2>
+
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered searchItem" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr> 
+                    <th>
+                        @Html.DisplayNameFor(model => model.KhachHang.hoTen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.loaiHoaDon)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tongTien)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.trangThai)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ngayMuaHang)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr> 
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KhachHang.hoTen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.loaiHoaDon)
+                        </td>
+                        <td>
+                            @(item.tongTien.HasValue ? item.tongTien.Value.ToString("N0") : "")
+                        </td>
+                        <td>
+                            @if (item.trangThai == true)
+                            {
+                                <label>Mua hàng</label>
+                            }
+                            else if (item.trangThai == null)
+                            {
+                                <label>Hủy đơn</label>
+                            }
+                            else
+                            {
+                                <label>Trả hàng</label>
+                            }
+                        </td>
+
+                        <td>
+                            @item.ngayMuaHang.Value.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.hoaDonID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@*<div class="row" style="padding:1em">
+        <div style="display:inline-block; float:left">
+            @Html.ActionLink("Thêm", "Create", "", new { @class = "btn btn-primary" })
+        </div>
+    </div>*@
+

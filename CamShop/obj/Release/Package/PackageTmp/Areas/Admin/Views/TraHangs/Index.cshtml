@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Models.EF.TraHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh mục trả hàng</h2>
+ 
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered searchItem" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HoaDon.loaiHoaDon)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ngayTra)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lyDo)
+                    </th>
+                    <th width="5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HoaDon.loaiHoaDon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ngayTra)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lyDo)
+                        </td>
+                        <td>
+                            @*<div class="dropdown">
+                                <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.phieuTraHangID })</li>
+                                    <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.phieuTraHangID })</li>
+                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.phieuTraHangID })</li>
+                                     
+                                </ul>
+                            </div>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

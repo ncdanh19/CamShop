@@ -1,0 +1,50 @@
+﻿@model Models.EF.Slide
+
+@{
+    ViewBag.Title = "Chi tiết slide";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết slide</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenSlide)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenSlide)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-default" })
+</p>

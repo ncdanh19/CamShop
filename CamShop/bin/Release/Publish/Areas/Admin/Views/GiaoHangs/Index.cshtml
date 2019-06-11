@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Models.EF.GiaoHang>
+
+@{
+    ViewBag.Title = "Danh mục giao hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh mục giao hàng</h2>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered searchItem" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HoaDon.loaiHoaDon)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.donViGiaoHang)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ngayGiaoHang)
+                    </th>
+                    <th width="5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HoaDon.loaiHoaDon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.donViGiaoHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ngayGiaoHang)
+                        </td>
+                        <td>
+                            @*<div class="dropdown">
+                                <button class="btn btn-default fa fa-bars dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li>@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.giaoHangID })</li>
+                                    <li>@Html.ActionLink("Chi tiết", "Details", new { id = item.giaoHangID })</li>
+                                    <li> @Html.ActionLink("Xóa", "Delete", new { id = item.giaoHangID })</li>
+                                     
+                                </ul>
+                            </div>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*<div class="row" style="padding:1em">
+    <div style="display:inline-block; float:left">
+        @Html.ActionLink("Thêm", "Create", "", new { @class = "btn btn-primary" })
+    </div>
+</div>*@

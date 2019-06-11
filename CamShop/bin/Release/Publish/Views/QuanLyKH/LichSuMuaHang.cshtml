@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "LichSuMuaHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lichsuMuaHang = (List<Models.EF.HoaDon>)ViewBag.lichSuMuaHang;
+}
+
+<div class="cart" style="margin-bottom:150px">
+    <div class="container">
+        @* div top *@
+        <div class="cart-top">
+            <a href="/">Trang chú</a>
+            <a href="#">/</a>
+            <a href="/tai-khoan/">Quản lý tài khoản</a>
+        </div>
+        <div class="col-md-9" style="padding-top:40px">
+            <h2 id="form-tittle" style="margin-bottom:0px">Lịch sử mua hàng</h2>
+            <div class="">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Mã hóa đơn
+                            </th>
+                            <th>
+                                Họ tên
+                            </th>
+
+                            <th>
+                                Ngày mua
+                            </th>
+                            <th>
+                                Ngày giao hàng
+                            </th>
+                            <th>
+                                Trạng thái
+                            </th>
+
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in lichsuMuaHang)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem =>item.hoaDonID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.KhachHang.hoTen)
+                                </td>
+                                <td>
+                                    @item.ngayMuaHang.Value.ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    <p>@item.ngayMuaHang.Value.AddDays(3).ToString("dd/MM/yyyy")</p>
+                                </td>
+                                <td>
+                                    @if (item.trangThai == true)
+                                    {
+
+                                        if (item.ngayMuaHang.Value.AddDays(3) < DateTime.Now)
+                                        {
+                                            <p>Hoàn tất</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Đang giao</p>
+                                        }
+
+                                    }
+                                    else if (item.trangThai == null)
+                                    {
+                                        <p>Hủy đơn</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Trả hàng</p>
+
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.trangThai == true)
+                                    {
+                                        if (item.ngayMuaHang.Value.AddDays(3) < DateTime.Now)
+                                        {
+                                            if ((DateTime.Now.DayOfYear - item.ngayMuaHang.Value.AddDays(3).DayOfYear) > 3)
+                                            {
+
+                                            }
+                                            else
+                                            {
+                                                <a href="/tra-hang-get-@item.hoaDonID/">Trả hàng</a> 
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <a href="#" onclick="HuyDonHang(@item.hoaDonID)">Hủy đơn</a>
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </td>
+                                <td>@Html.ActionLink("Chi tiết", "XemChiTietHoaDon", new { id = item.hoaDonID })</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3" style="padding-top:40px">
+            @Html.Partial("DanhMucQLKH")
+        </div>
+    </div>    
+</div>
+
+<div class="modal fade" id="myModalHuyDon">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Hủy bỏ đơn hàng</h3>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+                <h4>Bạn có chắc? Muốn hủy đơn hàng này.</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Hủy bỏ</a>
+                <a href="#" class="btn btn-success" onclick="Delete()">Xác nhận</a>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hiddenHoaDonId" />
+</div>
+
+<script>
+    var HuyDonHang = function (hoadonID) {
+        $("#hiddenHoaDonId").val(hoadonID);
+        $("#myModalHuyDon").modal('show');
+    }
+    var Delete = function () {
+        var id = $("#hiddenHoaDonId").val();
+        $.ajax({
+            type: "POST",
+            url: "/QuanLyKH/HuyDon",
+            data: { id: id },
+            success: function (result) {
+                $("#myModalHuyDon").modal("hide");
+                window.location.href = ""
+            }
+        })
+    }
+</script>

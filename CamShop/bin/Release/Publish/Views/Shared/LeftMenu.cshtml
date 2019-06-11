@@ -1,0 +1,22 @@
+﻿@model List<Models.EF.LoaiHang>
+
+@* Danh mục theo bộ lọc bên trái *@
+
+<section class="sky-form">
+    <div class="product_right">
+        <div style="text-align:center">
+        <ul class="list-group">
+            <li style=" background-color: aliceblue;" class="list-group-item list-group-item-light"><h3>Danh mục sản phẩm</h3> </li>
+            @foreach (var item in Model)
+            {
+                var url = "/san-pham/" + @item.MetaTitle + "-" + item.loaiHangID;
+            <li class="list-group-item list-group-item-light">
+                <a class="btn-light" href="@url">
+                    @item.tenLoai
+                </a>
+            </li>
+        }
+            </ul>
+        </div>
+</section>
+

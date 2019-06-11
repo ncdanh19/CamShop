@@ -1,0 +1,57 @@
+﻿@model Models.EF.DanhMuc
+
+@{
+    ViewBag.Title = "Chi tiết danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết danh mục</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NhomDanhMuc.tenNhom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhomDanhMuc.tenNhom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenDanhMuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenDanhMuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.URL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.URL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Target)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Target)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangThai)
+        </dd>        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.danhMucID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-default" })
+</p>

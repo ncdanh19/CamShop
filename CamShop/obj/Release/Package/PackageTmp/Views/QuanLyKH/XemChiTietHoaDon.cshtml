@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Models.EF.ChiTietHoaDon>
+
+@{
+    var thongtinGiaoHang = (Models.EF.GiaoHang)ViewBag.giaoHang;
+    var maHD = (Models.EF.HoaDon)ViewBag.hoaDon;
+    ViewBag.Title = "XemChiTietHoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cart" style="margin-bottom:150px">
+    <div class="container">
+        @* div top *@
+        <div class="cart-top">
+            <a href="/">Trang chú</a>
+            <a href="#">/</a>
+            <a href="/tai-khoan/">Quản lý tài khoản</a>
+            <a href="#">/</a>
+            <a href="/lich-su-mua-hang/">Lịch sử mua hàng</a>
+            <a href="#">/</a>
+            <a href="/chi-tiet-@maHD.hoaDonID/">Chi tiết</a>
+        </div>
+        <div class="col-md-12" style="padding-top:40px">
+            <div class="card-body">
+                <h2 id="form-tittle">Chi tiết hóa đơn - Mã hóa đơn: @maHD.hoaDonID</h2>
+                <div class="col-md-6">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th width="17%"></th>
+                                <th>
+                                    Tên sản phẩm
+                                </th>
+                                <th>
+                                    Số lượng
+                                </th>
+                                <th>
+                                    Thành tiền
+                                </th>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><img width="100%" src="@item.SanPham.hinhAnh" /></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SanPham.tenSanPham)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.soLuong)
+                                    </td>
+                                    @if (item.SanPham.giaKhuyenMai > 0)
+                                    {
+                                        <td>
+                                            @((item.giaKhuyenMai * @item.soLuong).HasValue ? (item.giaKhuyenMai * @item.soLuong).Value.ToString("N0") : "Liên hệ")<label>đ</label>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @((item.donGia * @item.soLuong).HasValue ? (item.donGia * @item.soLuong).Value.ToString("N0") : "Liên hệ")<label>đ</label>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h4>Thông tin giao hàng</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Họ tên
+                        </dt>
+                        <dd>
+                            @thongtinGiaoHang.HoaDon.KhachHang.hoTen
+                        </dd>
+                        <dt>
+                            Số điện thoại
+                        </dt>
+                        <dd>
+                            @thongtinGiaoHang.HoaDon.KhachHang.soDienThoai
+                        </dd>
+                        <dt>
+                            Địa chỉ
+                        </dt>
+                        <dd>
+                            @thongtinGiaoHang.HoaDon.KhachHang.diaChi
+                        </dd>
+                        <dt>
+                            Đơn vị giao hàng
+                        </dt>
+                        <dd>
+                            @thongtinGiaoHang.donViGiaoHang
+                        </dd>
+
+                        <dt>
+                            Ngày giao hàng
+                        </dt>
+
+                        <dd>
+                            @thongtinGiaoHang.ngayGiaoHang.Value.ToString("dd/MM/yyyy")
+                        </dd>
+                    </dl>
+                    <a class="btn btn-default" href="/lich-su-mua-hang/">Quay lại</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

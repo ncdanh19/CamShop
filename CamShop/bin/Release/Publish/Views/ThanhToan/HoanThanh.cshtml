@@ -1,0 +1,23 @@
+﻿@model List<CamShop.Models.CartItem>
+@{
+    ViewBag.Title = "Thanh Toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section jsCart{
+    <script src="/Assets/client/js/cart.js"></script>
+}
+<div class="cart">
+    <div class="container">
+        @* div top *@
+        <div class="cart-top">
+            <a href="/">Trang chủ</a>
+        </div>
+        @* div trái 9, giỏ hàng *@
+        <div class="col-md-9" style="height:500px; padding-top: 50px;">
+            <h1>Bạn đã mua hàng thành công! <a href="/">Quay lại trang chủ</a></h1>
+        </div>
+    </div>
+</div>
+
+

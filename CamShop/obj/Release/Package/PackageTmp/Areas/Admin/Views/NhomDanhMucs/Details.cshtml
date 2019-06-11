@@ -1,0 +1,26 @@
+﻿@model Models.EF.NhomDanhMuc
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết danh mục</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenNhom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenNhom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.nhomID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Trở lại", "Index", "", new { @class = "btn btn-default" })
+</p>
